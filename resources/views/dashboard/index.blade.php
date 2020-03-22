@@ -38,7 +38,8 @@
                                     <div class="d-flex justify-content-center">
                                         <div class="text-center">
                                             <button id="connection_check" class="btn btn-warning">1. Kiểm tra kết nối</button>
-                                            <button id="issue_credential" class="btn btn-success">2. Cung cấp thông tin</button>
+                                            <button id="verification_create" class="btn btn-success">2. Gởi yêu cầu đến ứng dụng</button>
+                                            <button id="verification_check" class="btn btn-success">3. Kiểm tra trạng thái</button>
                                         </div>
                                     </div>
                                 </div>
@@ -93,7 +94,7 @@
 
                                         <div class="form-group row">
                                             <div class="col-md-9">
-                                                <button type="button"  id="btn-submit" class="btn btn-primary">3. Gởi ý kiến</button>
+                                                <button type="button"  id="btn-submit" class="btn btn-primary">4. Gởi ý kiến</button>
                                                 <button type="reset" class="btn btn-warning btn-outline">Đặt lại</button>
                                             </div>
                                         </div>
@@ -127,34 +128,32 @@
     {{--    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>--}}
     <script>
         $("#connection_check").prop("disabled", true);
-        $("#issue_credential").prop("disabled", true);
+        $("#verification_create").prop("disabled", true);
         $("#btn-submit").prop("disabled", true);
+        $("#verification_check").prop("disabled", true);
+
 
         createConnection()
 
-        $("#btn_check_id").click(function(event){
+        $("#verification_create").click(function(event){
             event.preventDefault();
-            var code = $("#input_code").val()
-            console.log(code)
-            $('#citizen-info').trigger("reset");
-            $("#input_code").val(code)
+            var connectionId = $("#connection_check").data('button-data').connectionId
+
+            // console.log(code)
+            // $('#citizen-info').trigger("reset");
+            // $("#input_code").val(code)
             $.ajax({
                 type: 'POST',
-                data: {code: code},
-                url:"/api/citizen/getbyid",
+                data: {verificationDefinitionId: "9088443d-0d29-4695-a360-248e9ea99c48", connectionId: connectionId},
+                url:"/api/verification/create",
                 success:function(data)
                 {
                     toastr.success('Lấy thông tin thành công')
                     console.log(data.data)
-                    $("#input_fullname").val(data.data.fullname)
-                    if (data.data.gender === 0){
-                        $("#female").attr('checked', true);
-                    }else{
-                        $("#male").attr('checked', true);
-                    }
-                    $("#dob").val(data.data.dob)
-                    $("#address").val(data.data.address)
-                    $("#btn-submit").prop("disabled", false);
+                    //
+                    $("#verification_check").data('button-data', {verificationId:data.data.verificationId})
+                    $("#verification_check").prop("disabled", false);
+                    // $("#verification_create").prop("disabled", false);
 
                     // $('#current_transaction').html(data);
                 },
@@ -205,23 +204,23 @@
 
 
         });
-        function issueCredential(connectionId, code) {
-            $.ajax({
-                type: 'POST',
-                data: {connectionId: connectionId, code:code},
-                url:"/api/credential/issue",
-                success:function(data)
-                {
-                    toastr.success('Lấy thông tin thành công')
-                    console.log(data)
-                },
-                error: function (err) {
-                    console.log(err)
-                    toastr.error('Lỗi truy vấn thông tin')
-
-                }
-            });
-        }
+        // function issueCredential(connectionId, code) {
+        //     $.ajax({
+        //         type: 'POST',
+        //         data: {connectionId: connectionId, code:code},
+        //         url:"/api/credential/issue",
+        //         success:function(data)
+        //         {
+        //             toastr.success('Lấy thông tin thành công')
+        //             console.log(data)
+        //         },
+        //         error: function (err) {
+        //             console.log(err)
+        //             toastr.error('Lỗi truy vấn thông tin')
+        //
+        //         }
+        //     });
+        // }
 
         function getConnection(id){
             $.ajax({
@@ -234,7 +233,7 @@
                     var data = data.data
                     if(data.state === 'Connected'){
                         swal('Thành công', 'Đã kết nối đến người dân','success')
-                        $("#issue_credential").prop("disabled", false);
+                        $("#verification_create").prop("disabled", false);
                         // $("#connection_check").prop("disabled", false);
 
                     }
@@ -291,12 +290,48 @@
             getConnection(connectionId);
         })
 
-        $("#issue_credential").click(function (event) {
+        function getVerification(id){
+            $.ajax({
+                type: 'GET',
+                // data: {code: code},
+                url:"/api/verification/detail/"+id,
+                success:function(data)
+                {
+                    toastr.success('Lấy thông tin thành công')
+                    var data = data.data
+                    if(data.state === 'Accepted'){
+                        swal('Thành công', 'Đã cung cấp thông tin','success')
+                        $("#btn-submit").prop("disabled", false);
+                        $("#address").val(data.proof.additionalProp1.value)
+                        // $("#connection_check").prop("disabled", false);
+
+                    }
+                    else if (data.state === 'Invited'){
+                        swal('Đang đợi cung cấp thông tin', 'Vui lòng kết nối','info')
+                    }
+                    console.log(data)
+                },
+                error: function (err) {
+                    console.log(err)
+                    toastr.error('Lỗi truy vấn thông tin')
+
+                }
+            });
+        }
+
+        $("#verification_check").click(function (event) {
             event.preventDefault();
-            var connectionId = $("#connection_check").data('button-data').connectionId
-            var code = $("#input_code").val()
-            issueCredential(connectionId, code)
+            var verificationId = $("#verification_check").data('button-data').verificationId
+            getVerification(verificationId);
         })
+
+
+        // $("#issue_credential").click(function (event) {
+        //     event.preventDefault();
+        //     var connectionId = $("#connection_check").data('button-data').connectionId
+        //     var code = $("#input_code").val()
+        //     issueCredential(connectionId, code)
+        // })
 
 
     </script>

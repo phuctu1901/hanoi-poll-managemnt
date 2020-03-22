@@ -17,3 +17,6 @@ Bước 2: hệ thống sẽ dựa vào `connection id` mà kết nối đến w
 Bước 3: người dùng nhập ý kiến và gởi về hệ thống.
 
 Bươc 4: kết thúc
+
+https://github.com/hyperledger/aries-cloudagent-python/blob/master/docs/GettingStartedAriesDev/RoutingEncryption.md
+Mai đọc cái này để xem triển khai Aries Cloud Agent Python có khả thi hay không.
