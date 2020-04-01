@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class VerificationController extends Controller
 {
-    protected $bearer_token = 'WW1l75JhPpWJ0TddnwhGcuuxO29tmbmSEZG9HLx4Pg0';
+
+
     function sendRequest($method, $url, $data){
         try {
 
@@ -82,25 +83,51 @@ class VerificationController extends Controller
     }
 
     function create(Request $request){
-        $verificationDefinitionId = $request->input( "verificationDefinitionId" );
         $connectionId = $request->input( 'connectionId' );
 
-        $data =[
-            "verificationDefinitionId"=>$verificationDefinitionId,
-            "connectionId"=>$connectionId
-        ];
+        $api_url = $_ENV['ACA_PY_URL'];
+        $cred_def_id = $_ENV['CRED_ID'];
+
+        $json_string = '{
+                          "connection_id": "'.$connectionId.'",
+                          "proof_request": {
+                            "name": "Proof of address",
+                            "version": "1.0",
+                            "requested_attributes": {
+                              "0_name_uuid": {
+                                "name": "dob",
+                                "restrictions": [
+                                  {
+                                    "cred_def_id": "'.$cred_def_id.'"
+                                  }
+                                ]
+                              }
+                            },
+                            "requested_predicates": {
+                            }
+                          }
+                        }';
+
+
         try{
-            $response = $this->sendRequest('POST', 'https://api.streetcred.id/agency/v1/verifications', $data);
+        $url = ''.$api_url.'/present-proof/send-request';
+
+        $client = new \GuzzleHttp\Client();
+
+            $response = $client->request('POST',$url,  [
+                'json'=>json_decode($json_string, true)
+            ]);
             return response()->json([
                 'error' => false,
-                'data'  => \GuzzleHttp\json_decode($response->getBody()->getContents()),
+                'data'  => \GuzzleHttp\json_decode($response->getBody()),
             ], $response->getStatusCode());
         }
         catch (RequestException $exception){
+            return $exception;
             return response()->json([
                 'error' => true,
                 'data'  =>$exception,
-            ], $response->getStatusCode());
+            ], 500);
         }
     }
 

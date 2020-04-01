@@ -54,43 +54,43 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3 col-form-label">Số định danh: </label>
+                                            <label class="col-md-3 col-form-label">Nội dung: </label>
                                             <div class="col-md-9 input-group" >
-                                                <input type="text" class="form-control" id="input_code" placeholder="Mã số công dân" autocomplete="off" />
-                                                <span class="input-group-btn">
-                                                <button class="btn btn-info" name="btn_check_id"  id="btn_check_id"> Kiểm tra</button>
-                                            </span>
+                                                <textarea cols="5" class="form-control" id="input_code" placeholder="Nội dung ý kiến" autocomplete="off"></textarea>
+{{--                                                <span class="input-group-btn">--}}
+{{--                                                <button class="btn btn-info" name="btn_check_id"  id="btn_check_id"> Kiểm tra</button>--}}
+{{--                                            </span>--}}
                                             </div>
                                         </div>
 
 
-                                        <div class="form-group row">
-                                            <label class="col-md-3 col-form-label">Họ và tên: </label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="input_fullname" placeholder="Họ và tên đầy đủ" autocomplete="off" disabled/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <legend class="col-md-3 col-form-legend">Giới tính: </legend>
-                                            <div class="col-md-9">
-                                                <div class="radio-custom radio-default radio-inline">
-                                                    <input type="radio"  name="gender" id="male" disabled/>
-                                                    <label for="inputHorizontalMale">Name</label>
-                                                </div>
-                                                <div class="radio-custom radio-default radio-inline">
-                                                    <input type="radio" name="gender" id="female"  disabled
-                                                    />
-                                                    <label for="inputHorizontalFemale">Nữ</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 col-form-label">Ngày sinh: </label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="dob" placeholder=""
-                                                       autocomplete="off"  disabled/>
-                                            </div>
-                                        </div>
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label class="col-md-3 col-form-label">Họ và tên: </label>--}}
+{{--                                            <div class="col-md-9">--}}
+{{--                                                <input type="text" class="form-control" id="input_fullname" placeholder="Họ và tên đầy đủ" autocomplete="off" disabled/>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="form-group row">--}}
+{{--                                            <legend class="col-md-3 col-form-legend">Giới tính: </legend>--}}
+{{--                                            <div class="col-md-9">--}}
+{{--                                                <div class="radio-custom radio-default radio-inline">--}}
+{{--                                                    <input type="radio"  name="gender" id="male" disabled/>--}}
+{{--                                                    <label for="inputHorizontalMale">Name</label>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="radio-custom radio-default radio-inline">--}}
+{{--                                                    <input type="radio" name="gender" id="female"  disabled--}}
+{{--                                                    />--}}
+{{--                                                    <label for="inputHorizontalFemale">Nữ</label>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label class="col-md-3 col-form-label">Ngày sinh: </label>--}}
+{{--                                            <div class="col-md-9">--}}
+{{--                                                <input type="text" class="form-control" id="dob" placeholder=""--}}
+{{--                                                       autocomplete="off"  disabled/>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
                                         <div class="form-group row">
                                             <div class="col-md-9">
@@ -144,7 +144,7 @@
             // $("#input_code").val(code)
             $.ajax({
                 type: 'POST',
-                data: {verificationDefinitionId: "9088443d-0d29-4695-a360-248e9ea99c48", connectionId: connectionId},
+                data: {connectionId: connectionId},
                 url:"/api/verification/create",
                 success:function(data)
                 {
@@ -171,35 +171,7 @@
             toastr.info('Đang lấy thông tin')
             const  code = $("#input_code").val()
 
-            $.ajax({
-                type: 'GET',
-                // data: {code: code},
-                url:"/api/connection/create",
-                success:function(data)
-                {
-                    toastr.success('Lấy thông tin thành công')
-                    var data = data.data
-                    var inviationUrl = data.invitationUrl
-                    var connectionId = data.connectionId
-                    var qrcode = new QRCode(document.getElementById("qrcode"), {
-                        text: inviationUrl,
-                        width: 320,
-                        height: 320,
-                        colorDark : "#000000",
-                        colorLight : "#ffffff",
-                        correctLevel : QRCode.CorrectLevel.H
-                    });
-                    $("#connection_check").data('button-data', {connectionId:connectionId})
-
-                    $("#connection_check").prop("disabled", false);
-
-                },
-                error: function (err) {
-                    console.log(err)
-                    toastr.error('Lỗi truy vấn thông tin')
-
-                }
-            });
+          // createConnection();
 
 
 
@@ -231,13 +203,13 @@
                 {
                     toastr.success('Lấy thông tin thành công')
                     var data = data.data
-                    if(data.state === 'Connected'){
+                    if(data.state === 'response'){
                         swal('Thành công', 'Đã kết nối đến người dân','success')
                         $("#verification_create").prop("disabled", false);
                         // $("#connection_check").prop("disabled", false);
 
                     }
-                    else if (data.state === 'Invited'){
+                    else if (data.state === 'response'){
                         swal('Đang đợi kết nối', 'Vui lòng kết nối','info')
                     }
                     console.log(data)
@@ -258,17 +230,18 @@
                 url:"/api/connection/create",
                 success:function(data)
                 {
-                    toastr.success('Khởi tạo QR Code thành công')
+                    toastr.success('Lấy thông tin thành công')
                     var data = data.data
-                    var inviationUrl = data.invitationUrl
-                    var connectionId = data.connectionId
+                    var inviationUrl = data.invitation_url
+                    var connectionId = data.connection_id
+                    console.log(connectionId)
                     var qrcode = new QRCode(document.getElementById("qrcode"), {
                         text: inviationUrl,
                         width: 320,
                         height: 320,
                         colorDark : "#000000",
                         colorLight : "#ffffff",
-                        correctLevel : QRCode.CorrectLevel.H
+                        correctLevel : QRCode.CorrectLevel.L
                     });
                     $("#connection_check").data('button-data', {connectionId:connectionId})
 
@@ -320,7 +293,7 @@
         }
 
         $("#verification_check").click(function (event) {
-            event.preventDefault();
+            event.preventDefault();t
             var verificationId = $("#verification_check").data('button-data').verificationId
             getVerification(verificationId);
         })
