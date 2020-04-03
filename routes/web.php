@@ -13,4 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'DashboardController@index');
+//Route::get('/', 'DashboardController@index');
+
+Route::get('/', 'Client\HomeController@index');
+Route::get('/chi-tiet/{slug}', 'Client\PollController@detail');
+
+
+
+
+
+
+
+Route::group(['prefix'=>'/admin'],function() {
+    //   Admin -> phần tour
+    Route::get('/', 'Admin\DashboardController@index');
+    Route::get('/poll/add', 'Admin\PollController@addview');
+
+});

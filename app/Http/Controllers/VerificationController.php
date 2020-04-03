@@ -91,21 +91,21 @@ class VerificationController extends Controller
         $json_string = '{
                           "connection_id": "'.$connectionId.'",
                           "proof_request": {
-                            "name": "Proof of address",
                             "version": "1.0",
+                            "requested_predicates": {},
                             "requested_attributes": {
-                              "0_name_uuid": {
-                                "name": "dob",
+                              "address": {
+                                "name": "address",
                                 "restrictions": [
-                                  {
-                                    "cred_def_id": "'.$cred_def_id.'"
-                                  }
+                                    {
+                                     "cred_def_id": "'.$cred_def_id.'"
+                                    }
                                 ]
                               }
                             },
-                            "requested_predicates": {
-                            }
-                          }
+                            "name": "Bằng chứng về nơi cư trú"
+                          },
+                          "comment": "string"
                         }';
 
 
@@ -115,7 +115,7 @@ class VerificationController extends Controller
         $client = new \GuzzleHttp\Client();
 
             $response = $client->request('POST',$url,  [
-                'json'=>json_decode($json_string, true)
+                'json'=>json_decode($json_string, false)
             ]);
             return response()->json([
                 'error' => false,
@@ -133,24 +133,18 @@ class VerificationController extends Controller
 
     function verify($id){
         try{
-            $response = $this->sendRequest('GET', 'https://api.streetcred.id/agency/v1/verifications/'.$id.'/verify', null);
+            $api_url = $_ENV['ACA_PY_URL'];
+            $url = $url = ''.$api_url.'/present-proof/records/'.$id.'';
 
-//            return response()->json([
-//                'error' => false,
-//                'data'  => $response,
-//            ], 401);
+            $client = new \GuzzleHttp\Client();
 
-            if ($response=='null'){
-                return response()->json([
-                    'error' => false,
-                    'data'  => \GuzzleHttp\json_decode($response->getBody()->getContents()),
-                ], $response->getStatusCode());
-            } else{
-                return response()->json([
-                    'error' => true,
-//                    'data'  => '',
-                ], 500);
-            }
+            $response = $client->request('GET',$url,  []);
+
+
+            return response()->json([
+                'error' => false,
+                'data'  => \GuzzleHttp\json_decode($response->getBody()),
+            ], $response->getStatusCode());
 
         }
         catch (RequestException $exception){

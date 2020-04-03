@@ -38,14 +38,6 @@ class ConnectionController extends Controller
         $response = $client->request('GET',$url,  []);
 
 
-//        $data_response = \GuzzleHttp\json_decode($response->getBody(), true);
-////        dd($data_response);
-////        $data_array=[
-////            "id"=>$data_response->connection_id
-////        ];
-//
-//        $this->updateConnectionRecord($data_response);
-
         return response()->json([
             'error' => false,
             'data'  => \GuzzleHttp\json_decode($response->getBody()),

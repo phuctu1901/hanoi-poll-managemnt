@@ -20,7 +20,7 @@ Route::get('/connection/get/{id}', 'ConnectionController@get');
 Route::get('/definition/verification','DefinitionController@verifications');
 
 Route::post('/verification/create','VerificationController@create');
-Route::get('/verification/detail/{id}','VerificationController@detail');
-Route::get('/verification/verify/{id}','VerificationController@verify');
+Route::get('/verification/detail/{id}','VerificationController@verify');
+//Route::get('/verification/verify/{id}','VerificationController@verify');
 Route::delete('/verification/detail/{id}','VerificationController@delete');
 Route::get('/verification/list','VerificationController@list');

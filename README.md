@@ -20,3 +20,15 @@ Bươc 4: kết thúc
 
 https://github.com/hyperledger/aries-cloudagent-python/blob/master/docs/GettingStartedAriesDev/RoutingEncryption.md
 Mai đọc cái này để xem triển khai Aries Cloud Agent Python có khả thi hay không.
+
+```html
+  <select id="tourtype_id" name="poll_type"
+                                                                                        class="form-control">
+                                                                                    <option value="0" selected="" disabled="">Chọn loại câu hỏi
+                                                                                    </option>
+
+                                                                                    <option value="1">Tự luận</option>
+                                                                                    <option value="2">Trắc nghiệm chọn 1 đáp án</option>
+                                                                                    <option value="2">Trắc nghiệm chọn nhiều đáp án</option>
+                                                                                </select>
+```
