@@ -14,8 +14,7 @@
         <div class="page-header">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="/did/all">Định danh</a></li>
-                <li class="breadcrumb-item active">Cấp định danh</li>
+                <li class="breadcrumb-item active">{{$poll->title}}</li>
 
             </ol>
 
@@ -24,13 +23,38 @@
             <div class="row" data-plugin="matchHeight" data-by-row="true">
 
                 <div class="col-12">
+{{--                    Poll info--}}
                     <div  class="card card-shadow card-md" style="margin-top: 30px;">
                         <div class="card-header card-header-transparent pb-15">
-                            <p class="font-size-14 blue-grey-700 mb-0 text-uppercase">Thông tin định danh</p>
+                            <p class="font-size-14 blue-grey-700 mb-0 text-uppercase text-center">nội dung khảo sát ý kiến</p>
                         </div>
                         <div class="card-block px-90 col-12">
                             <div class="row">
-                                <div class="col-md-12 col-lg-5">
+                                <div class="col-md-12 col-lg-5 form-group">
+                                    @foreach($questions as $question)
+                                        <?php echo htmlspecialchars_decode($question->content);?>
+
+                                    @endforeach
+                                </div>
+
+                                <div class="col-md-12 col-lg-6">
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    {{--                    Citizen info--}}
+                    <div  class="card card-shadow card-md" style="margin-top: 30px;">
+                        <div class="card-header card-header-transparent pb-15">
+                            <p class="font-size-14 blue-grey-700 mb-0 text-uppercase text-center">thông tin công dân</p>
+                        </div>
+                        <div class="card-block px-90 col-12">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-5 form-group">
                                     <div class="form-group d-flex justify-content-center">
                                         <div id="qrcode"></div>
                                     </div>
@@ -44,56 +68,37 @@
                                 </div>
 
                                 <div class="col-md-12 col-lg-6">
-                                    <form id="citizen-info">
+                                    <form id="poll-info"  action="{{url('/goi-yeu-cau')}} "
+                                          method="POST" role="form" enctype="multipart/form-data">
+                                        {{ csrf_field()}}
                                         <div class="form-group row">
                                             <label class="col-md-3 col-form-label">Địa chỉ thường trú: </label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="address" placeholder=""
-                                                       autocomplete="off" disabled/>
+                                                <input type="text" class="form-control" id="address"  name="address" placeholder=""
+                                                       autocomplete="off" readonly/>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3 col-form-label">Nội dung: </label>
-                                            <div class="col-md-9 input-group" >
-                                                <textarea cols="5" class="form-control" id="input_code" placeholder="Nội dung ý kiến" autocomplete="off"></textarea>
-                                                {{--                                                <span class="input-group-btn">--}}
-                                                {{--                                                <button class="btn btn-info" name="btn_check_id"  id="btn_check_id"> Kiểm tra</button>--}}
-                                                {{--                                            </span>--}}
+                                            <label class="col-md-3 col-form-label">Số căn cước: </label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="id_number" name="id_number" placeholder=""
+                                                       autocomplete="off" readonly/>
                                             </div>
                                         </div>
 
+                                        <div class="form-group row">
+                                            <input type="hidden" value="{{$poll->id}}" name="poll_id">
+                                            <input type="hidden" name="pre_ex_id" id="pre_ex_id">
+                                            <label class="col-md-3 col-form-label">Nội dung: </label>
+                                            <div class="col-md-9 input-group">
+                                                <textarea cols="5" name="answer_content" class="form-control" id="content" placeholder="Nội dung ý kiến" autocomplete="off"></textarea>
+                                            </div>
+                                        </div>
 
-                                        {{--                                        <div class="form-group row">--}}
-                                        {{--                                            <label class="col-md-3 col-form-label">Họ và tên: </label>--}}
-                                        {{--                                            <div class="col-md-9">--}}
-                                        {{--                                                <input type="text" class="form-control" id="input_fullname" placeholder="Họ và tên đầy đủ" autocomplete="off" disabled/>--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="form-group row">--}}
-                                        {{--                                            <legend class="col-md-3 col-form-legend">Giới tính: </legend>--}}
-                                        {{--                                            <div class="col-md-9">--}}
-                                        {{--                                                <div class="radio-custom radio-default radio-inline">--}}
-                                        {{--                                                    <input type="radio"  name="gender" id="male" disabled/>--}}
-                                        {{--                                                    <label for="inputHorizontalMale">Name</label>--}}
-                                        {{--                                                </div>--}}
-                                        {{--                                                <div class="radio-custom radio-default radio-inline">--}}
-                                        {{--                                                    <input type="radio" name="gender" id="female"  disabled--}}
-                                        {{--                                                    />--}}
-                                        {{--                                                    <label for="inputHorizontalFemale">Nữ</label>--}}
-                                        {{--                                                </div>--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="form-group row">--}}
-                                        {{--                                            <label class="col-md-3 col-form-label">Ngày sinh: </label>--}}
-                                        {{--                                            <div class="col-md-9">--}}
-                                        {{--                                                <input type="text" class="form-control" id="dob" placeholder=""--}}
-                                        {{--                                                       autocomplete="off"  disabled/>--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
 
                                         <div class="form-group row">
                                             <div class="col-md-9">
-                                                <button type="button"  id="btn-submit" class="btn btn-primary">4. Gởi ý kiến</button>
+                                                <button type="submit"  id="btn-submit" class="btn btn-primary">4. Gởi ý kiến</button>
                                                 <button type="reset" class="btn btn-warning btn-outline">Đặt lại</button>
                                             </div>
                                         </div>
@@ -117,16 +122,25 @@
     </div>
 @endsection
 @section('scripts-content')
+
+
     <script src="/client-assets/global/vendor/footable/footable.min.js"></script>
     <script src="/client-assets/assets/examples/js/dashboard/analytics.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="/client-assets/assets/js/qrcode.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
-
+    <script>
+        var msg = '{{Session::get('alert')}}';
+        var exist = '{{Session::has('alert')}}';
+        if (exist) {
+            swal('Cảm ơn bạn đã góp ý kiến', 'Đóng góp ý kiến thành công','success')
+        }
+    </script>
 
     <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
     {{--    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>--}}
     <script>
+        {{--console.log({{$poll->id}})--}}
         $("#connection_check").prop("disabled", true);
         $("#verification_create").prop("disabled", true);
         $("#btn-submit").prop("disabled", true);
@@ -164,17 +178,22 @@
 
         });
 
-        $("#btn-submit").click(function(event){
-            event.preventDefault();
-            toastr.info('Đang lấy thông tin')
-            const  code = $("#input_code").val()
-
-            // createConnection();
+            {{--$("#btn-submit").click(function(event){--}}
+            {{--    event.preventDefault();--}}
+            {{--    toastr.info('Đang lấy thông tin')--}}
+            {{--    const poll_id = {!! $poll->id !!};--}}
 
 
+            {{--    // createConnection();--}}
 
-        });
 
+
+            {{--});--}}
+
+
+        // function subu() {
+        //
+        // }
 
         function getConnection(id){
             $.ajax({
@@ -205,14 +224,14 @@
         }
 
         function createConnection(){
-            toastr.info('Đang khởi tạo QR Code')
+            // toastr.info('Đang khởi tạo QR Code')
             $.ajax({
                 type: 'GET',
                 // data: {code: code},
                 url:"/api/connection/create",
                 success:function(data)
                 {
-                    toastr.success('Lấy thông tin thành công')
+                    // toastr.success('Lấy thông tin thành công')
                     var data = data.data
                     var inviationUrl = data.invitation_url
                     var connectionId = data.connection_id
@@ -232,7 +251,7 @@
                 },
                 error: function (err) {
                     console.log(err)
-                    toastr.error('Lỗi truy vấn thông tin')
+                    // toastr.error('Lỗi truy vấn thông tin')
 
                 }
             });
@@ -252,14 +271,21 @@
                 url:"/api/verification/detail/"+id,
                 success:function(data)
                 {
+
+                    $("#pre_ex_id").val(id)
+
                     toastr.success('Lấy thông tin thành công')
                     var data = data.data
+                    console.log(data.proof_id)
                     if(data.state === 'presentation_received'){
                         swal('Thành công', 'Đã cung cấp thông tin','success')
                         $("#btn-submit").prop("disabled", false);
 
                         $("#address").val(data.presentation.requested_proof.revealed_attrs.address.raw)
-                        // $("#connection_check").prop("disabled", false);
+                        $("#id_number").val(data.presentation.requested_proof.revealed_attrs.id.raw)
+
+
+
 
                     }
                     else {

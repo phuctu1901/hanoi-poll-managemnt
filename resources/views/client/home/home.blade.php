@@ -30,7 +30,7 @@
                         </div>
                         <div class="card-block px-90 col-12">
 
-                        </div>
+                        </div>  uwr
                     </div>
                     <!-- Panel Accordion -->
 
