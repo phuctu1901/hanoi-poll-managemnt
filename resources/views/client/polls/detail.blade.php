@@ -24,31 +24,46 @@
 
                 <div class="col-12">
 {{--                    Poll info--}}
-                    <div  class="card card-shadow card-md" style="margin-top: 30px;">
+                    <?php $question_number = 1; ?>
+                    @foreach($questions as $q)
+
+                    <div  class="card card-shadow card-md border border-primary" style="margin-top: 30px;">
                         <div class="card-header card-header-transparent pb-15">
-                            <p class="font-size-14 blue-grey-700 mb-0 text-uppercase text-center">nội dung khảo sát ý kiến</p>
+                            <p class="font-size-24 black text-info mb-0 text-uppercase text-center">Câu {{$question_number}}</p>
                         </div>
                         <div class="card-block px-90 col-12">
                             <div class="row">
-                                <div class="col-md-12 col-lg-5 form-group">
-                                    @foreach($questions as $question)
-                                        <?php echo htmlspecialchars_decode($question->content);?>
+                                <div class="col-md-12 col-lg-5">
 
-                                    @endforeach
+                                                <div class="example-wrap m-sm-0">
+                                                    <div class="question-content">
+                                                        <?php echo htmlspecialchars_decode($q->question);?>
+                                                    </div>
+                                                    <ul class="list-unstyled example">
+                                                        @foreach($q->options as $option)
+                                                            <li class="mb-15">
+                                                                <input type="checkbox" class="icheckbox-primary" data-plugin="iCheck" data-checkbox-class="icheckbox_flat-blue" name="checkboxname"/>
+                                                                <label for="inputDisabledUnchecked">{{$option}}</label>
+                                                            </li>
+                                                        @endforeach
+
+                                                    </ul>
+                                                </div>
                                 </div>
-
-                                <div class="col-md-12 col-lg-6">
-
-                                </div>
-
-
                             </div>
-
                         </div>
                     </div>
+                        <?php $question_number++;?>
+                    @endforeach
+
+
+
+                    {{----}}
+
+
 
                     {{--                    Citizen info--}}
-                    <div  class="card card-shadow card-md" style="margin-top: 30px;">
+                    <div  class="card card-shadow border border-danger card-md" style="margin-top: 30px;">
                         <div class="card-header card-header-transparent pb-15">
                             <p class="font-size-14 blue-grey-700 mb-0 text-uppercase text-center">thông tin công dân</p>
                         </div>

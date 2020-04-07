@@ -7,6 +7,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Poll extends Model
 {
+    use Sluggable;
     protected $table = 'polls';
     protected $primaryKey = 'id';
 

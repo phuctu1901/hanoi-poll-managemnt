@@ -26,6 +26,8 @@ class PollController extends Controller
     public function addRequest(Request $request)
     {
 
+
+//        return $request;
         $title = $request->poll_name;
         $category_id = $request->category_id;
         $start_time = $request->start_time;
@@ -40,15 +42,32 @@ class PollController extends Controller
         $questions = '[';
         $question_number = (int) $request->question_number;
 
+        $options = $request->option;
+        $option_len  = $request->option_len;
+
+        $start_j = 0;
+        $j=0;
         for($i = 0; $i<$question_number; $i++) {
             if ($i > 0) {
                 $questions = $questions . ',';
             }
 
-            $questions = $questions . '{"content":' . json_encode($question_content[$i]) . '}';
+            $questions = $questions . '{"question":' . json_encode($question_content[$i]) . ', "options":[';
 
+            for($j = $start_j; $j<$start_j+$option_len[$i]; $j++){
+                if ($j > $start_j) {
+                    $questions = $questions.',';
+                }
+                    $questions = $questions.'"';
+                    $questions = $questions.$options[$j] .'"';
+            }
+            $questions = $questions.']}';
+            $start_j=$j;
         }
         $questions = $questions . ']';
+
+//        $obj = json_encode()
+//        return ($questions);
 
 
         $data_array=[
