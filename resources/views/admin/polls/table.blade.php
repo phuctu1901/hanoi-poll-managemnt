@@ -15,7 +15,7 @@
     <tbody>
     @foreach($data as $row)
         <tr>
-            <td><a href="/did/detail/{{$row->id}}">{{ $row->id }}</a> </td>
+            <td><a href="/admin/poll/detail/{{$row->id}}">{{ $row->id }}</a> </td>
             <td>{{$row->title}}</td>
             <td>{{$row->created_at}}</td>
             <td>{{$row->start_at}}</td>

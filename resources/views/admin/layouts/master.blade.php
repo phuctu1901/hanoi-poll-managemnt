@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="/admin-assets/vendors/css/prism.min.css">
     <link rel="stylesheet" type="text/css" href="/admin-assets/vendors/css/chartist.min.css">
     <link rel="stylesheet" href="/admin-assets/vendors/css/bootstrap-multiselect.css" type="text/css">
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>--}}
     <!-- END VENDOR CSS-->
     <!-- BEGIN APEX CSS-->
     <link rel="stylesheet" type="text/css" href="/admin-assets/css/app.css">
@@ -192,6 +193,8 @@
 <script src="/admin-assets/vendors/js/jquery.matchHeight-min.js" type="text/javascript"></script>
 <script src="/admin-assets/vendors/js/screenfull.min.js" type="text/javascript"></script>
 <script src="/admin-assets/vendors/js/pace/pace.min.js" type="text/javascript"></script>
+<script src="/admin-assets/vendors/js/chart.min.js" type="text/javascript"></script>
+
 <!-- BEGIN VENDOR JS-->
 <script type="text/javascript"
         src="/admin-assets/vendors/js/bootstrap-multiselect.js"></script>
@@ -202,6 +205,8 @@
 </script>
 <script src="/admin-assets/js/app-sidebar.js" type="text/javascript"></script>
 <script src="/admin-assets/vendors/js/toastr.min.js" type="text/javascript"></script>
+@section('js-content')
+@show
 </body>
 
 

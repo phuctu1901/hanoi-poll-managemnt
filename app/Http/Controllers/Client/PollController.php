@@ -26,7 +26,11 @@ class PollController extends Controller
     public function submit(Request $request)
     {
 
-        return $request;
+//        return $request;
+
+        $answer = $request->answer;
+//        return \GuzzleHttp\json_decode($answer);
+
         $proof_id = Proof::where('pre_ex_id',$request->pre_ex_id)->firstOrFail()->id;
         $poll_id = $request->poll_id;
         $content =$request->answer_content;
@@ -34,7 +38,7 @@ class PollController extends Controller
         $data =[
             'poll_id'=>$poll_id,
             'proof_id'=>$proof_id,
-            'content'=>$content
+            'content'=>\GuzzleHttp\json_encode($answer)
         ];
 
         $this->createPollDetailRecord($data);

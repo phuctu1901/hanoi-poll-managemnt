@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Poll;
+use App\PollDetail;
 use Illuminate\Http\Request;
 
 class PollController extends Controller
@@ -20,6 +21,49 @@ class PollController extends Controller
     protected function createPollRecord(array $data)
     {
         return Poll::create($data);
+    }
+
+    public function  detail($id){
+        $poll = Poll::where('id',$id)->firstOrFail();
+
+//        $poll_detail = Poll::where('slug', $poll_slug)->firstOrFail();
+        $questions =  json_decode($poll->content);
+
+
+
+
+        $poll_details = PollDetail::where('poll_id', $id)->get();
+
+        $result=[];
+
+        $first_detail = $poll_details[0];
+//        return $first_detail;
+        $answer = [];
+        foreach ($poll_details as $poll_detail){
+            array_push($answer,json_decode($poll_detail->content));
+        }
+        $collect_of_answer = collect($answer);
+
+        $question_index = 1;
+        foreach($questions as $question){
+            $option_index=1;
+            $tmp = [];
+            foreach($question->options as $option){
+                $count_value = $collect_of_answer->where($question_index,$option_index) ->count();
+                $option_index++;
+                array_push($tmp, $count_value);
+            }
+            array_push($result, $tmp);
+            $question_index++;
+        }
+
+
+//        $result = $c->where('1','1')->count();
+
+//        return $result;
+
+
+        return view('admin.polls.detail', ['poll'=>$poll, 'result'=>$result, 'questions'=>$questions]);
     }
 
 

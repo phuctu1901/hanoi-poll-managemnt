@@ -31,26 +31,28 @@
                             <?php $option_index = 1; ?>
 
                             <div class="card card-shadow card-md border border-primary" style="margin-top: 30px;">
-                                <div class="card-header card-header-bordered border-primary pb-15">
+                                <div class="card-header card-header-bordered border-primary pb-15 green">
                                     <p class="font-size-24 black text-info mb-0 text-uppercase text-center">
                                         Câu {{$question_number}}</p>
                                 </div>
+                                <div class="card-block px-90 col-12" style="border-bottom: 1px solid blue; color:black;font-size:26px;">
+                                        {{--                                            <pre>--}}
+                                        <?php echo htmlspecialchars_decode($q->question);?>
+                                        {{--                                            </pre>--}}
+                                </div>
+
                                 <div class="card-block px-90 col-12">
 
-                                    <div class="border-bottom border-primary">
-{{--                                            <pre>--}}
-                                                <?php echo htmlspecialchars_decode($q->question);?>
-{{--                                            </pre>--}}
-                                    </div>
+
 
                                     <div class="panel panel-primary">
                                         <div class="panel-content">
-                                            <div class="funkyradio">
+                                            <div class="survey-radio">
                                                 @foreach($q->options as $option)
-                                                    <div class="funkyradio-success">
+                                                    <div class="survey-radio-success">
                                                         <input type="radio" name="answer[{{$question_number}}]"
                                                                id="{{$question_number.$option_index}}"
-                                                               value="{{$question_number.$option_index}}"/>
+                                                               value="{{$option_index}}"/>
                                                         <label
                                                             for="{{$question_number.$option_index}}">{{$option}}</label>
                                                     </div>
@@ -67,6 +69,33 @@
                             <?php $question_number++;?>
                         @endforeach
                         {{--                    Citizen info--}}
+
+                        <div class="card card-shadow border border-info card-md" style="margin-top: 30px;">
+                            <div class="card-block px-90 col-12">
+                                <div class="row">
+                                    <div class="col-md-12  form-group">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <label for="" class="text-uppercase text-bold"><strong>Nguyên tắc hoạt
+                                                        động và cam kết của chúng tôi</strong></label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>Chúng tôi cam kết và chịu trách nhiệm:</p>
+                                                <ul>
+                                                    <li>Không thu thập thông tin trái phép</li>
+                                                    <li>Thao tác của bạn là ẩn danh</li>
+                                                </ul>
+                                                <p>Bạn hãy yên tâm rằng thông tin của bạn do bạn quản lý, chúng tôi
+                                                    không biết bạn là ai cả. Đối với chúng tôi, quyền riêng tư luôn là
+                                                    ưu tiên trên hết. </p>
+                                                <p>Cảm ơn bạn đã tin dùng và ủng hộ</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="card card-shadow border border-danger card-md" style="margin-top: 30px;">
                             <div class="card-header card-header-transparent pb-15">
                                 <p class="font-size-14 blue-grey-700 mb-0 text-uppercase text-center">thông tin công
@@ -78,19 +107,7 @@
                                         <div class="form-group d-flex justify-content-center">
                                             <div id="qrcode"></div>
                                         </div>
-                                        <div class="d-flex justify-content-center">
-                                            <div class="text-center">
-                                                <button id="connection_check" class="btn btn-warning">1. Kiểm tra kết
-                                                    nối
-                                                </button>
-                                                <button id="verification_create" class="btn btn-success">2. Gởi yêu cầu
-                                                    đến ứng dụng
-                                                </button>
-                                                <button id="verification_check" class="btn btn-success">3. Kiểm tra
-                                                    trạng thái
-                                                </button>
-                                            </div>
-                                        </div>
+
                                     </div>
 
                                     <div class="col-md-12 col-lg-6">
@@ -111,23 +128,24 @@
                                             </div>
                                         </div>
 
+
+                                                <div class="form-group d-flex justify-content-center row text-center">
+                                                    <button id="connection_check" class="btn btn-warning btn-arrow-left">1. Kiểm tra kết
+                                                        nối
+                                                    </button>
+                                                    <button id="verification_create" class="btn btn-success btn-arrow-left">2. Gởi yêu cầu
+                                                        đến ứng dụng
+                                                    </button>
+                                                    <button id="verification_check" class="btn btn-success btn-arrow-left">3. Kiểm tra
+                                                        trạng thái
+                                                    </button>
+                                                </div>
+
+
                                         <div class="form-group row">
                                             <input type="hidden" value="{{$poll->id}}" name="poll_id">
                                             <input type="hidden" name="pre_ex_id" id="pre_ex_id">
                                         </div>
-
-
-                                        <div class="form-group row">
-                                            <div class="col-md-9">
-                                                <button type="submit" id="btn-submit" class="btn btn-primary">4. Gởi ý
-                                                    kiến
-                                                </button>
-                                                <button type="reset" class="btn btn-warning btn-outline">Đặt lại
-                                                </button>
-                                            </div>
-                                        </div>
-                                        {{--                                    </form>--}}
-
                                     </div>
 
 
@@ -139,31 +157,6 @@
 
 
                         {{--                    Action for this page --}}
-                        <div class="card card-shadow border border-info card-md" style="margin-top: 30px;">
-                            <div class="card-block px-90 col-12">
-                                <div class="row">
-                                    <div class="col-md-12  form-group">
-                                        <div class="form-group row">
-                                            <div class="col-md-4">
-                                                <label for="" class="text-uppercase text-bold"><strong>Nguyên tắc hoạt
-                                                        động và cam kết của chúng tôi</strong></label>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <p>Chúng tôi cam kết và chịu trách nhiệm:</p>
-                                                <ul>
-                                                    <li>Không thu thập thông tin trái phép</li>
-                                                    <li>Thao tác của bạn là ẩn danh</li>
-                                                </ul>
-                                                <p>Bạn hãy yên tâm rằng thông tin của bạn do bạn quản lý, chúng tôi
-                                                    không biết bạn là ai cả. Đối với chúng tôi, quyền riêng tư luôn là
-                                                    ưu tiên trên hết. Cảm ơn bạn đã tin dùng và ủng hộ</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
                         <div class="form-group">
                             <div class="col-md-12 center">
                                 <button type="submit" id="btn-submit" class="btn btn-primary">4. Gởi ý kiến</button>
@@ -183,26 +176,28 @@
 @endsection
 @section('scripts-content')
     <style>
-
-        .funkyradio div {
+        body{
+            color: black;
+        }
+        .survey-radio div {
             clear: both;
             overflow: hidden;
         }
 
-        .funkyradio label {
+        .survey-radio label {
             width: 100%;
             border-radius: 3px;
             border: 1px solid #D1D3D4;
             font-weight: normal;
         }
 
-        .funkyradio input[type="radio"]:empty,
-        .funkyradio input[type="checkbox"]:empty {
+        .survey-radio input[type="radio"]:empty,
+        .survey-radio input[type="checkbox"]:empty {
             display: none;
         }
 
-        .funkyradio input[type="radio"]:empty ~ label,
-        .funkyradio input[type="checkbox"]:empty ~ label {
+        .survey-radio input[type="radio"]:empty ~ label,
+        .survey-radio input[type="checkbox"]:empty ~ label {
             position: relative;
             line-height: 2.5em;
             text-indent: 3.25em;
@@ -214,8 +209,8 @@
             user-select: none;
         }
 
-        .funkyradio input[type="radio"]:empty ~ label:before,
-        .funkyradio input[type="checkbox"]:empty ~ label:before {
+        .survey-radio input[type="radio"]:empty ~ label:before,
+        .survey-radio input[type="checkbox"]:empty ~ label:before {
             position: absolute;
             display: block;
             top: 0;
@@ -227,68 +222,68 @@
             border-radius: 3px 0 0 3px;
         }
 
-        .funkyradio input[type="radio"]:hover:not(:checked) ~ label,
-        .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+        .survey-radio input[type="radio"]:hover:not(:checked) ~ label,
+        .survey-radio input[type="checkbox"]:hover:not(:checked) ~ label {
             color: #888;
         }
 
-        .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
-        .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+        .survey-radio input[type="radio"]:hover:not(:checked) ~ label:before,
+        .survey-radio input[type="checkbox"]:hover:not(:checked) ~ label:before {
             content: '\2714';
             text-indent: .9em;
             color: #C2C2C2;
         }
 
-        .funkyradio input[type="radio"]:checked ~ label,
-        .funkyradio input[type="checkbox"]:checked ~ label {
+        .survey-radio input[type="radio"]:checked ~ label,
+        .survey-radio input[type="checkbox"]:checked ~ label {
             color: #777;
         }
 
-        .funkyradio input[type="radio"]:checked ~ label:before,
-        .funkyradio input[type="checkbox"]:checked ~ label:before {
+        .survey-radio input[type="radio"]:checked ~ label:before,
+        .survey-radio input[type="checkbox"]:checked ~ label:before {
             content: '\2714';
             text-indent: .9em;
             color: #333;
             background-color: #ccc;
         }
 
-        .funkyradio input[type="radio"]:focus ~ label:before,
-        .funkyradio input[type="checkbox"]:focus ~ label:before {
+        .survey-radio input[type="radio"]:focus ~ label:before,
+        .survey-radio input[type="checkbox"]:focus ~ label:before {
             box-shadow: 0 0 0 3px #999;
         }
 
-        .funkyradio-default input[type="radio"]:checked ~ label:before,
-        .funkyradio-default input[type="checkbox"]:checked ~ label:before {
+        .survey-radio-default input[type="radio"]:checked ~ label:before,
+        .survey-radio-default input[type="checkbox"]:checked ~ label:before {
             color: #333;
             background-color: #ccc;
         }
 
-        .funkyradio-primary input[type="radio"]:checked ~ label:before,
-        .funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+        .survey-radio-primary input[type="radio"]:checked ~ label:before,
+        .survey-radio-primary input[type="checkbox"]:checked ~ label:before {
             color: #fff;
             background-color: #337ab7;
         }
 
-        .funkyradio-success input[type="radio"]:checked ~ label:before,
-        .funkyradio-success input[type="checkbox"]:checked ~ label:before {
+        .survey-radio-success input[type="radio"]:checked ~ label:before,
+        .survey-radio-success input[type="checkbox"]:checked ~ label:before {
             color: #fff;
             background-color: #5cb85c;
         }
 
-        .funkyradio-danger input[type="radio"]:checked ~ label:before,
-        .funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+        .survey-radio-danger input[type="radio"]:checked ~ label:before,
+        .survey-radio-danger input[type="checkbox"]:checked ~ label:before {
             color: #fff;
             background-color: #d9534f;
         }
 
-        .funkyradio-warning input[type="radio"]:checked ~ label:before,
-        .funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+        .survey-radio-warning input[type="radio"]:checked ~ label:before,
+        .survey-radio-warning input[type="checkbox"]:checked ~ label:before {
             color: #fff;
             background-color: #f0ad4e;
         }
 
-        .funkyradio-info input[type="radio"]:checked ~ label:before,
-        .funkyradio-info input[type="checkbox"]:checked ~ label:before {
+        .survey-radio-info input[type="radio"]:checked ~ label:before,
+        .survey-radio-info input[type="checkbox"]:checked ~ label:before {
             color: #fff;
             background-color: #5bc0de;
         }

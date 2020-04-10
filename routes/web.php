@@ -30,6 +30,7 @@ Route::group(['prefix'=>'/admin'],function() {
     Route::get('/', 'Admin\DashboardController@index');
     Route::get('/poll/add', 'Admin\PollController@addview');
     Route::get('/poll/', 'Admin\PollController@list');
+    Route::get('/poll/detail/{id}', 'Admin\PollController@detail');
     Route::post('/poll/addRequest', 'Admin\PollController@addRequest');
 
 });
