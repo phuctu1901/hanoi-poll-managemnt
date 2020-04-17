@@ -18,7 +18,8 @@ class PollController extends Controller
 //        return $questions;
 //        return $questions;
 
-        return view('client.polls.detail',['poll'=>$poll_detail,'questions'=>$questions]);
+//        return view('client.polls.detail',['poll'=>$poll_detail,'questions'=>$questions]);
+        return view('client_remake.poll_detail',['poll'=>$poll_detail,'questions'=>$questions]);
     }
 
 

@@ -8,9 +8,15 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+//    function index(){
+//
+//        return view('client.home.home');
+//
+//    }
+
     function index(){
 
-        return view('client.home.home');
+        return view('client_remake.home');
 
     }
 
