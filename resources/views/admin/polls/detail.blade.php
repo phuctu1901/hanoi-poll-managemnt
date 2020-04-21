@@ -34,28 +34,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Tổng quan</td>
-                                                    <td><p class="border border-primary some-margin"><?php echo htmlspecialchars_decode($poll->overview);?></p></td>
+                                                    <td><p><?php echo htmlspecialchars_decode($poll->overview);?></p></td>
                                                 </tr>
-                                                {{--                                        <tr>--}}
-                                                {{--                                            <td>Bot station title</td>--}}
-                                                {{--                                            <td>{{$transaction->bot->title}} <a target="_blank" href="/bots/get/{{$transaction->bot->id}}">Detail</a></td>--}}
-                                                {{--                                        </tr>--}}
-                                                {{--                                        <tr>--}}
-                                                {{--                                            <td>Bot station address</td>--}}
-                                                {{--                                            <td>{{$transaction->bot->address}}</td>--}}
-                                                {{--                                        </tr>--}}
-                                                {{--                                        <tr>--}}
-                                                {{--                                            <td>Type of ticket</td>--}}
-                                                {{--                                            <td>{{$transaction->type}}</td>--}}
-                                                {{--                                        </tr>--}}
-                                                {{--                                        <tr>--}}
-                                                {{--                                            <td>Money</td>--}}
-                                                {{--                                            <td><?php echo number_format($transaction->money, 0, ',', '.');?> VNĐ</td>--}}
-                                                {{--                                        </tr>--}}
-                                                {{--                                        <tr>--}}
-                                                {{--                                            <td>TX on Blockchain</td>--}}
-                                                {{--                                            <td><a target="_blank" href="https://scan.testnet.tomochain.com/txs/{{ $transaction->txs }}" >{{ $transaction->txs }}</a> </td>--}}
-                                                {{--                                        </tr>--}}
                                             </table>
                                         </div>
                                     </div>
@@ -83,10 +63,7 @@
                             <?php $question_index++;?>
                         @endforeach
                     </div>
-
                 </div>
-            <!-- // Basic form layout section end -->
-
         </div>
     </div>
 
@@ -137,6 +114,8 @@
                             const value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
 
                             label += Number((value / sum) * 100).toFixed(2) + '%';
+                            label += ' : số phiếu ' + value;
+
                             return label;
                         } catch (error) {
                             console.log(error);

@@ -19,6 +19,7 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
-        "bootstrap-directional-buttons": "^1.0.1"
+        "bootstrap-directional-buttons": "^1.0.1",
+        "jquery.json-viewer": "^1.4.0"
     }
 }

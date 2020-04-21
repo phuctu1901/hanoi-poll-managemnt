@@ -56,13 +56,6 @@ class PollController extends Controller
             array_push($result, $tmp);
             $question_index++;
         }
-
-
-//        $result = $c->where('1','1')->count();
-
-//        return $result;
-
-
         return view('admin.polls.detail', ['poll'=>$poll, 'result'=>$result, 'questions'=>$questions]);
     }
 
@@ -124,8 +117,8 @@ class PollController extends Controller
             'faqs'=>"",
             'start_at'=>$start_at.':'.$start_time,
             'end_at'=>$end_at.':'.$end_time,
-            'state'=>0
-//            Đang chờ
+            'state'=>1
+//            Đang diễn ra
         ];
         $this->createPollRecord($data_array);
 
@@ -137,5 +130,14 @@ class PollController extends Controller
         $data = Poll::paginate(10);
         return view('admin.polls.list', compact('data'));
     }
+
+//    Get ballots of poll with id
+    public function  ballots($id){
+        $poll = Poll::where('id',$id)->firstOrFail();
+        $data = PollDetail::where('poll_id', $id)->paginate(10);
+        return view('admin.polls.ballots',['poll'=>$poll], compact('data'));
+    }
+
+
 
 }

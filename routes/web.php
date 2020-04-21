@@ -26,11 +26,12 @@ Route::post('/goi-yeu-cau/', 'Client\PollController@submit');
 
 
 Route::group(['prefix'=>'/admin'],function() {
-    //   Admin -> phần tour
     Route::get('/', 'Admin\DashboardController@index');
     Route::get('/poll/add', 'Admin\PollController@addview');
     Route::get('/poll/', 'Admin\PollController@list');
     Route::get('/poll/detail/{id}', 'Admin\PollController@detail');
+    Route::get('/ballots/{id}', 'Admin\PollController@ballots');
+    Route::get('/proofs/detail/{id}', 'Admin\ProofController@detail');
     Route::post('/poll/addRequest', 'Admin\PollController@addRequest');
 
 });

@@ -31,12 +31,15 @@
     <link rel="stylesheet" type="text/css" href="/admin-assets/vendors/css/prism.min.css">
     <link rel="stylesheet" type="text/css" href="/admin-assets/vendors/css/chartist.min.css">
     <link rel="stylesheet" href="/admin-assets/vendors/css/bootstrap-multiselect.css" type="text/css">
+
+
 {{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>--}}
     <!-- END VENDOR CSS-->
     <!-- BEGIN APEX CSS-->
     <link rel="stylesheet" type="text/css" href="/admin-assets/css/app.css">
     <link rel="stylesheet" type="text/css" href="/admin-assets/vendors/css/toastr.css">
 
+    <link href="/jquery.json-viewer/json-viewer/jquery.json-viewer.css" type="text/css" rel="stylesheet">
 </head>
 
 <body data-col="2-columns" class=" 2-columns ">

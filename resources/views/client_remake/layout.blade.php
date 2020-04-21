@@ -169,7 +169,7 @@
             <div class="col-md-3">
                 <h3>Văn phòng</h3>
                 <ul>
-                    <li><span style="color: #ffffff;">528 Trưng Nữ Vương, Đà Nẵng, Việt Nam</span></li>
+                    <li><span style="color: #ffffff;">236 Hoàng Quốc Việt, Hà Nội</span></li>
                 </ul>
             </div>
         </div>
