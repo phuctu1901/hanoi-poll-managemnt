@@ -296,8 +296,7 @@
                 // };
 
 
-
-                $('#add_question').click(function() {
+                $('#add_question').click(function () {
 
                     questions++;
                     $('#dynamic_field').append(`
