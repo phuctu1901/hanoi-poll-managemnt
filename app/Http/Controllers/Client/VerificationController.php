@@ -28,30 +28,14 @@ class VerificationController extends Controller
                                     {
                                      "cred_def_id": "'.$cred_def_id.'"
                                     }
-                                ],
-                                "non_revoked": {
-                                  "from_epoch": 1586002500,
-                                  "to_epoch": 1586002500
+                                ]
                                 }
-                              },
-                              "id": {
-                                "name": "id",
-                                "restrictions": [
-                                    {
-                                     "cred_def_id": "'.$cred_def_id.'"
-                                    }
-                                ],
-                                "non_revoked": {
-                                  "from_epoch": 1586002500,
-                                  "to_epoch": 1586002500
-                                }
-                              }
                             },
-                            "name": "Bằng chứng về nơi cư trú"
+                            "name": "Proof about address from id card"
                           },
-                          "comment": "string"
+                          "comment": "No comment here"
                         }';
-
+//        return ['data'=>$json_string];
 
         try{
         $url = ''.$api_url.'/present-proof/send-request';

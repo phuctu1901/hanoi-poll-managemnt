@@ -458,7 +458,7 @@ ul#top_tools li i{font-size: 18px; font-weight: normal;}
 	color:#fff;
 	height:28px;
 	font-size:12px;
-	border-bottom:1px solid rgba(255,255,255,0.2);
+	border-bottom:1px solid rgba(9,9,9,0.5);
 	 font-size:11px;
 	 visibility:visible;
 	 opacity:1;
@@ -802,7 +802,7 @@ a#email_footer:before {
 .main-menu ul li a {display: block; line-height: 20px;padding:10px;}
 
 /*First level styles */
-.main-menu > ul > li > a {color: #fff; padding: 0 8px 15px  8px; font-size:18px; font-weight:600;}
+.main-menu > ul > li > a {color: black; padding: 0 8px 15px  8px; font-size:18px; font-weight:600; font-family: arial; text-transform: uppercase; }
 .sticky .main-menu > ul > li > a {color: #333;}
 .sticky .main-menu > ul > li:hover > a {color: #e04f67;}
 .main-menu > ul > li:hover > a {}
@@ -1720,7 +1720,7 @@ a#filters_col_bt .icon_set_1_icon-65 {
 	z-index: 999;
 	padding: 25px 0 20px 0;
 	color: #fff;
-	font-size: 13px;
+	font-size: 18px;
 	background: -webkit-linear-gradient(top,transparent,#000);
     background: linear-gradient(to bottom,transparent,#000);
 	width: 100%;

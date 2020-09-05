@@ -9,7 +9,7 @@
 @show
 @section('main-content')
 
-    <section class="parallax-window" data-parallax="scroll" data-image-src="/client/img/ha-long-splash.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax-window" data-parallax="scroll" data-image-src="/client/img/cover.jpg" data-natural-width="1400" data-natural-height="470">
         <div class="parallax-content-2">
             <div class="container">
                 <div class="row">
@@ -30,7 +30,7 @@
                 <ul>
                     <li><a href="/">Trang chủ</a>
                     </li>
-                    <li><a href="/danh-sach-tour">Tất cả điểm đến</a>
+                    <li><a href="/khao-sat">Tất cả chủ đề</a>
                     </li>
 {{--                    <li><a href="/danh-sach-tour/{{$tour->tourcategory->slug}}">{{$tour->tourcategory->title}}</a>--}}
                     </li>
@@ -43,7 +43,7 @@
 
 
         <!-- End Map -->
-        <div class="container margin_30 border border-primary" style="background-color: grey;">
+        <div class="container margin_30 border border-primary">
             <div class="row">
                 <form id="poll-info" action="{{url('/goi-yeu-cau')}} "
                       method="POST" role="form" enctype="multipart/form-data">
@@ -538,5 +538,9 @@
 
     </script>
 
-
+<style>
+    main{
+        background-color: #f1f4f5;
+    }
+</style>
 @endsection

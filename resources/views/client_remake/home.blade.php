@@ -17,14 +17,14 @@
             <div id="layerslider" style="width:100%;height:600px;">
                 <!-- first slide -->
                 <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:5;">
-                    <img src="/client/img/slides/1.jpg" class="ls-bg" alt="Slide background">
+                    <img src="/client/img/slides/4.jpg" class="ls-bg" alt="Slide background">
                     <h3 class="ls-l slide_typo" style="top: 45%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">AN TOÀN - BẢO MẬT</h3>
                     <p class="ls-l slide_typo_2" style="top:52%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">Bạn hoàn toàn ẩn danh khi đóng góp</p>
                 </div>
 
                 <!-- second slide -->
                 <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:85;">
-                    <img src="/client/img/slides/2.jpg" class="ls-bg" alt="Slide background">
+                    <img src="/client/img/slides/3.jpg" class="ls-bg" alt="Slide background">
                     <h3 class="ls-l slide_typo" style="top: 45%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">NHANH CHÓNG - KỊP THỜI</h3>
                     <p class="ls-l slide_typo_2" style="top:52%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">Dữ liệu góp ý của bạn sẽ được ghi nhận và trả lời nhanh nhất</p>
                 </div>

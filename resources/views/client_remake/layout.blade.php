@@ -62,11 +62,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-6"><i class="icon-phone"></i><strong>(+84) 97-87-97-135</strong></div>
-                <div class="col-6">
-                    <ul id="top_links">
-                        <li><a href="https://facebook.com/ng.tu.2502"><i class="icon-facebook"></i>Facebook</a></li>
-                    </ul>
-                </div>
+{{--                <div class="col-6">--}}
+{{--                    <ul id="top_links">--}}
+{{--                        <li><a href="https://facebook.com/ng.tu.2502"><i class="icon-facebook"></i>Facebook</a></li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
             </div>
             <!-- End row -->
         </div>
@@ -77,9 +77,9 @@
     <div class="container">
         <div class="row">
             <div class="col-3">
-                <div id="logo_home">
-                    <h1><a href="/" title="Trở về trang chủ">Trở về trang chủ</a></h1>
-                </div>
+{{--                <div id="logo_home">--}}
+{{--                    <h1><a href="/" title="Trở về trang chủ">Trở về trang chủ</a></h1>--}}
+{{--                </div>--}}
             </div>
             <nav class="col-9">
                 <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
