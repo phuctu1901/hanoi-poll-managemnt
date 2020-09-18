@@ -18,3 +18,9 @@ Route::get('/verification/detail/{id}','Client\VerificationController@detail');
 //Route::get('/verification/verify/{id}','VerificationController@verify');
 //Route::delete('/verification/detail/{id}','VerificationController@delete');
 //Route::get('/verification/list','VerificationController@list');
+
+Route::get('/did/created_connect_invitation/{id}', 'API\DID\ConnectionEventController@createdConnection');
+Route::get('/did/connected/{id}', 'API\DID\ConnectionEventController@responsedConnection');
+
+
+Route::get('/proof/presentation_received/{id}', 'API\DID\ProofEventController@presentation_received');

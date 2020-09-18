@@ -219,7 +219,7 @@
 
 <!-- Footer -->
 <footer class="site-footer">
-    <div class="site-footer-legal">© 2020 <a href="https://tungong.tech">Nhóm nghiên cứu khoa học </a></div>
+    <div class="site-footer-legal">© 2020 <a href="https://tungong.tech">Nguyễn Phúc Tú </a></div>
     <div class="site-footer-right">
         Thiết kế bởi <a href="http://www.lqdtu.edu.vn/">Nguyễn Phúc Tú</a>
     </div>

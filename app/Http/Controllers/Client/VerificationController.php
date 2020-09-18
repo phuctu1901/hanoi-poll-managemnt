@@ -11,7 +11,6 @@ class VerificationController extends Controller
 {
     function create(Request $request){
         $connectionId = $request->input( 'connectionId' );
-
         $api_url = $_ENV['ACA_PY_URL'];
         $cred_def_id = $_ENV['CRED_ID'];
 
@@ -19,7 +18,7 @@ class VerificationController extends Controller
                           "connection_id": "'.$connectionId.'",
                           "proof_request": {
                             "version": "1.0",
-                            "nonce": "19011997",
+                            "nonce": "12341233111",
                             "requested_predicates": {},
                             "requested_attributes": {
                               "address": {
@@ -31,7 +30,7 @@ class VerificationController extends Controller
                                 ]
                                 }
                             },
-                            "name": "Proof about address from id card"
+                            "name": "Bằng chứng về nơi cư trú"
                           },
                           "comment": "No comment here"
                         }';

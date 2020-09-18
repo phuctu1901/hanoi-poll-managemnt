@@ -377,76 +377,31 @@
     <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
     {{--    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>--}}
     <script>
+        var connection_id = "";
+        var presentation_exchange_id = "";
         {{--console.log({{$poll->id}})--}}
         $("#connection_check").prop("disabled", true);
         $("#verification_create").prop("disabled", true);
         $("#btn-submit").prop("disabled", true);
         $("#verification_check").prop("disabled", true);
 
-
         createConnection()
 
-        $("#verification_create").click(function (event) {
-            event.preventDefault();
-            var connectionId = $("#connection_check").data('button-data').connectionId
-
-
+        function create_proof_request(id){
             $.ajax({
                 type: 'POST',
-                data: {connectionId: connectionId},
+                data: {connectionId: id},
                 url: "/api/verification/create",
                 success: function (data) {
                     toastr.success('Lấy thông tin thành công')
                     console.log(data.data)
+                    presentation_exchange_id = data.data.presentation_exchange_id;
 
-
-                    $("#verification_check").data('button-data', {verificationId: data.data.presentation_exchange_id})
-                    $("#verification_check").prop("disabled", false);
-
-                },
-                error: function (err) {
-                    console.log(err)
-                    toastr.error('Lỗi truy vấn thông tin')
-
-                }
-            });
-
-        });
-
-        {{--$("#btn-submit").click(function(event){--}}
-        {{--    event.preventDefault();--}}
-        {{--    toastr.info('Đang lấy thông tin')--}}
-        {{--    const poll_id = {!! $poll->id !!};--}}
-
-
-        {{--    // createConnection();--}}
-
-
-
-        {{--});--}}
-
-
-        // function subu() {
-        //
-        // }
-
-        function getConnection(id) {
-            $.ajax({
-                type: 'GET',
-                // data: {code: code},
-                url: "/api/connection/get/" + id,
-                success: function (data) {
-                    toastr.success('Lấy thông tin thành công')
-                    var data = data.data
-                    if (data.state === 'response') {
-                        swal('Thành công', 'Đã kết nối đến người dân', 'success')
-                        $("#verification_create").prop("disabled", false);
-                        // $("#connection_check").prop("disabled", false);
-
-                    } else if (data.state === 'response') {
-                        swal('Đang đợi kết nối', 'Vui lòng kết nối', 'info')
-                    }
-                    console.log(data)
+                    Echo.channel('trungcauykien_channel_poll_create_vote_'+connection_id)
+                        .listen('.App\\Events\\Proof\\ProofRequestReceivedEvent', e => {
+                            create_proof_request(connection_id)
+                            getVerification(presentation_exchange_id);
+                        })
                 },
                 error: function (err) {
                     console.log(err)
@@ -457,7 +412,6 @@
         }
 
         function createConnection() {
-            // toastr.info('Đang khởi tạo QR Code')
             $.ajax({
                 type: 'GET',
                 // data: {code: code},
@@ -479,6 +433,12 @@
                     $("#connection_check").data('button-data', {connectionId: connectionId})
 
                     $("#connection_check").prop("disabled", false);
+                    connection_id = connectionId;
+                    Echo.channel('trungcauykien_channel_poll_create_vote_'+connection_id)
+                        .listen('.App\\Events\\DID\\ConnectionResponsedEvent', e => {
+                            console.log('Người dùng đã chấp nhận kết nối')
+                            create_proof_request(connection_id)
+                        })
 
                 },
                 error: function (err) {
@@ -488,13 +448,6 @@
                 }
             });
         }
-
-
-        $("#connection_check").click(function (event) {
-            event.preventDefault();
-            var connectionId = $("#connection_check").data('button-data').connectionId
-            getConnection(connectionId);
-        })
 
         function getVerification(id) {
             $.ajax({
@@ -514,8 +467,6 @@
 
                         $("#address").val(data.presentation.requested_proof.revealed_attrs.address.raw)
                         $("#id_number").val(data.presentation.requested_proof.revealed_attrs.id.raw)
-
-
                     } else {
                         swal('Đang đợi cung cấp thông tin', 'Vui lòng kết nối', 'info')
                     }
@@ -534,7 +485,6 @@
             var verificationId = $("#verification_check").data('button-data').verificationId
             getVerification(verificationId);
         })
-
 
     </script>
 

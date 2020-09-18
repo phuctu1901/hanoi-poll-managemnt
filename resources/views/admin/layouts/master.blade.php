@@ -177,8 +177,7 @@
         <footer class="footer footer-static footer-light">
             <p class="clearfix text-muted text-sm-center px-2"><span>Copyright &copy; 2020</span><a
                     href="tungong.tech"
-                    id="pixinventLink" target="_blank" class="text-bold-800 primary darken-2"> Nhóm nghiên cứu khoa
-                    học </a>,<span> BẢN QUYỀN ĐƯỢC BẢO HỘ </span></p>
+                    id="pixinventLink" target="_blank" class="text-bold-800 primary darken-2"> Nguyễn Phúc Tú </a>,<span> BẢN QUYỀN ĐƯỢC BẢO HỘ </span></p>
         </footer>
 
     </div>

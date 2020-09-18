@@ -223,9 +223,12 @@
         });
     });
 </script>
+<script src="{{ asset('/js/app.js') }}"></script>
+
 
 @section('js-content')
     <script src="/client-assets/global/js/config/colors.js"></script>
+
 
 @show
 @section('css-content')
