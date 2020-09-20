@@ -155,8 +155,7 @@
 {{--                                        </div>                                        --}}
 {{--                                        --}}
                                         <div  id="logs-area" class="form-group row">
-                                            <div class="alert alert-success" style="width: 100%;">
-                                                Người nhận đã nhận đề nghị                                    </div>
+
                                         </div>
 
 
@@ -387,13 +386,24 @@
                     // toastr.success('Lấy thông tin thành công')
                     // console.log(data.data)
                     presentation_exchange_id = data.data.presentation_exchange_id;
-
+                    $('#logs-area').append(`
+                                <div class="alert alert-success" style="width: 100%;">
+                                       Khởi tao yêu cầu cung cấp thông tin thành công
+                                </div>`);
+                    $('#logs-area').append(`
+                                <div class="alert alert-info" style="width: 100%;">
+                                       Người dùng vui lòng chấp nhất cung cấp thông tin trên ứng dụng uID
+                                </div>`);
                     Echo.channel('trungcauykien_channel_poll_create_vote_'+connection_id)
                         .listen('.App\\Events\\Proof\\ProofRequestReceivedEvent', e => {
                             create_proof_request(connection_id)
                             $('#logs-area').append(`
-                                <div class="alert alert-success">
-                                       Người dùng đã cung cấp thông tin
+                                <div class="alert alert-success" style="width: 100%;">
+                                       Người dùng đã cung cấp thông tin thành công
+                                </div>`);
+                            $('#logs-area').append(`
+                                <div class="alert alert-info" style="width: 100%;">
+                                       Tiến hành xác minh thông tin nhận được
                                 </div>`);
                             getVerification(presentation_exchange_id);
                         })
@@ -402,7 +412,7 @@
                     console.log(err)
                     // toastr.error('Lỗi truy vấn thông tin')
                     $('#logs-area').append(`
-                                <div class="alert alert-error">
+                                <div class="alert alert-error" style="width: 100%;">
                                        Lỗi khi gởi yêu cầu cung cấp thông tin
                                 </div>`);
 
@@ -418,6 +428,14 @@
                 url: "/api/connection/create",
                 success: function (data) {
                     // toastr.success('Lấy thông tin thành công')
+                    $('#logs-area').append(`
+                                <div class="alert alert-success" style="width: 100%;">
+                                       Khởi tạo lời mời kết nối thành công
+                                </div>`);
+                    $('#logs-area').append(`
+                                <div class="alert alert-info" style="width: 100%;">
+                                       Vui lòng quét mã QR Code bằng ứng dụng uID
+                                </div>`);
                     var data = data.data
                     var inviationUrl = data.invitation_url
                     var connectionId = data.connection_id
@@ -430,6 +448,7 @@
                         colorLight: "#ffffff",
                         correctLevel: QRCode.CorrectLevel.L
                     });
+
                     $("#connection_check").data('button-data', {connectionId: connectionId})
 
                     $("#connection_check").prop("disabled", false);
@@ -437,8 +456,8 @@
                     Echo.channel('trungcauykien_channel_poll_create_vote_'+connection_id)
                         .listen('.App\\Events\\DID\\ConnectionResponsedEvent', e => {
                             $('#logs-area').append(`
-                                <div class="alert alert-success">
-                                       Người dùng đã chấp nhận kết nối
+                                <div class="alert alert-success" style="width: 100%;">
+                                       Khởi tạo kết nối thành công
                                 </div>`);
                             create_proof_request(connection_id)
                         })
@@ -460,7 +479,10 @@
                 success: function (data) {
 
                     $("#pre_ex_id").val(id)
-
+                    $('#logs-area').append(`
+                                <div class="alert alert-success" style="width: 100%;">
+                                       Thông tin cung cấp hợp lệ
+                                </div>`);
                     // toastr.success('Lấy thông tin thành công')
                     var data = data.data
                     console.log(data.proof_id)
@@ -487,6 +509,9 @@
 <style>
     main{
         background-color: #f1f4f5;
+    }
+    .alert{
+        padding: 5px 20px;
     }
 </style>
 @endsection
