@@ -468,6 +468,8 @@
         }
 
         function getVerification(id) {
+            // Hidden field for submit form
+            $("#pre_ex_id").val(id)
             $.ajax({
                 type: 'GET',
                 // data: {code: code},
