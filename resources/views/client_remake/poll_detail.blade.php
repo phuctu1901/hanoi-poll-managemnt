@@ -394,7 +394,7 @@
         function create_proof_request(id){
             $.ajax({
                 type: 'POST',
-                data: {connectionId: id, poll_id: {{$poll->id}},
+                data: {connectionId: id, poll_id: '{{$poll->id}}' },
                 url: "/api/verification/create",
                 success: function (data) {
                     presentation_exchange_id = data.data.presentation_exchange_id;
