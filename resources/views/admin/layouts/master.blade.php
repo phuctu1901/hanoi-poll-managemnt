@@ -80,10 +80,8 @@
                             </li>
                             <li><a href="/admin/pollcategories" class="menu-item">Danh mục</a>
                             </li>
-
                         </ul>
                     </li>
-
                     <li class="has-sub nav-item open"><a href="#"><i class="ft-activity"></i><span data-i18n=""
                                                                                                        class="menu-title">Quản lý kết quả</span></a>
                         <ul class="menu-content">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Poll;
 use App\Proof;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
@@ -11,6 +12,10 @@ class VerificationController extends Controller
 {
     function create(Request $request){
         $connectionId = $request->input( 'connectionId' );
+        $poll_id = $request->input('poll_id');
+
+        $poll = Poll::where('id',$poll_id)->firstOrFail();
+
         $api_url = $_ENV['ACA_PY_URL'];
         $cred_def_id = $_ENV['CRED_ID'];
 
@@ -19,21 +24,14 @@ class VerificationController extends Controller
                           "proof_request": {
                             "version": "1.0",
                             "nonce": "12341233111",
-                            "requested_predicates": {},
-                            "requested_attributes": {
-                              "address": {
-                                "name": "address",
-                                "restrictions": [
-                                    {
-                                     "cred_def_id": "'.$cred_def_id.'"
-                                    }
-                                ]
-                                }
-                            },
-                            "name": "Bằng chứng về nơi cư trú"
+                            "requested_predicates": '.$poll->proof_request_pre.',
+                            "requested_attributes": '.$poll->proof_request_re.',
+                            "name": "'.$poll->title.'"
                           },
                           "comment": "No comment here"
                         }';
+
+//        return $json_string;
 //        return ['data'=>$json_string];
 
         try{

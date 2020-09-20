@@ -95,35 +95,11 @@
                         @endforeach
                         {{--                    Citizen info--}}
 
-                        <div class="card card-shadow border border-info card-md" style="margin-top: 30px;">
-                            <div class="card-block px-90 col-12">
-                                <div class="row">
-                                    <div class="col-md-12  form-group">
-                                        <div class="form-group row">
-                                            <div class="col-md-4">
-                                                <label for="" class="text-uppercase text-bold"><strong>Nguyên tắc hoạt
-                                                        động và cam kết của chúng tôi</strong></label>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <p>Chúng tôi cam kết và chịu trách nhiệm:</p>
-                                                <ul>
-                                                    <li>Không thu thập thông tin trái phép</li>
-                                                    <li>Thao tác của bạn là ẩn danh</li>
-                                                </ul>
-                                                <p>Bạn hãy yên tâm rằng thông tin của bạn do bạn quản lý, chúng tôi
-                                                    không biết bạn là ai cả. Đối với chúng tôi, quyền riêng tư luôn là
-                                                    ưu tiên trên hết. </p>
-                                                <p>Cảm ơn bạn đã tin dùng và ủng hộ</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
 
                         <div class="card card-shadow border border-danger card-md" style="margin-top: 30px;">
                             <div class="card-header card-header-transparent pb-15">
-                                <p class="font-size-14 blue-grey-700 mb-0 text-uppercase text-center">THÔNG TIN ĐỊNH DANH CẦN CUNG CẤP</p>
+                                <p class="font-size-14 blue-grey-700 mb-0 text-uppercase text-center">KẾT NỐI VÀ CUNG CẤP THÔNG TIN</p>
                             </div>
                             <div class="card-block px-90 col-12">
                                 <div class="row">
@@ -135,14 +111,7 @@
                                     </div>
 
                                     <div class="col-md-12 col-lg-6">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 col-form-label">Địa chỉ thường trú: </label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="address" name="address"
-                                                       placeholder=""
-                                                       autocomplete="off" readonly/>
-                                            </div>
-                                        </div>
+
 
 
 {{--                                        <div class="form-group row">--}}
@@ -172,8 +141,58 @@
                         </div>
                         <!-- Panel Accordion -->
 
+                        <div class="card card-shadow border border-success card-md" style="margin-top: 30px;">
+                            <div class="card-block px-90 col-12">
+                                <div class="row">
+                                    <div class="col-md-12  form-group">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="" class="text-uppercase text-bold"><strong>Thông tin cần cung cấp</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="" class="text-uppercase text-bold"><strong>Thông tin từ người dùng</strong></label>
 
-                        {{--                    Action for this page --}}
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 col-form-label">Địa chỉ thường trú: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" id="address" name="address"
+                                                               placeholder=""
+                                                               autocomplete="off" readonly/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card card-shadow border border-info card-md" style="margin-top: 30px;">
+                            <div class="card-block px-90 col-12">
+                                <div class="row">
+                                    <div class="col-md-12  form-group">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <label for="" class="text-uppercase text-bold"><strong>Nguyên tắc hoạt
+                                                        động và cam kết của chúng tôi</strong></label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>Chúng tôi cam kết và chịu trách nhiệm:</p>
+                                                <ul>
+                                                    <li>Không thu thập thông tin trái phép</li>
+                                                    <li>Thao tác của bạn là ẩn danh</li>
+                                                </ul>
+                                                <p>Bạn hãy yên tâm rằng thông tin của bạn do bạn quản lý, chúng tôi
+                                                    không biết bạn là ai cả. Đối với chúng tôi, quyền riêng tư luôn là
+                                                    ưu tiên trên hết. </p>
+                                                <p>Cảm ơn bạn đã tin dùng và ủng hộ</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-12 center">
                                 <button type="submit" id="btn-submit" class="btn btn-primary">Gởi ý kiến</button>
@@ -375,7 +394,7 @@
         function create_proof_request(id){
             $.ajax({
                 type: 'POST',
-                data: {connectionId: id},
+                data: {connectionId: id, poll_id: {{$poll->id}},
                 url: "/api/verification/create",
                 success: function (data) {
                     presentation_exchange_id = data.data.presentation_exchange_id;

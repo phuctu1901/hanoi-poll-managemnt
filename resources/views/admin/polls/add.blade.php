@@ -31,9 +31,13 @@
                                                        href="#itinerary" aria-controls="itinerary"
                                                        aria-expanded="false">Câu hỏi</a>
                                                 </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link " id="proof_request_tab" data-toggle="tab"
+                                                       href="#proof_request" aria-controls="proof_request"
+                                                       aria-expanded="true">Thông tin người dùng</a>
+                                                </li>
 
                                             </ul>
-                                            {{--                                            End Tabs header--}}
                                             <div class="tab-content px-1 pt-1">
                                                 <div role="tabpanel" class="tab-pane" id="basic_info"
                                                      aria-labelledby="basic_info_tab" aria-expanded="true">
@@ -172,7 +176,47 @@
                                                     <input type="hidden" id="question_number" name="question_number"
                                                            value=1>
                                                 </div>
+                                                <div role="tabpanel" class="tab-pane" id="proof_request"
+                                                     aria-labelledby="proof_request_tab" aria-expanded="true">
+                                                    <h4 class="form-section"><i class="ft-info"></i> Thông tin yêu cầu người dùng cung cấp
+                                                    </h4>
 
+
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control">Tóm tắt: </label>
+                                                        <div class="col-md-9">
+                                                            <textarea class="form-control"
+                                                                      name="proof_request_desc" ></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control">Thông tin làm rõ: </label>
+                                                        <div class="col-md-4">
+                                                            <textarea class="form-control"
+                                                                      name="proof_request_content_re" id="proof_request_content_re" rows="10"></textarea>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <pre id="json-renderer_re"></pre>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control">Thông tin ẩn: </label>
+                                                        <div class="col-md-4">
+                                                            <textarea class="form-control"
+                                                                      name="proof_request_content_pre" id="proof_request_content_pre" rows="10"></textarea>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <pre id="json-renderer_pre"></pre>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                </div>
 
                                             </div>
                                         </div>
@@ -185,7 +229,6 @@
                                                 <i class="fa fa-check-square"></i> Save
                                             </button>
                                         </div>
-                                </div>
                                 </form>
                             </div>
                         </div>
@@ -197,6 +240,9 @@
 
     </div>
     </div>
+
+@endsection
+@section('js-content')
     <script>
         var msg = '{{Session::get('
     alert ')}}';
@@ -273,29 +319,6 @@
             });
 
             $(document).ready(function() {
-
-
-                // $("#add_option").data('button-data', {option:1, question:1})
-
-                // $('#lfm_0').filemanager('image');
-                // $('#tour_thumb').filemanager('image');
-                // $('#tour_image_1').filemanager('image');
-
-
-                // function RefreshSomeEventListener_2() {
-                //     // Remove handler from existing elements
-                //     $('.itinerary-image-input').off();
-                //
-                //     // Re-add event handler for all matching elements
-                //     $('.itinerary-image-input').change(function () {
-                //         var data = $(this).val();
-                //         var id = $(this).data("id")
-                //         $("#tour_image_preview_" + id).attr("src", data);
-                //         console.log(data)
-                //     });
-                // };
-
-
                 $('#add_question').click(function () {
 
                     questions++;
@@ -351,30 +374,12 @@
                     $('#question_number').val(questions);
 
                 })
-
-
-                // $('#add_option').click(function () {
-                // <input id="question_1_option_1" type="text" class="form-control" name="option[]">
-
-
-
-                // $("#verification_check").data('button-data', {verificationId:data.data.presentation_exchange_id})
-
-                // questions++;
-                // $('#dynamic_field').append('<div class="form-group row" id=dynamic_field_' + questions + ' > <label class="col-md-3 label-control">Câu hỏi ' + questions + '</label> <div class="col-md-9"> <input type="text" class="form-control" name="itinerary_name[]"><div class="input-group"> <a id=tour_image_' + questions + ' data-input=tour_image_data_' + questions + ' data-preview=tour_image_preview_' + questions + ' class="btn btn-primary"> <i class="fa fa-picture-o"></i> Choose </a> <input id=tour_image_data_' + questions + ' class="form-control itinerary-image-input" type="text" name="itinerary_image[]" data-id=' + questions + '> </div><img id=tour_image_preview_' + questions + ' style="margin-top:15px;max-height:100px;" > <textarea id="question_content_' + questions + '" rows="5" class="form-control tour-info" name="question_content[]"></textarea> </div> </div>');
-                // $('#dynamic_field').append('<div class="form-group row"  id=dynamic_field_' + questions + ' > <label class="col-md-3 label-control">Câu hỏi ' + questions + '</label> <div class="col-md-9">  <textarea id="question_content_' + questions + '" rows="5" class="form-control poll-info" name="question_content[]"></textarea> </div> </div>');
-
-                // $('#question_number').val(questions);
-                // });
-
                 $('#remove_option').click(function() {
                     $('#dynamic_field_' + questions).remove();
                     questions--;
                     $('#question_number').val(questions);
 
                 })
-
-
                 function printErrorMsg(msg) {
 
                     $(".print-error-msg").find("ul").html('');
@@ -392,6 +397,33 @@
                 }
 
             });
+        });
+    </script>
+    <script src="/jquery.json-viewer/json-viewer/jquery.json-viewer.js"></script>
+
+    <script>
+        function IsJsonString(str) {
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+        }
+        $("#proof_request_content_re").change(function (){
+            let content = $(this).val();
+            if (IsJsonString(content)){
+                content = JSON.parse(content)
+                $('#json-renderer_re').jsonViewer(content);
+            }
+        });
+
+        $("#proof_request_content_pre").change(function (){
+            let content = $(this).val();
+            if (IsJsonString(content)){
+                content = JSON.parse(content)
+                $('#json-renderer_pre').jsonViewer(content);
+            }
         });
     </script>
 @endsection
