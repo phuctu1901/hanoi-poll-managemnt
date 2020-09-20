@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
 
     <!-- COMMON CSS -->
-    <link href="/client/css/bootstrap.min.css" rel="stylesheet">
+{{--    <link href="/client/css/bootstrap.min.css" rel="stylesheet">--}}
     <link href="/client/css/style.css" rel="stylesheet">
     <link href="/client/css/vendors.css" rel="stylesheet">
 

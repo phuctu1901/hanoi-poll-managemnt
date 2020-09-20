@@ -123,8 +123,7 @@
 
                         <div class="card card-shadow border border-danger card-md" style="margin-top: 30px;">
                             <div class="card-header card-header-transparent pb-15">
-                                <p class="font-size-14 blue-grey-700 mb-0 text-uppercase text-center">thông tin công
-                                    dân</p>
+                                <p class="font-size-14 blue-grey-700 mb-0 text-uppercase text-center">THÔNG TIN ĐỊNH DANH CẦN CUNG CẤP</p>
                             </div>
                             <div class="card-block px-90 col-12">
                                 <div class="row">
@@ -144,29 +143,21 @@
                                                        autocomplete="off" readonly/>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 col-form-label">Số căn cước: </label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="id_number" name="id_number"
-                                                       placeholder=""
-                                                       autocomplete="off" readonly/>
-                                            </div>
+
+
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label class="col-md-3 col-form-label">Số căn cước: </label>--}}
+{{--                                            <div class="col-md-9">--}}
+{{--                                                <input type="text" class="form-control" id="id_number" name="id_number"--}}
+{{--                                                       placeholder=""--}}
+{{--                                                       autocomplete="off" readonly/>--}}
+{{--                                            </div>--}}
+{{--                                        </div>                                        --}}
+{{--                                        --}}
+                                        <div  id="logs-area" class="form-group row">
+                                            <div class="alert alert-success" style="width: 100%;">
+                                                Người nhận đã nhận đề nghị                                    </div>
                                         </div>
-
-
-                                        <div class="form-group d-flex justify-content-center row">
-                                            <button id="connection_check" class="btn btn-warning btn-arrow-left btn-space">1. Kiểm tra kết
-                                                nối
-                                            </button>
-                                            <button id="verification_create" class="btn btn-success btn-arrow-left btn-space">2. Gởi yêu cầu
-                                                đến ứng dụng
-                                            </button>
-                                            <button id="verification_check" class="btn btn-success btn-arrow-left btn-space">3. Kiểm tra
-                                                trạng thái
-                                            </button>
-
-                                        </div>
-
 
 
                                         <div class="form-group row">
@@ -186,7 +177,7 @@
                         {{--                    Action for this page --}}
                         <div class="form-group">
                             <div class="col-md-12 center">
-                                <button type="submit" id="btn-submit" class="btn btn-primary">4. Gởi ý kiến</button>
+                                <button type="submit" id="btn-submit" class="btn btn-primary">Gởi ý kiến</button>
                                 <button type="reset" class="btn btn-warning btn-outline">Đặt lại</button>
                             </div>
 
@@ -362,7 +353,7 @@
 
 
     <script src="/client-assets/global/vendor/footable/footable.min.js"></script>
-    <script src="/client-assets/assets/examples/js/dashboard/analytics.js"></script>
+{{--    <script src="/client-assets/assets/examples/js/dashboard/analytics.js"></script>--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="/client-assets/assets/js/qrcode.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
@@ -393,25 +384,34 @@
                 data: {connectionId: id},
                 url: "/api/verification/create",
                 success: function (data) {
-                    toastr.success('Lấy thông tin thành công')
-                    console.log(data.data)
+                    // toastr.success('Lấy thông tin thành công')
+                    // console.log(data.data)
                     presentation_exchange_id = data.data.presentation_exchange_id;
 
                     Echo.channel('trungcauykien_channel_poll_create_vote_'+connection_id)
                         .listen('.App\\Events\\Proof\\ProofRequestReceivedEvent', e => {
                             create_proof_request(connection_id)
+                            $('#logs-area').append(`
+                                <div class="alert alert-success">
+                                       Người dùng đã cung cấp thông tin
+                                </div>`);
                             getVerification(presentation_exchange_id);
                         })
                 },
                 error: function (err) {
                     console.log(err)
-                    toastr.error('Lỗi truy vấn thông tin')
+                    // toastr.error('Lỗi truy vấn thông tin')
+                    $('#logs-area').append(`
+                                <div class="alert alert-error">
+                                       Lỗi khi gởi yêu cầu cung cấp thông tin
+                                </div>`);
 
                 }
             });
         }
 
         function createConnection() {
+            $('#logs-area').html('');
             $.ajax({
                 type: 'GET',
                 // data: {code: code},
@@ -436,7 +436,10 @@
                     connection_id = connectionId;
                     Echo.channel('trungcauykien_channel_poll_create_vote_'+connection_id)
                         .listen('.App\\Events\\DID\\ConnectionResponsedEvent', e => {
-                            console.log('Người dùng đã chấp nhận kết nối')
+                            $('#logs-area').append(`
+                                <div class="alert alert-success">
+                                       Người dùng đã chấp nhận kết nối
+                                </div>`);
                             create_proof_request(connection_id)
                         })
 
@@ -458,7 +461,7 @@
 
                     $("#pre_ex_id").val(id)
 
-                    toastr.success('Lấy thông tin thành công')
+                    // toastr.success('Lấy thông tin thành công')
                     var data = data.data
                     console.log(data.proof_id)
                     if (data.state === 'presentation_received') {
@@ -466,7 +469,7 @@
                         $("#btn-submit").prop("disabled", false);
 
                         $("#address").val(data.presentation.requested_proof.revealed_attrs.address.raw)
-                        $("#id_number").val(data.presentation.requested_proof.revealed_attrs.id.raw)
+                        // $("#id_number").val(data.presentation.requested_proof.revealed_attrs.id.raw)
                     } else {
                         swal('Đang đợi cung cấp thông tin', 'Vui lòng kết nối', 'info')
                     }
@@ -479,13 +482,6 @@
                 }
             });
         }
-
-        $("#verification_check").click(function (event) {
-            event.preventDefault();
-            var verificationId = $("#verification_check").data('button-data').verificationId
-            getVerification(verificationId);
-        })
-
     </script>
 
 <style>
