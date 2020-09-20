@@ -364,16 +364,11 @@
         }
     </script>
 
-    <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
-    {{--    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>--}}
     <script>
         var connection_id = "";
         var presentation_exchange_id = "";
         {{--console.log({{$poll->id}})--}}
-        $("#connection_check").prop("disabled", true);
-        $("#verification_create").prop("disabled", true);
         $("#btn-submit").prop("disabled", true);
-        $("#verification_check").prop("disabled", true);
 
         createConnection()
 
@@ -383,8 +378,6 @@
                 data: {connectionId: id},
                 url: "/api/verification/create",
                 success: function (data) {
-                    // toastr.success('Lấy thông tin thành công')
-                    // console.log(data.data)
                     presentation_exchange_id = data.data.presentation_exchange_id;
                     $('#logs-area').append(`
                                 <div class="alert alert-success" style="width: 100%;">
@@ -396,7 +389,6 @@
                                 </div>`);
                     Echo.channel('trungcauykien_channel_poll_create_vote_'+connection_id)
                         .listen('.App\\Events\\Proof\\ProofRequestReceivedEvent', e => {
-                            create_proof_request(connection_id)
                             $('#logs-area').append(`
                                 <div class="alert alert-success" style="width: 100%;">
                                        Người dùng đã cung cấp thông tin thành công
@@ -449,9 +441,6 @@
                         correctLevel: QRCode.CorrectLevel.L
                     });
 
-                    $("#connection_check").data('button-data', {connectionId: connectionId})
-
-                    $("#connection_check").prop("disabled", false);
                     connection_id = connectionId;
                     Echo.channel('trungcauykien_channel_poll_create_vote_'+connection_id)
                         .listen('.App\\Events\\DID\\ConnectionResponsedEvent', e => {
@@ -459,13 +448,20 @@
                                 <div class="alert alert-success" style="width: 100%;">
                                        Khởi tạo kết nối thành công
                                 </div>`);
+                            $('#logs-area').append(`
+                                <div class="alert alert-info" style="width: 100%;">
+                                       Tiến hành khởi tạo yêu cầu cung cấp thông tin
+                                </div>`);
                             create_proof_request(connection_id)
                         })
 
                 },
                 error: function (err) {
                     console.log(err)
-                    // toastr.error('Lỗi truy vấn thông tin')
+                    $('#logs-area').append(`
+                                <div class="alert alert-error" style="width: 100%;">
+                                       Khởi tạo kết nối thất bại
+                                </div>`);
 
                 }
             });
@@ -478,7 +474,6 @@
                 url: "/api/verification/detail/" + id,
                 success: function (data) {
 
-                    $("#pre_ex_id").val(id)
                     $('#logs-area').append(`
                                 <div class="alert alert-success" style="width: 100%;">
                                        Thông tin cung cấp hợp lệ
@@ -498,8 +493,10 @@
                     console.log(data)
                 },
                 error: function (err) {
-                    console.log(err)
-                    toastr.error('Lỗi truy vấn thông tin')
+                    $('#logs-area').append(`
+                                <div class="alert alert-error" style="width: 100%;">
+                                       Thông tin không hợp lệ
+                                </div>`);
 
                 }
             });
