@@ -43,6 +43,29 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Thông tin định danh</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <label>Thông tin rõ ràng</label>
+                                            <div class="col-md-6">
+                                                <pre id="json-renderer_re"></pre>
+                                            </div>
+                                            <label>Thông tin ẩn</label>
+
+                                            <div class="">
+                                                <pre id="json-renderer_pre"></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <?php $question_index = 1;?>
                         @foreach( $questions as $question)
@@ -159,6 +182,7 @@
     <script src="/client-assets/global/vendor/timepicker/jquery.timepicker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdn.bootcss.com/datepair.js/0.4.16/datepair.js"></script>
+    <script src="/jquery.json-viewer/json-viewer/jquery.json-viewer.js"></script>
     <style>
         .transaction-id{
             color: #868f9b;
@@ -169,5 +193,9 @@
         }
 
     </style>
+    <script>
+        $('#json-renderer_re').jsonViewer({!! $poll->proof_request_re !!});
+        $('#json-renderer_pre').jsonViewer({!! $poll->proof_request_pre !!});
+    </script>
 @endsection
 
