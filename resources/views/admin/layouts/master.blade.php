@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description"
-          content="Trang quản trị nội dung của Hệ thống trưng cầu dân ý thành phố Hà Nội">
+          content="Trang quản trị nội dung của Hệ thống trưng cầu ý kiến">
     <meta name="keywords"
           content="trưng cầu dân ý, quản trị nội dung, Hà Nội, dân chủ, Phúc Tú">
     <meta name="author" content="tungong.tech">
-    <title>Hệ thống trưng cầu dân ý - Trang quản trị - Hà Nội</title>
+    <title>Hệ thống trưng ý kiến - Trang quản trị</title>
     <link rel="apple-touch-icon" sizes="60x60" href="/admin-assets/img/ico/apple-icon-60.html">
     <link rel="apple-touch-icon" sizes="76x76" href="/admin-assets/img/ico/apple-icon-76.html">
     <link rel="apple-touch-icon" sizes="120x120" href="/admin-assets/img/ico/apple-icon-120.html">
@@ -103,6 +103,8 @@
                             </li>
                             <li><a href="/admin/user" class="menu-item">Danh sách người dùng</a>
                             </li>
+                            <li><a href="/admin/role" class="menu-item">Quyền người dùng</a>
+                            </li>
 
                         </ul>
                     </li>
@@ -144,7 +146,7 @@
                 navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                             class="icon-bar"></span></button>
                     <form role="search" class="navbar-form navbar-right mt-1">
-                        <h3>Hệ thống trưng cầu dân ý - Hà Nội</h3>
+                        <h3>Hệ thống trưng cầu ý kiến </h3>
 
                     </form>
                 </div>
@@ -196,13 +198,7 @@
 <script src="/admin-assets/vendors/js/chart.min.js" type="text/javascript"></script>
 
 <!-- BEGIN VENDOR JS-->
-<script type="text/javascript"
-        src="/admin-assets/vendors/js/bootstrap-multiselect.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#multi-select-demo').multiselect();
-    });
-</script>
+
 <script src="/admin-assets/js/app-sidebar.js" type="text/javascript"></script>
 <script src="/admin-assets/vendors/js/toastr.min.js" type="text/javascript"></script>
 @section('js-content')

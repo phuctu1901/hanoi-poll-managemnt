@@ -12,5 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
+//        $seeds = array
+        DB::table('permissions')->insert(['name'=>'Tạo cuộc trưng cầu ý kiến mới', 'guard_name'=>'poll_create']);
     }
 }

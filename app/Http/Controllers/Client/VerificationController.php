@@ -17,7 +17,7 @@ class VerificationController extends Controller
         $poll = Poll::where('id',$poll_id)->firstOrFail();
 
         $api_url = $_ENV['ACA_PY_URL'];
-        $cred_def_id = $_ENV['CRED_ID'];
+//        $cred_def_id = $_ENV['CRED_ID'];
 
         $json_string = '{
                           "connection_id": "'.$connectionId.'",
@@ -70,6 +70,8 @@ class VerificationController extends Controller
     function detail($id){
         try{
             $api_url = $_ENV['ACA_PY_URL'];
+            $debug = $_ENV['APP_DEBUG'];
+
             $url = $url = ''.$api_url.'/present-proof/records/'.$id.'';
 
             $client = new \GuzzleHttp\Client();
@@ -82,10 +84,25 @@ class VerificationController extends Controller
                 "response"=>$response->getBody(),
                 "pre_ex_id"=>$data_response->presentation_exchange_id
             ];
+//            if ($debug == false){
+                $a_prime=$data_response->presentation->proof->proofs[0]->primary_proof->eq_proof->a_prime;
 
+                $record = Proof::where('a_prime', $a_prime)->first();
 
-            $this->updateProofRecord($data_array);
-//            $id = Proof::where('pre_ex_id',$data_response->presentation_exchange_id)->firstOrFail();
+                if ($record){
+                    $this->deleteProofRecord($data_array);
+                    return response()->json([
+                        'error' => true,
+                        'data'  => \GuzzleHttp\json_decode($response->getBody()),
+                        'reason_code' => '1'
+                    ], 500);
+                }
+//            }
+//            else {
+//                $a_prime='';
+//            }
+
+            $this->updateProofRecord($data_array, $a_prime);
 
             return response()->json([
                 'error' => false,
@@ -108,15 +125,19 @@ class VerificationController extends Controller
     }
 
     # Update connection record to database
-    protected function updateProofRecord(array $data)
+    protected function updateProofRecord(array $data, string $a_prime)
     {
 
-//        dd($id);
         $record = Proof::where('pre_ex_id',$data['pre_ex_id'])->firstOrFail();
-//        $new_data =
         $record->response = $data['response'];
+        $record->a_prime= $a_prime;
         $record->save();
+    }
 
+    protected function deleteProofRecord(array $data)
+    {
+        $record = Proof::where('pre_ex_id',$data['pre_ex_id'])->firstOrFail();
+        $record->delete();
     }
 
 }

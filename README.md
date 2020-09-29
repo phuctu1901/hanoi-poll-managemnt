@@ -36,3 +36,24 @@ Mai đọc cái này để xem triển khai Aries Cloud Agent Python có khả t
 ```javascript
 var data = $('input[name="option[]"]').serializeArray();
 ```
+
+Phân loại tài khoản:
+Loại 1: Tài khoản hệ 
+thống
+- Quản trị
+- Nhân viên
+
+Loại 2: Tài khoản của tổ 
+chức
+- Quản trị của tổ chức
+- Nhân viên
+
+
+Các quyền trong hệ thống:
+- Tạo cuộc trưng cầu ý kiến mới
+- Chỉnh sửa cuộc trưng cầu ý kiến
+- Phê duyệt cuộc trưng cầu ý kiến
+- Tra cứu kết quả cuộc trưng cầu ý kiến
+- Quản trị người dùng
+- Download kết quả
+

@@ -14,6 +14,8 @@ class ConnectionController extends Controller
 
         $api_url = $_ENV['ACA_PY_URL'];
 
+//        return $api_url;
+
         $client = new \GuzzleHttp\Client();
         $url = $api_url.'/connections/create-invitation';
         $response = $client->request('POST',$url,  []);

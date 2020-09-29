@@ -503,7 +503,7 @@
                     var data = data.data
                     console.log(data.proof_id)
                     if (data.state === 'presentation_received') {
-                        swal('Thành công', 'Đã cung cấp thông tin', 'success')
+                        swal('Thành công', 'Kéo xuống dưới và tiến hành gởi phiếu khảo sát', 'success')
                         $("#btn-submit").prop("disabled", false);
 
                         $("#address").val(data.presentation.requested_proof.revealed_attrs.address.raw)
@@ -511,13 +511,23 @@
                     } else {
                         swal('Đang đợi cung cấp thông tin', 'Vui lòng kết nối', 'info')
                     }
-                    console.log(data)
                 },
                 error: function (err) {
-                    $('#logs-area').append(`
-                                <div class="alert alert-error" style="width: 100%;">
+                    if(err.responseJSON.reason_code == '1'){
+                        $('#logs-area').append(`
+                                <div class="alert alert-warning" style="width: 100%;">
+                                       Bạn đã tham gia cuộc trưng cầu ý kiến này.
+                                </div>`);
+                        swal('Thất bại', 'Bạn đã tham gia cuộc thăm dò ý kiến này', 'warning')
+                    } else {
+                        $('#logs-area').append(`
+                                <div class="alert alert-warning" style="width: 100%;">
                                        Thông tin không hợp lệ
                                 </div>`);
+                        swal('Thất bại', 'Thông tin cung cấp không hợp lệ', 'warning')
+
+                    }
+
 
                 }
             });

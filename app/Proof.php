@@ -11,5 +11,5 @@ class Proof extends Model
 
     public $incrementing = false;
     protected $dateFormat = 'd-m-Y';
-    protected $fillable = ['rawdata','code','pre_ex_id','response','created_at','updated_at'];
+    protected $fillable = ['rawdata','code','a_prime', 'pre_ex_id','response','created_at','updated_at'];
 }

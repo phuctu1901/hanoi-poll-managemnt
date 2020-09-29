@@ -3,7 +3,7 @@
        data-sorting="true" data-show-toggle="true" data-toggle-column="last" style="background: white">
     <thead>
     <tr>
-        <th>ID</th>
+        <th>ID (Tổng quan)</th>
         <th>Tiêu đề</th>
         <th>Ngày tạo</th>
         <th>Thời gian bắt đầu</th>
@@ -11,6 +11,7 @@
 
         <th>Trạng thái</th>
         <th>Chi tiết</th>
+        <th>Chỉnh sửa</th>
     </tr>
     </thead>
     <tbody>
@@ -25,6 +26,7 @@
                 <span class="badge badge-table @if($row->state===1) badge-success @elseif(@$row->state===0) badge-info @else badge-danger @endif"> @if($row->state===2) Đã hoàn thành @elseif($row->state===1) Đang diễn ra  @else Đang chờ @endif</span>
             </td>
             <td><a href="/admin/ballots/{{$row->id}}">Chi tiết</a> </td>
+            <td><a href="/admin/poll/edit/{{$row->id}}">Chỉnh sửa</a> </td>
 
         </tr>
     @endforeach
