@@ -65,7 +65,7 @@ Route::group(['prefix'=>'/admin', 'middleware' => ['system_admin']] ,function() 
 Route::group(['prefix'=>'/organization', 'middleware' => ['organization']] ,function() {
     Route::get('/', 'Organization\DashboardController@index');
     Route::get('/poll/add', 'Organization\PollController@addview');
-    Route::get('/poll/', 'Organization\PollController@list');
+    Route::get('/poll/{parameter?}', 'Organization\PollController@list');
     Route::get('/poll/detail/{id}', 'Organization\PollController@detail');
     Route::get('/ballots/{id}', 'Organization\PollController@ballots');
     Route::get('/proofs/detail/{id}', 'Organization\ProofController@detail');
@@ -97,6 +97,13 @@ Route::group(['prefix'=>'/organization', 'middleware' => ['organization']] ,func
     Route::get('/user/delete/{user_id}', 'Organization\UserController@delete');
     Route::get('/user/detail/{user_id}', 'Organization\UserController@detail');
     Route::get('/user/logout/{user_id}', 'Organization\UserController@logout');
+
+    Route::get('/profile','Organization\UserController@showProfile');
+
+    Route::post('/profile','Organization\UserController@updateProfile');
+
+    Route::get('/info', 'Organization\InfoController@get');
+    Route::post('/info/update', 'Organization\InfoController@update');
 });
 
 Auth::routes();

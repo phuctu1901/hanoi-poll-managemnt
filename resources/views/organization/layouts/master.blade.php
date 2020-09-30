@@ -55,7 +55,7 @@
         <div class="sidebar-header">
             <div class="logo clearfix"><a href="/organization" class="logo-text float-left">
                     <div class="logo-img"><img src="/admin-assets/img/logo.png"/></div>
-                    <span class="text align-middle">TNT</span>
+                    <span class="text align-middle" style="text-transform: unset;">uID</span>
                 </a><a id="sidebarToggle" href="javascript:"
                        class="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i
                         data-toggle="expanded" class="ft-toggle-right toggle-icon"></i></a><a id="sidebarClose"
@@ -78,8 +78,6 @@
                             </li>
                             <li><a href="/organization/poll" class="menu-item">Danh sách</a>
                             </li>
-                            <li><a href="/organization/pollcategories" class="menu-item">Danh mục</a>
-                            </li>
                         </ul>
                     </li>
                     <li class="has-sub nav-item open"><a href="#"><i class="ft-activity"></i><span data-i18n=""
@@ -87,10 +85,8 @@
                         <ul class="menu-content">
                             <li><a href="/organization/poll/processing" class="menu-item">Đang diễn ra</a>
                             </li>
-                            <li><a href="/organization/completed" class="menu-item">Đã hoàn thành</a>
+                            <li><a href="/organization/poll/completed" class="menu-item">Đã hoàn thành</a>
                             </li>
-
-
                         </ul>
                     </li>
 
@@ -109,26 +105,19 @@
                         </ul>
                     </li>
 
-                    <li class="has-sub nav-item"><a href="#"><i class="ft-info"></i><span data-i18n=""
-                                                                                          class="menu-title">Thông tin</span></a>
-                        <ul class="menu-content">
-                            <li><a href="/organization/info" class="menu-item">Thông tin</a>
-                            </li>
-                            <li><a href="/organization/footer" class="menu-item">Liên hệ</a>
-                            </li>
-                        </ul>
+                    <li class="nav-item"><a href="/organization/info"><i class="ft-info"></i><span data-i18n="" class="menu-title">Thông tin tổ chức</span></a>
                     </li>
 
-                    <li class="has-sub nav-item"><a href="#"><i class="ft-mail"></i><span data-i18n=""
-                                                                                          class="menu-title">Phản hồi góp ý</span></a>
-                        <ul class="menu-content">
-                            <li><a href="/organization/request/do" class="menu-item">Chưa xử lý</a>
-                            </li>
-                            <li><a href="/organization/request/done" class="menu-item">Đã xử lý</a>
-                            </li>
+{{--                    <li class="has-sub nav-item"><a href="#"><i class="ft-mail"></i><span data-i18n=""--}}
+{{--                                                                                          class="menu-title">Phản hồi góp ý</span></a>--}}
+{{--                        <ul class="menu-content">--}}
+{{--                            <li><a href="/organization/request/do" class="menu-item">Chưa xử lý</a>--}}
+{{--                            </li>--}}
+{{--                            <li><a href="/organization/request/done" class="menu-item">Đã xử lý</a>--}}
+{{--                            </li>--}}
 
-                        </ul>
-                    </li>
+{{--                        </ul>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
         </div>
@@ -169,8 +158,8 @@
                                      class="dropdown-menu dropdown-menu-right"><a
                                         href="javascript:" class="dropdown-item py-1"><i
                                             class="ft-info mr-2"></i><span style="color: #f2205c;">{{ Auth::user()->name }}</span></a><a
-                                        href="/organization/changePassword" class="dropdown-item py-1"><i
-                                            class="ft-edit mr-2"></i><span>Đổi mật khẩu</span></a>
+                                        href="/organization/profile" class="dropdown-item py-1"><i
+                                            class="ft-edit mr-2"></i><span>Chỉnh sửa thông tin</span></a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

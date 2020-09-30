@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Hệ thống trưng cầu ý kiến</title>
+    <title>Đăng nhập hệ thống quản lý điều hành - Linh Ứng Travel</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="/login-assets/images/icons/favicon.ico"/>
+    <link rel="icon" type="image/png" href="/asset-admin/login/images/icons/favicon.ico"/>
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"  src="/login-assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"  src="/asset-admin/login/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login-assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/asset-admin/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login-assets/fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="/asset-admin/login/fonts/iconic/css/material-design-iconic-font.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"  src="/login-assets/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css"  src="/asset-admin/login/vendor/animate/animate.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"  src="/login-assets/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css"  src="/asset-admin/login/vendor/css-hamburgers/hamburgers.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"  src="/login-assets/vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css"  src="/asset-admin/login/vendor/animsition/css/animsition.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"  src="/login-assets/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css"  src="/asset-admin/login/vendor/select2/select2.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"  src="/login-assets/vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css"  src="/asset-admin/login/vendor/daterangepicker/daterangepicker.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login-assets/css/util.css">
-    <link rel="stylesheet" type="text/css" href="/login-assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/asset-admin/login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/asset-admin/login/css/main.css">
     <!--===============================================================================================-->
 </head>
 <body>
 
 <div class="limiter">
 
-    <div class="container-login100" style="background-image: url('/login-assets/images/bg-01.jpg');">
+    <div class="container-login100" style="background-image: url('/asset-admin/login/images/bg-01.jpg');">
 
         <div class="wrap-login100">
             <?php //Hiển thị thông báo thành công?>
@@ -67,56 +67,42 @@
                     </button>
                 </div>
             @endif
-            <form role="form" class="login100-form validate-form"  action="{{ route('login') }}" method="POST">
+            <form role="form" class="login100-form validate-form"  action="{{ url('admin/login') }}" method="POST">
                 {!! csrf_field() !!}
 
                 <span class="login100-form-logo">
-						            <img class="navbar-brand-logo" src="/assets/images/Hanoi_Logo.png">
-
+						<i class="zmdi zmdi-landscape"></i>
 					</span>
 
-                <span class="login100-form-title p-b-34 p-t-27" tyle="font-size:25px; font-family: unset;">
-                       HỆ THỐNG CẤP ĐỊNH DANH SỐ
+                <span class="login100-form-title p-b-34 p-t-27">
+						LOGIN IF YOU CAN
 					</span>
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" id="email" type="email" name="email" placeholder="Email" value="{{ old('username') ?: old('email') }}" required autofocus>
-
+                    <input class="input100" type="text" name="login" placeholder="Tên đăng nhập hoặc email" value="{{ old('username') ?: old('email') }}" required autofocus>
+                    @if ($errors->has('username') || $errors->has('email'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('username') ?: $errors->first('email') }}</strong>
+                        </span>
+                    @endif
                     <span class="focus-input100" data-placeholder="&#xf207;"></span>
-                    <div class="form-group row">
-                        @if ($errors->has('username') || $errors->has('email'))
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
-                        @endif
-                    </div>
                 </div>
-
 
                 <div class="wrap-input100 validate-input" data-validate="Enter password">
-                    <input class="input100" type="password" name="password" placeholder="Mật khẩu">
+                    <input class="input100" type="password" name="password" placeholder="Password">
                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
-                </div>
-                <div class="form-group row">
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
                 </div>
 
                 <div class="contact100-form-checkbox">
-                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember"  id="remember" {{ old('remember') ? 'checked' : '' }}>
+                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                     <label class="label-checkbox100" for="ckb1">
-                        Ghi nhớ đăng nhập
+                        Remember me
                     </label>
                 </div>
 
                 <div class="container-login100-form-btn">
                     <button type="submit" class="login100-form-btn">
-                        Đăng nhập
+                        Login
                     </button>
                 </div>
             </form>
@@ -128,22 +114,21 @@
 <div id="dropDownSelect1"></div>
 
 <!--===============================================================================================-->
-<script   src="/login-assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script   src="/asset-admin/login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-<script   src="/login-assets/vendor/animsition/js/animsition.min.js"></script>
+<script   src="/asset-admin/login/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-<script   src="/login-assets/vendor/bootstrap/js/popper.js"></script>
-<script   src="/login-assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script   src="/asset-admin/login/vendor/bootstrap/js/popper.js"></script>
+<script   src="/asset-admin/login/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-<script   src="/login-assets/vendor/select2/select2.min.js"></script>
+<script   src="/asset-admin/login/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-<script   src="/login-assets/vendor/daterangepicker/moment.min.js"></script>
-<script   src="/login-assets/vendor/daterangepicker/daterangepicker.js"></script>
+<script   src="/asset-admin/login/vendor/daterangepicker/moment.min.js"></script>
+<script   src="/asset-admin/login/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-<script   src="/login-assets/vendor/countdowntime/countdowntime.js"></script>
+<script   src="/asset-admin/login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-<script src="/login-assets/js/main.js"></script>
+<script src="/asset-admin/login/js/main.js"></script>
 
 </body>
 </html>
-

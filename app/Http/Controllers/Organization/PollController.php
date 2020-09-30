@@ -131,10 +131,22 @@ try{
         return redirect()->back()->with('alert', 'Updated!');
 
     }
-    function list()
+    function list($par=null)
     {
+//        return $par;
+        switch ($par){
+            case 'completed':
+                $data = Poll::where('organization_id',Auth::user()->org->id)->where('state',0)->paginate(10);
+                return view('organization.polls.list', compact('data'));
+                break;
+            case 'processing':
+                $data = Poll::where('organization_id',Auth::user()->org->id)->where('state',1)->paginate(10);
+                return view('organization.polls.list', compact('data'));
+                break;
+        }
         $data = Poll::where('organization_id',Auth::user()->org->id)->paginate(10);
         return view('organization.polls.list', compact('data'));
+
     }
 
 //    Get ballots of poll with id
@@ -146,7 +158,9 @@ try{
 
     function editView($poll_id){
         $poll = Poll::where('id',$poll_id)->firstOrFail();
-        return view('organization.polls.edit',['poll'=>$poll]);
+        $contents = json_decode($poll->content);
+//        return  $contents;
+        return view('organization.polls.edit',['poll'=>$poll, 'contents'=>$contents]);
     }
 
     function editRequest(Request $request){

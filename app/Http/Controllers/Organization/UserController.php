@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Organization;
 
-use App\Models\User;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use Hash;
@@ -36,12 +36,12 @@ class UserController extends Controller
         ]);
     }
 
-    public function showChangePasswordForm()
+    public function showProfile()
     {
-        return view('organization.auth.changepassword');
+        return view('organization.auth.profile');
     }
 
-    public function changePassword(Request $request)
+    public function updateProfile(Request $request)
     {
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
@@ -120,7 +120,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::paginate(20);
+        $users = User::Where('organization_id', Auth::user()->org->id)->paginate(20);
         return view('organization.user.index', ['users' => $users]);
     }
 

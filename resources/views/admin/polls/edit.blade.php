@@ -130,15 +130,27 @@
                                                         <div class="card-body">
                                                             <div class="card-block" id="dynamic_field">
                                                                 <div class="form-group">
-                                                                <h4 class="form-section">Câu 1</h4>
+                                                                    <?php  $i = 0;?>
+                                                                    @foreach($contents as $content)
+                                                                            <?php  $i++;?>
+                                                                <h4 class="form-section">Câu {{$i}}</h4>
                                                                 <div class="form-group row">
                                                                     <label class="col-md-3 label-control">Câu hỏi</label>
                                                                     <div class="col-md-9">
-
+<p>{{content->questions}}</p>
                                                                     <textarea id="question_content_1" rows="2"
                                                                               class="form-control poll-info"
-                                                                              name="question_content[]"></textarea>
+                                                                              name="question_content[]">{{content->questions}}</textarea>
                                                                     </div>
+                                                                    <script>
+                                                                        var options = {
+                                                                            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                                                                            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                                                                            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                                                                            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+                                                                        };
+                                                                        CKEDITOR.replace('question_content_' + {{$i}}, options);
+                                                                    </script>
                                                                 </div>
 
                                                                 <div class="form-group row">
@@ -163,6 +175,7 @@
                                                                     </div>
                                                                     <input type="hidden" name="option_len[]" id="option_len_1" value=1>
                                                                 </div>
+                                                                        @endforeach
                                                                 </div>
                                                             </div>
                                                         </div>

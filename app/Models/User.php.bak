@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
-
+namespace App;
+use Cache;
+use App\Models\Organization;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_system_account', 'organization_id', 'username'
+        'name', 'email', 'password', 'is_system_account', 'organization_id'
     ];
 
     /**
@@ -40,6 +41,11 @@ class User extends Authenticatable
 
     public function org()
     {
-        return $this->hasOne(Organization::class, 'id', 'organization_d');
+        return $this->hasOne(Organization::class, 'id', 'organization_id');
+    }
+
+    public function isOnline()
+    {
+        return Cache::has('user-is-online-' . $this->id);
     }
 }

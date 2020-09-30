@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Cache;
 use App\Models\Organization;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -42,5 +42,10 @@ class User extends Authenticatable
     public function org()
     {
         return $this->hasOne(Organization::class, 'id', 'organization_id');
+    }
+
+    public function isOnline()
+    {
+        return Cache::has('user-is-online-' . $this->id);
     }
 }

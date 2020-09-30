@@ -1,4 +1,4 @@
-@extends('organization.layouts.master')
+@extends('admin.layouts.master')
 
 @section('main-content')
     <div class="main-content">
@@ -14,7 +14,7 @@
                             <div class="card-body">
                                 <div class="px-3">
 
-                                    <form class="form form-horizontal" action="{{url('/organization/poll/editRequest')}} "
+                                    <form class="form form-horizontal" action="{{url('/admin/poll/editRequest')}} "
                                           method="POST" role="form" enctype="multipart/form-data">
                                         {{ csrf_field()}}
                                         <div class="form-body">
@@ -130,39 +130,56 @@
                                                         <div class="card-body">
                                                             <div class="card-block" id="dynamic_field">
                                                                 <div class="form-group">
-                                                                <h4 class="form-section">Câu 1</h4>
-                                                                <div class="form-group row">
-                                                                    <label class="col-md-3 label-control">Câu hỏi</label>
-                                                                    <div class="col-md-9">
-
-                                                                    <textarea id="question_content_1" rows="2"
-                                                                              class="form-control poll-info"
-                                                                              name="question_content[]"></textarea>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group row">
-                                                                    <label class="col-md-3 label-control">Câu trả
-                                                                        lời: </label>
-                                                                    <div class="col-md-6">
-                                                                        <ul class="list-group" id="question_1">
-                                                                            <li id="question_1_option_1" class="list-group-item">
-                                                                                <input type="text" class="form-control" name="option[]">
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div class="col-md-3 pull-right">
+                                                                    <?php  $i = 0;?>
+                                                                    @foreach($contents as $content)
+                                                                        <?php  $i++;?>
+                                                                        <h4 class="form-section">Câu {{$i}}</h4>
                                                                         <div class="form-group row">
-                                                                            <button type="button" name="add_option"
-                                                                                    id="add_option"
-                                                                                    onclick="add_option_func(1)"
-                                                                                    class="btn btn-success pull-right">
-                                                                                Thêm câu trả lời
-                                                                            </button>
+                                                                            <label class="col-md-3 label-control">Câu hỏi</label>
+                                                                            <div class="col-md-9">
+                                                                                <textarea id="question_content_1" rows="2"
+                                                                                          class="form-control poll-info"
+                                                                                          name="question_content[]">{{$content->question}}</textarea>
+                                                                            </div>
+                                                                            <script>
+                                                                                var options = {
+                                                                                    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                                                                                    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                                                                                    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                                                                                    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+                                                                                };
+                                                                                CKEDITOR.replace('question_content_' + {{$i}}, options);
+                                                                            </script>
                                                                         </div>
-                                                                    </div>
-                                                                    <input type="hidden" name="option_len[]" id="option_len_1" value=1>
-                                                                </div>
+
+                                                                        <div class="form-group row">
+                                                                            <label class="col-md-3 label-control">Câu trả
+                                                                                lời: </label>
+                                                                            <div class="col-md-6">
+                                                                                <ul class="list-group" id="question_1">
+                                                                                    <?php  $j = 0;?>
+
+                                                                                @foreach($content->options as $option)
+                                                                                            <?php  $j++;?>
+                                                                                            <li id='question_{{$i}}_option_{{$j}}' class="list-group-item">
+                                                                                        <input type="text" class="form-control" name="option[]" value="{{$option}}">
+                                                                                    </li>
+                                                                                    @endforeach
+                                                                                </ul>
+                                                                            </div>
+                                                                            <div class="col-md-3 pull-right">
+                                                                                <div class="form-group row">
+                                                                                    <button type="button" name="add_option"
+                                                                                            id="add_option"
+                                                                                            onclick="add_option_func(1)"
+                                                                                            class="btn btn-success pull-right">
+                                                                                        Thêm câu trả lời
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                            <input type="hidden" name="option_len[]" id="option_len_1" value=1>
+                                                                        </div>
+                                                                    @endforeach
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -238,16 +255,16 @@
                                                 <i class="fa fa-check-square"></i> Save
                                             </button>
                                         </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-        </div>
-        </section>
-        <!-- // Basic form layout section end -->
+            </section>
+            <!-- // Basic form layout section end -->
 
-    </div>
+        </div>
     </div>
 
 @endsection
@@ -280,12 +297,12 @@
 
 
 
+        let questions = '<?php echo sizeof($contents) ?>';;
         let i = 1;
-        let questions = 1;
 
         function add_option_func(question_id) {
             $('#question_' + question_id).append(`
-                                                    <li id="question_${question_id}_option_2" class="list-group-item">
+                                                    <li id='question_${question_id}_option_${i}' class="list-group-item">
                                                         <input type="text" class="form-control" name="option[]">
                                                     </li>`)
             var  tmp = $('#option_len_' + question_id).val()
@@ -330,7 +347,17 @@
             });
 
             $(document).ready(function() {
+                jQuery(function ($) {
+                    CKEDITOR.plugins.addExternal( 'justify', '/asset-admin/js/justify/', 'plugin.js' );
 
+                    var options = {
+                        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+                        extraPlugins: 'justify'
+                    };
+                });
 
                 $('#add_question').click(function () {
 
@@ -382,9 +409,12 @@
                 });
 
                 $('#remove_question').click(function() {
-                    $('#dynamic_field_' + questions).remove();
-                    questions--;
-                    $('#question_number').val(questions);
+                    if (questions>1){
+                        $('#dynamic_field_' + questions).remove();
+                        questions--;
+                        $('#question_number').val(questions);
+                    }
+
 
                 })
                 $('#remove_option').click(function() {
