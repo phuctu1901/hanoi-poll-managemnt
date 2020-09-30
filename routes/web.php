@@ -24,7 +24,7 @@ Route::post('/goi-yeu-cau/', 'Client\PollController@submit');
 
 
 
-Route::group(['prefix'=>'/admin', 'middleware' => ['system_admin', 'system_admin']] ,function() {
+Route::group(['prefix'=>'/admin', 'middleware' => ['system_admin']] ,function() {
     Route::get('/', 'Admin\DashboardController@index')->name('home');
     Route::get('/poll/add', 'Admin\PollController@addview');
     Route::get('/poll/', 'Admin\PollController@list');
@@ -62,41 +62,41 @@ Route::group(['prefix'=>'/admin', 'middleware' => ['system_admin', 'system_admin
 });
 
 
-Route::group(['prefix'=>'/organization', 'middleware' => ['organization', 'system_admin']] ,function() {
-    Route::get('/', 'Admin\DashboardController@index')->name('home');
-    Route::get('/poll/add', 'Admin\PollController@addview');
-    Route::get('/poll/', 'Admin\PollController@list');
-    Route::get('/poll/detail/{id}', 'Admin\PollController@detail');
-    Route::get('/ballots/{id}', 'Admin\PollController@ballots');
-    Route::get('/proofs/detail/{id}', 'Admin\ProofController@detail');
-    Route::post('/poll/addRequest', 'Admin\PollController@addRequest');
+Route::group(['prefix'=>'/organization', 'middleware' => ['organization']] ,function() {
+    Route::get('/', 'Organization\DashboardController@index');
+    Route::get('/poll/add', 'Organization\PollController@addview');
+    Route::get('/poll/', 'Organization\PollController@list');
+    Route::get('/poll/detail/{id}', 'Organization\PollController@detail');
+    Route::get('/ballots/{id}', 'Organization\PollController@ballots');
+    Route::get('/proofs/detail/{id}', 'Organization\ProofController@detail');
+    Route::post('/poll/addRequest', 'Organization\PollController@addRequest');
 
-    Route::get('/poll/edit/{id}', 'Admin\PollController@editView');
-    Route::post('/poll/editRequest', 'Admin\PollController@editRequest');
+    Route::get('/poll/edit/{id}', 'Organization\PollController@editView');
+    Route::post('/poll/editRequest', 'Organization\PollController@editRequest');
 
 
 
-    Route::get('/role','Admin\RoleController@index');
-    Route::get('/role/add','Admin\RoleController@add');
-    Route::post('/role/delete','Admin\RoleController@delete');
-    Route::get('/role/edit/{id}','Admin\RoleController@edit');
-    Route::post('/role/editRequest', 'Admin\RoleController@editRequest');
-    Route::post('/role/addRequest','Admin\RoleController@addRequest');
+    Route::get('/role','Organization\RoleController@index');
+    Route::get('/role/add','Organization\RoleController@add');
+    Route::post('/role/delete','Organization\RoleController@delete');
+    Route::get('/role/edit/{id}','Organization\RoleController@edit');
+    Route::post('/role/editRequest', 'Organization\RoleController@editRequest');
+    Route::post('/role/addRequest','Organization\RoleController@addRequest');
 
-    Route::get('/permission/add','Admin\PermissionController@add');
-    Route::post('/permission/addRequest','Admin\PermissionController@addRequest');
+    Route::get('/permission/add','Organization\PermissionController@add');
+    Route::post('/permission/addRequest','Organization\PermissionController@addRequest');
 
     // Đăng ký thành viên
     Route::get('/register', 'Auth\RegisterController@getRegister');
     Route::post('/register', 'Auth\RegisterController@postRegister');
-    Route::get('/user', 'Admin\UserController@index');
-    Route::get('/user/edit/{id}', 'Admin\UserController@editView');
-    Route::post('/user/editRequest', 'Admin\UserController@editRequest');
-    Route::get('/user/add', 'Admin\UserController@addView');
-    Route::post('/user/addRequest', 'Admin\UserController@addRequest');
-    Route::get('/user/delete/{user_id}', 'Admin\UserController@delete');
-    Route::get('/user/detail/{user_id}', 'Admin\UserController@detail');
-    Route::get('/user/logout/{user_id}', 'Admin\UserController@logout');
+    Route::get('/user', 'Organization\UserController@index');
+    Route::get('/user/edit/{id}', 'Organization\UserController@editView');
+    Route::post('/user/editRequest', 'Organization\UserController@editRequest');
+    Route::get('/user/add', 'Organization\UserController@addView');
+    Route::post('/user/addRequest', 'Organization\UserController@addRequest');
+    Route::get('/user/delete/{user_id}', 'Organization\UserController@delete');
+    Route::get('/user/detail/{user_id}', 'Organization\UserController@detail');
+    Route::get('/user/logout/{user_id}', 'Organization\UserController@logout');
 });
 
 Auth::routes();

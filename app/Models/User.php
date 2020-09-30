@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_system_account', 'organization_id'
+        'name', 'email', 'password', 'is_system_account', 'organization_id', 'username'
     ];
 
     /**
@@ -37,4 +37,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function org()
+    {
+        return $this->hasOne(Organization::class, 'id', 'organization_d');
+    }
 }

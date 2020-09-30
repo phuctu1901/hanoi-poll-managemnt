@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddOrganizationToUsersTable extends Migration
+class AddUsernameToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,7 @@ class AddOrganizationToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
-            $table->bigInteger('organization_id')->nullable();
-            $table->foreign('organization_id')->references('id')->on('organizations');
+            $table->string('username')->after('id');
         });
     }
 

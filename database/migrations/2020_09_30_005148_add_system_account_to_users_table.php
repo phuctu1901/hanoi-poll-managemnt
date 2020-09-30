@@ -14,7 +14,7 @@ class AddSystemAccountToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_system_account')->nullable();
+            $table->boolean('is_system_account')->nullable()->default(0);
         });
     }
 

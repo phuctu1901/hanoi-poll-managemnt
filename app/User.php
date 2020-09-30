@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Organization;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -37,4 +38,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function org()
+    {
+        return $this->hasOne(Organization::class, 'id', 'organization_id');
+    }
 }

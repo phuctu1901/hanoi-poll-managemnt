@@ -16,7 +16,7 @@ class Poll extends Model
 
 
 
-    protected $fillable = ['title', 'thumb', 'slug', 'category_id', 'overview', 'content', 'proof_request_re', 'proof_request_pre', 'proof_request_desc', 'notes', 'faqs',  'start_at', 'end_at', 'state', 'created_at', 'updated_at'];
+    protected $fillable = ['title','organization_id', 'thumb', 'slug', 'category_id', 'overview', 'content', 'proof_request_re', 'proof_request_pre', 'proof_request_desc', 'notes', 'faqs',  'start_at', 'end_at', 'state', 'created_at', 'updated_at'];
 
     /**
      * Return the sluggable configuration array for this model.
