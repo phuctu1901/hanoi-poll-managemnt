@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Poll;
-use App\PollDetail;
+use App\Models\Poll;
+use App\Models\PollDetail;
 use Illuminate\Http\Request;
 
 class PollController extends Controller

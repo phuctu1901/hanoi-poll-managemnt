@@ -55,5 +55,6 @@ Các quyền trong hệ thống:
 - Phê duyệt cuộc trưng cầu ý kiến
 - Tra cứu kết quả cuộc trưng cầu ý kiến
 - Quản trị người dùng
+- Quản trị tổ chức
 - Download kết quả
 

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
-use App\Poll;
-use App\Proof;
+use App\Models\Poll;
+use App\Models\Proof;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 

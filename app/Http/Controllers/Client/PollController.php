@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
-use App\Poll;
-use App\PollDetail;
-use App\Proof;
+
+use App\Models\Poll;
+use App\Models\PollDetail;
+use App\Models\Proof;
 use Illuminate\Http\Request;
 
 class PollController extends Controller
@@ -19,7 +20,7 @@ class PollController extends Controller
 //        return $questions;
 
 //        return view('client.polls.detail',['poll'=>$poll_detail,'questions'=>$questions]);
-        return view('client_remake.poll_detail',['poll'=>$poll_detail,'questions'=>$questions]);
+        return view('client.poll_detail',['poll'=>$poll_detail,'questions'=>$questions]);
     }
 
 

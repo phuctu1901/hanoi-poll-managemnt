@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Proof;
+use App\Models\Proof;
 use Illuminate\Http\Request;
 
 class ProofController extends Controller

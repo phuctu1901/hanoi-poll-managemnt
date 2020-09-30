@@ -165,6 +165,23 @@
                                         class="ft-user font-medium-3 blue-grey darken-4"></i>
                                     <p class="d-none">User Settings</p>
                                 </a>
+                                <div ngbdropdownmenu="" aria-labelledby="dropdownBasic3"
+                                     class="dropdown-menu dropdown-menu-right"><a
+                                        href="javascript:" class="dropdown-item py-1"><i
+                                            class="ft-info mr-2"></i><span style="color: #f2205c;">{{ Auth::user()->name }}</span></a><a
+                                        href="/admin/changePassword" class="dropdown-item py-1"><i
+                                            class="ft-edit mr-2"></i><span>Đổi mật khẩu</span></a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
                             </li>
                         </ul>
                     </div>

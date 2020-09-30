@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Poll;
+use App\Models\Poll;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
