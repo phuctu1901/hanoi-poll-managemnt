@@ -11,11 +11,6 @@
           content="trưng cầu dân ý, quản trị nội dung, Hà Nội, dân chủ, Phúc Tú">
     <meta name="author" content="tungong.tech">
     <title>Trang quản trị - {{ Auth::user()->org->name }}</title>
-    <link rel="apple-touch-icon" sizes="60x60" href="/admin-assets/img/ico/apple-icon-60.html">
-    <link rel="apple-touch-icon" sizes="76x76" href="/admin-assets/img/ico/apple-icon-76.html">
-    <link rel="apple-touch-icon" sizes="120x120" href="/admin-assets/img/ico/apple-icon-120.html">
-    <link rel="apple-touch-icon" sizes="152x152" href="/admin-assets/img/ico/apple-icon-152.html">
-    <link rel="shortcut icon" type="image/x-icon" href="/admin-assets/img/ico/favicon.ico">
     <link rel="shortcut icon" type="image/png" href="/admin-assets/img/ico/favicon-32.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
@@ -194,21 +189,22 @@
 
 <!-- BEGIN VENDOR JS-->
 <script src="/admin-assets/vendors/js/core/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="/admin-assets/vendors/js/core/popper.min.js" type="text/javascript"></script>
-<script src="/admin-assets/vendors/js/core/bootstrap.min.js" type="text/javascript"></script>
+{{--<script src="/admin-assets/vendors/js/core/popper.min.js" type="text/javascript"></script>--}}
+{{--<script src="/admin-assets/vendors/js/core/bootstrap.min.js" type="text/javascript"></script>--}}
 <script src="/admin-assets/vendors/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+
 <script src="/admin-assets/vendors/js/prism.min.js" type="text/javascript"></script>
 <script src="/admin-assets/vendors/js/jquery.matchHeight-min.js" type="text/javascript"></script>
 <script src="/admin-assets/vendors/js/screenfull.min.js" type="text/javascript"></script>
 <script src="/admin-assets/vendors/js/pace/pace.min.js" type="text/javascript"></script>
 <script src="/admin-assets/vendors/js/chart.min.js" type="text/javascript"></script>
-
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- BEGIN VENDOR JS-->
 
-<script src="/admin-assets/js/app-sidebar.js" type="text/javascript"></script>
-<script src="/admin-assets/vendors/js/toastr.min.js" type="text/javascript"></script>
 @section('js-content')
 @show
+<script src="/admin-assets/js/app-sidebar.js" type="text/javascript"></script>
+
 </body>
 
 

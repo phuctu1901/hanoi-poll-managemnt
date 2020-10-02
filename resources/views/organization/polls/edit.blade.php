@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('organization.layouts.master')
 
 @section('main-content')
     <div class="main-content">
@@ -14,7 +14,7 @@
                             <div class="card-body">
                                 <div class="px-3">
 
-                                    <form class="form form-horizontal" action="{{url('/admin/poll/editRequest')}} "
+                                    <form class="form form-horizontal" action="{{url('/organization/poll/editRequest')}} "
                                           method="POST" role="form" enctype="multipart/form-data">
                                         {{ csrf_field()}}
                                         <div class="form-body">
@@ -137,19 +137,10 @@
                                                                         <div class="form-group row">
                                                                             <label class="col-md-3 label-control">Câu hỏi</label>
                                                                             <div class="col-md-9">
-                                                                                <textarea id="question_content_1" rows="2"
+                                                                                <textarea id="question_content_{{$i}}" rows="2"
                                                                                           class="form-control poll-info"
                                                                                           name="question_content[]">{{$content->question}}</textarea>
                                                                             </div>
-                                                                            <script>
-                                                                                var options = {
-                                                                                    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-                                                                                    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-                                                                                    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-                                                                                    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
-                                                                                };
-                                                                                CKEDITOR.replace('question_content_' + {{$i}}, options);
-                                                                            </script>
                                                                         </div>
 
                                                                         <div class="form-group row">
@@ -159,11 +150,11 @@
                                                                                 <ul class="list-group" id="question_1">
                                                                                     <?php  $j = 0;?>
 
-                                                                                @foreach($content->options as $option)
-                                                                                            <?php  $j++;?>
-                                                                                            <li id='question_{{$i}}_option_{{$j}}' class="list-group-item">
-                                                                                        <input type="text" class="form-control" name="option[]" value="{{$option}}">
-                                                                                    </li>
+                                                                                    @foreach($content->options as $option)
+                                                                                        <?php  $j++;?>
+                                                                                        <li id='question_{{$i}}_option_{{$j}}' class="list-group-item">
+                                                                                            <input type="text" class="form-control" name="option[]" value="{{$option}}">
+                                                                                        </li>
                                                                                     @endforeach
                                                                                 </ul>
                                                                             </div>
@@ -200,7 +191,7 @@
                                                         </div>
                                                     </div>
                                                     <input type="hidden" id="question_number" name="question_number"
-                                                           value=1>
+                                                           value=0>
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane" id="proof_request"
                                                      aria-labelledby="proof_request_tab" aria-expanded="true">
@@ -279,42 +270,52 @@
         }
     </script>
 
+
+
     <link rel="stylesheet" type="text/css" href="/client-assets/global/vendor/timepicker/jquery-timepicker.css">
     <link rel="stylesheet" type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <script type='text/javascript' src='/admin-assets/vendors/js/core/jquery-3.2.1.min.js'></script>
+          href="/admin-assets/vendors/css/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
     <script type='text/javascript'
             src='https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.1.0/jquery-migrate.min.js'></script>
     <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
 
     <script src="/client-assets/global/vendor/timepicker/jquery.timepicker.js"></script>
     <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdn.bootcss.com/datepair.js/0.4.16/datepair.js"></script>
-
+        src="/admin-assets/vendors/css/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+{{--    <script src="/admin-assets/vendors/js/datepair.js"></script>--}}
+    <script src="/jquery.json-viewer/json-viewer/jquery.json-viewer.js"></script>
     {{--    <script src="/vendor/laravel-filemanager/js/lfm.js"></script>--}}
     <script>
+        jQuery(function($) {
 
 
+            function replace(name) {
+                console.log(name);
+                CKEDITOR.replace(name);
+            }
 
-        let questions = '<?php echo sizeof($contents) ?>';;
-        let i = 1;
+            let questions = '<?php echo sizeof($contents) ?>';
+            ;
+            console.log(questions);
+            $("#question_number").val(questions);
+            // let count;
+            // for (count = 1; count<questions; count++){
+            //     console.log("hello")
+            //     this.replace('question_content_'+count);
+            // }
+            let i = 1;
 
-        function add_option_func(question_id) {
-            $('#question_' + question_id).append(`
+            function add_option_func(question_id) {
+                $('#question_' + question_id).append(`
                                                     <li id='question_${question_id}_option_${i}' class="list-group-item">
                                                         <input type="text" class="form-control" name="option[]">
                                                     </li>`)
-            var  tmp = $('#option_len_' + question_id).val()
-            tmp =parseInt(tmp)
-            var newVal = tmp++
-            newVal = parseInt(newVal)
-            $('#option_len_' + question_id).val(++newVal)
-        }
-
-
-
-        jQuery(function($) {
+                var tmp = $('#option_len_' + question_id).val()
+                tmp = parseInt(tmp)
+                var newVal = tmp++
+                newVal = parseInt(newVal)
+                $('#option_len_' + question_id).val(++newVal)
+            }
 
 
             const options = {
@@ -337,32 +338,23 @@
             });
 
             // initialize datepair
-            var basicExampleEl = document.getElementById('basicExample');
-            var datepair = new Datepair(basicExampleEl);
+            // var basicExampleEl = document.getElementById('basicExample');
+            // var datepair = new Datepair(basicExampleEl);
 
-            $(this).find('.poll-info').each(function(index) {
-                console.log(index + ": " + $(this).attr('id'));
-                CKEDITOR.replace($(this).attr('id'), options);
+
+            $(document).ready(function () {
+                $(this).find('.poll-info').each(function (index) {
+                    console.log("thay the");
+                    CKEDITOR.replace($(this).attr('id'), options);
+                });
 
             });
 
-            $(document).ready(function() {
-                jQuery(function ($) {
-                    CKEDITOR.plugins.addExternal( 'justify', '/asset-admin/js/justify/', 'plugin.js' );
 
-                    var options = {
-                        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-                        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-                        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-                        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
-                        extraPlugins: 'justify'
-                    };
-                });
+            $('#add_question').click(function () {
 
-                $('#add_question').click(function () {
-
-                    questions++;
-                    $('#dynamic_field').append(`
+                questions++;
+                $('#dynamic_field').append(`
                                                                 <div class="form-group" id="dynamic_field_${questions}">
 
                     <h4 class="form-section">Câu  ${questions}</h4>
@@ -399,85 +391,84 @@
                                                                 </div>
                                                                     <input type="hidden" name="option_len[]" id="option_len_${questions}" value="1">
                                                                </div>`);
-                    // $('#dynamic_field').append('<div class="form-group row" id=dynamic_field_' + questions + ' > <label class="col-md-3 label-control">Câu hỏi ' + questions + '</label> <div class="col-md-9"> <input type="text" class="form-control" name="itinerary_name[]"><div class="input-group"> <a id=tour_image_' + questions + ' data-input=tour_image_data_' + questions + ' data-preview=tour_image_preview_' + questions + ' class="btn btn-primary"> <i class="fa fa-picture-o"></i> Choose </a> <input id=tour_image_data_' + questions + ' class="form-control itinerary-image-input" type="text" name="itinerary_image[]" data-id=' + questions + '> </div><img id=tour_image_preview_' + questions + ' style="margin-top:15px;max-height:100px;" > <textarea id="question_content_' + questions + '" rows="5" class="form-control tour-info" name="question_content[]"></textarea> </div> </div>');
-                    // $('#dynamic_field').append('<div class="form-group row"  id=dynamic_field_' + questions + ' > <label class="col-md-3 label-control">Câu hỏi ' + questions + '</label> <div class="col-md-9">  <textarea id="question_content_' + questions + '" rows="5" class="form-control poll-info" name="question_content[]"></textarea> </div> </div>');
-                    CKEDITOR.replace('question_content_' + questions, options);
-                    // RefreshSomeEventListener_2();
-                    $('#question_number').val(questions);
+                // $('#dynamic_field').append('<div class="form-group row" id=dynamic_field_' + questions + ' > <label class="col-md-3 label-control">Câu hỏi ' + questions + '</label> <div class="col-md-9"> <input type="text" class="form-control" name="itinerary_name[]"><div class="input-group"> <a id=tour_image_' + questions + ' data-input=tour_image_data_' + questions + ' data-preview=tour_image_preview_' + questions + ' class="btn btn-primary"> <i class="fa fa-picture-o"></i> Choose </a> <input id=tour_image_data_' + questions + ' class="form-control itinerary-image-input" type="text" name="itinerary_image[]" data-id=' + questions + '> </div><img id=tour_image_preview_' + questions + ' style="margin-top:15px;max-height:100px;" > <textarea id="question_content_' + questions + '" rows="5" class="form-control tour-info" name="question_content[]"></textarea> </div> </div>');
+                // $('#dynamic_field').append('<div class="form-group row"  id=dynamic_field_' + questions + ' > <label class="col-md-3 label-control">Câu hỏi ' + questions + '</label> <div class="col-md-9">  <textarea id="question_content_' + questions + '" rows="5" class="form-control poll-info" name="question_content[]"></textarea> </div> </div>');
+                CKEDITOR.replace('question_content_' + questions, options);
+                // RefreshSomeEventListener_2();
+                $('#question_number').val(questions);
 
 
-                });
+            });
 
-                $('#remove_question').click(function() {
-                    if (questions>1){
-                        $('#dynamic_field_' + questions).remove();
-                        questions--;
-                        $('#question_number').val(questions);
-                    }
-
-
-                })
-                $('#remove_option').click(function() {
+            $('#remove_question').click(function () {
+                if (questions > 1) {
                     $('#dynamic_field_' + questions).remove();
                     questions--;
                     $('#question_number').val(questions);
-
-                })
-                function printErrorMsg(msg) {
-
-                    $(".print-error-msg").find("ul").html('');
-
-                    $(".print-error-msg").css('display', 'block');
-
-                    $(".print-success-msg").css('display', 'none');
-
-                    $.each(msg, function(key, value) {
-
-                        $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
-
-                    });
-
                 }
 
-            });
-        });
-    </script>
-    <script src="/jquery.json-viewer/json-viewer/jquery.json-viewer.js"></script>
 
-    <script>
-        function IsJsonString(str) {
-            try {
-                JSON.parse(str);
-            } catch (e) {
-                return false;
+            })
+            $('#remove_option').click(function () {
+                $('#dynamic_field_' + questions).remove();
+                // questions--;
+                // $('#question_number').val(questions);
+
+            })
+
+            function printErrorMsg(msg) {
+
+                $(".print-error-msg").find("ul").html('');
+
+                $(".print-error-msg").css('display', 'block');
+
+                $(".print-success-msg").css('display', 'none');
+
+                $.each(msg, function (key, value) {
+
+                    $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
+
+                });
+
             }
-            return true;
-        }
-        $("#proof_request_content_re").change(function (){
-            let content = $(this).val();
-            if (IsJsonString(content)){
-                content = JSON.parse(content)
+
+
+            function IsJsonString(str) {
+                try {
+                    JSON.parse(str);
+                } catch (e) {
+                    return false;
+                }
+                return true;
+            }
+
+            $("#proof_request_content_re").change(function () {
+                let content = $(this).val();
+                if (IsJsonString(content)) {
+                    content = JSON.parse(content)
+                    $('#json-renderer-re').jsonViewer(content);
+                }
+            });
+
+            $("#proof_request_content_pre").change(function () {
+                let content = $(this).val();
+                if (IsJsonString(content)) {
+                    content = JSON.parse(content)
+                    $('#json-renderer-pre').jsonViewer(content);
+                }
+            });
+            let content_re = $("#proof_request_content_re").val();
+            if (IsJsonString(content_re)) {
+                content = JSON.parse(content_re)
                 $('#json-renderer-re').jsonViewer(content);
             }
-        });
 
-        $("#proof_request_content_pre").change(function (){
-            let content = $(this).val();
-            if (IsJsonString(content)){
-                content = JSON.parse(content)
+            let content_pre = $("#proof_request_content_pre").val();
+            if (IsJsonString(content_pre)) {
+                content = JSON.parse(content_pre)
                 $('#json-renderer-pre').jsonViewer(content);
             }
-        });
-        let content_re = $("#proof_request_content_re").val();
-        if (IsJsonString(content_re)) {
-            content = JSON.parse(content_re)
-            $('#json-renderer-re').jsonViewer(content);
-        }
+        })
 
-        let content_pre = $("#proof_request_content_pre").val();
-        if (IsJsonString(content_pre)) {
-            content = JSON.parse(content_pre)
-            $('#json-renderer-pre').jsonViewer(content);
-        }
     </script>
 @endsection
