@@ -7,7 +7,7 @@
             <section id="horizontal-form-layouts">
                 <div class="row">
                     <div class="col-md-12"  id="table_data">
-                        @include('admin.polls.table')
+                        @include('admin.organizations.table')
                     </div>
                 </div>
             </section>

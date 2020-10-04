@@ -11,11 +11,11 @@
           content="trưng cầu dân ý, quản trị nội dung, Hà Nội, dân chủ, Phúc Tú">
     <meta name="author" content="tungong.tech">
     <title>Hệ thống trưng ý kiến - Trang quản trị</title>
-    <link rel="apple-touch-icon" sizes="60x60" href="/admin-assets/img/ico/apple-icon-60.html">
-    <link rel="apple-touch-icon" sizes="76x76" href="/admin-assets/img/ico/apple-icon-76.html">
-    <link rel="apple-touch-icon" sizes="120x120" href="/admin-assets/img/ico/apple-icon-120.html">
-    <link rel="apple-touch-icon" sizes="152x152" href="/admin-assets/img/ico/apple-icon-152.html">
-    <link rel="shortcut icon" type="image/x-icon" href="/admin-assets/img/ico/favicon.ico">
+{{--    <link rel="apple-touch-icon" sizes="60x60" href="/admin-assets/img/ico/apple-icon-60.html">--}}
+{{--    <link rel="apple-touch-icon" sizes="76x76" href="/admin-assets/img/ico/apple-icon-76.html">--}}
+{{--    <link rel="apple-touch-icon" sizes="120x120" href="/admin-assets/img/ico/apple-icon-120.html">--}}
+{{--    <link rel="apple-touch-icon" sizes="152x152" href="/admin-assets/img/ico/apple-icon-152.html">--}}
+{{--    <link rel="shortcut icon" type="image/x-icon" href="/admin-assets/img/ico/favicon.ico">--}}
     <link rel="shortcut icon" type="image/png" href="/admin-assets/img/ico/favicon-32.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
@@ -72,13 +72,11 @@
                     <li class="nav-item"><a href="/admin"><i class="ft-home"></i><span data-i18n="" class="menu-title">Dashboard</span></a>
                     </li>
                     <li class="has-sub nav-item open"><a href="#"><i class="ft-check-circle"></i><span data-i18n=""
-                                                                                                        class="menu-title">Quản lý nội dung</span></a>
+                                                                                                        class="menu-title">Quản lý tổ chức</span></a>
                         <ul class="menu-content">
-                            <li><a href="/admin/poll/add" class="menu-item">Thêm mới</a>
+                            <li><a href="/admin/organization/add" class="menu-item">Thêm mới</a>
                             </li>
-                            <li><a href="/admin/poll" class="menu-item">Danh sách</a>
-                            </li>
-                            <li><a href="/admin/pollcategories" class="menu-item">Danh mục</a>
+                            <li><a href="/admin/organization" class="menu-item">Danh sách</a>
                             </li>
                         </ul>
                     </li>

@@ -59,6 +59,17 @@ Route::group(['prefix'=>'/admin', 'middleware' => ['system_admin']] ,function() 
     Route::get('/user/delete/{user_id}', 'Admin\UserController@delete');
     Route::get('/user/detail/{user_id}', 'Admin\UserController@detail');
     Route::get('/user/logout/{user_id}', 'Admin\UserController@logout');
+
+
+    Route::get('/organization', 'Admin\OrganizationController@index');
+    Route::get('/organization/add', 'Admin\OrganizationController@addView');
+    Route::post('/organization/addRequest', 'Admin\OrganizationController@addRequest');
+
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
+
+
 });
 
 

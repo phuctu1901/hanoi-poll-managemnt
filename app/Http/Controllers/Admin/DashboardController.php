@@ -23,7 +23,7 @@ class DashboardController extends Controller
 //        $services= Service::where('isActive',1)->orderBy('view_counter', 'DESC')->limit(10)->get();
 //        $cars= Car::where('isActive',1)->orderBy('view_counter', 'DESC')->limit(10)->get();
 //        $posts= Post::where('isActive',1)->orderBy('view_counter', 'DESC')->limit(10)->get();
-            return view('organization.dashboard.index',['open_polls'=>$open_polls] );
+            return view('admin.dashboard.index',['open_polls'=>$open_polls] );
         }
 //        $count_tour = Tour::where('isActive',1)->count();
 //        $count_car = Car::where('isActive',1)->count();

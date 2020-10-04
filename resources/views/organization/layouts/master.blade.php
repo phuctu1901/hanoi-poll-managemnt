@@ -200,10 +200,10 @@
 <script src="/admin-assets/vendors/js/chart.min.js" type="text/javascript"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- BEGIN VENDOR JS-->
+<script src="/admin-assets/js/app-sidebar.js" type="text/javascript"></script>
 
 @section('js-content')
 @show
-<script src="/admin-assets/js/app-sidebar.js" type="text/javascript"></script>
 
 </body>
 
