@@ -16,15 +16,15 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', 'DashboardController@index');
 
 Route::get('/', 'Client\HomeController@index');
-Route::get('/tham-gia-dong-gop-y-kien/{slug}', 'Client\PollController@detail');
-Route::get('/chi-tiet/{slug}', 'Client\PollController@detail');
-Route::get('/tong-quan/{slug}', 'Client\PollController@overview');
-Route::post('/goi-yeu-cau/', 'Client\PollController@submit');
+Route::get('/khao-sat/chi-tiet/{slug}', 'Client\PollController@detail');
+Route::get('/khao-sat/tong-quan/{slug}', 'Client\PollController@overview');
+Route::post('/khao-sat/goi-yeu-cau/', 'Client\PollController@submit');
+Route::get('/khao-sat/to-chuc/{slug}', 'Client\PollController@org');
+
+
+Route::get('/to-chuc/lay-du-lieu', 'Client\OrganizationController@fetch_data');
 Route::get('/to-chuc', 'Client\OrganizationController@index');
 Route::get('/to-chuc/tim-kiem/{key-word}', 'Client\OrganizationController@search');
-Route::get('/khao-sat/to-chuc/{slug}', 'Client\PollController@org');
-Route::get('/to-chuc/lay-du-lieu', 'Client\OrganizationController@fetch_data');
-
 
 
 
@@ -33,7 +33,8 @@ Route::get('/to-chuc/lay-du-lieu', 'Client\OrganizationController@fetch_data');
 Route::group(['prefix'=>'/admin', 'middleware' => ['system_admin']] ,function() {
     Route::get('/', 'Admin\DashboardController@index');
     Route::get('/poll/add', 'Admin\PollController@addview');
-    Route::get('/poll/', 'Admin\PollController@list');
+    Route::get('/poll/{parameter?}', 'Admin\PollController@list');
+
     Route::get('/poll/detail/{id}', 'Admin\PollController@detail');
     Route::get('/ballots/{id}', 'Admin\PollController@ballots');
     Route::get('/proofs/detail/{id}', 'Admin\ProofController@detail');
@@ -42,6 +43,10 @@ Route::group(['prefix'=>'/admin', 'middleware' => ['system_admin']] ,function() 
     Route::get('/poll/edit/{id}', 'Admin\PollController@editView');
     Route::post('/poll/editRequest', 'Admin\PollController@editRequest');
 
+
+    Route::get('/poll_category', 'Admin\CategoryController@index');
+    Route::get('/poll_category/add', 'Admin\CategoryController@addView');
+    Route::post('/poll_category/add', 'Admin\CategoryController@addRequest');
 
 
     Route::get('/role','Admin\RoleController@index');

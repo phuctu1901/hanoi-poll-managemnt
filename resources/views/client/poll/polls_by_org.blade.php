@@ -8,17 +8,11 @@
 @show
 @section('main-content')
 
-    <section class="parallax-window" data-parallax="scroll" data-image-src="/client/img/cover.jpg"
-             data-natural-width="1400" data-natural-height="470">
-        <div class="parallax-content-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>{{$org->name}}</h1>
-                        <span>{{$org->desc}}</span>
-                    </div>
-
-                </div>
+    <section class="parallax-window" data-parallax="scroll" data-image-src="/client/img/cover.jpg" data-natural-width="1400" data-natural-height="470">
+        <div class="parallax-content-1">
+            <div class="animated fadeInDown">
+                <h1>{{$org->name}}</h1>
+                <p>{{$org->desc}}</p>
             </div>
         </div>
     </section>

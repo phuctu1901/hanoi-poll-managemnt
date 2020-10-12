@@ -25,16 +25,17 @@
 {{--    <link href="/client/css/bootstrap.min.css" rel="stylesheet">--}}
     <link href="/client/css/style.css" rel="stylesheet">
     <link href="/client/css/vendors.css" rel="stylesheet">
+    <link href="/client/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="/client-assets/global/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/client-assets/global/css/bootstrap-extend.min.css">
+
+{{--    <!-- Stylesheets -->--}}
+{{--    <link rel="stylesheet" href="/client-assets/global/css/bootstrap.min.css">--}}
+{{--    <link rel="stylesheet" href="/client-assets/global/css/bootstrap-extend.min.css">--}}
 
     <!-- CUSTOM CSS -->
     <link href="/client/css/custom.css" rel="stylesheet">
 
     <!-- REVOLUTION SLIDER CSS -->
-    <link href="/client/layerslider/css/layerslider.css" rel="stylesheet">
 
     @section('head-content')
     @show
@@ -201,24 +202,7 @@
 <script src="/client/js/common_scripts_min.js"></script>
 <script src="/client/js/functions.js"></script>
 
-<!-- Specific scripts -->
-<script src="/client/layerslider/js/greensock.js"></script>
-<script src="/client/layerslider/js/layerslider.transitions.js"></script>
-<script src="/client/layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        'use strict';
-        $('#layerslider').layerSlider({
-            autoStart: true,
-            responsive: true,
-            responsiveUnder: 1280,
-            layersContainer: 1170,
-            skinsPath: '/client/layerslider/skins/'
-            // Please make sure that you didn't forget to add a comma to the line endings
-            // except the last line!
-        });
-    });
-</script>
+
 <script src="{{ asset('/js/app.js') }}"></script>
 
 

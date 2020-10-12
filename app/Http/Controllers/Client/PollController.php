@@ -25,9 +25,15 @@ class PollController extends Controller
     }
 
     public  function org($org_slug){
-        $org = Organization::where('slug', $org_slug)->firstOrFail();
-        $polls = Poll::where('organization_id', $org->id)->paginate(9);
-        return view('client.poll.polls_by_org', ['polls'=>$polls, 'org'=>$org]);
+        try{
+            $org = Organization::where('slug', $org_slug)->firstOrFail();
+            $polls = Poll::where('organization_id', $org->id)->paginate(9);
+            return view('client.poll.polls_by_org', ['polls'=>$polls, 'org'=>$org]);
+        } catch (ModelNotFoundException $exception){
+            return view('client.poll.polls_by_org', ['polls'=>null, 'org'=>null]);
+
+        }
+
     }
 
 

@@ -4,21 +4,17 @@
 @section('head-content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css">
+        <link rel="stylesheet" href="/client-assets/global/css/bootstrap-extend.min.css">
 
 
 @show
 @section('main-content')
 
     <section class="parallax-window" data-parallax="scroll" data-image-src="/client/img/cover.jpg" data-natural-width="1400" data-natural-height="470">
-        <div class="parallax-content-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>{{$poll->title}}</h1>
-                        <span>{{$poll->overview}}</span>
-                    </div>
-
-                </div>
+        <div class="parallax-content-1">
+            <div class="animated fadeInDown">
+                <h1>{{$poll->title}}</h1>
+                <p>{{$poll->overview}}</p>
             </div>
         </div>
     </section>
@@ -45,7 +41,7 @@
         <!-- End Map -->
         <div class="container margin_30 border border-primary">
             <div class="row">
-                <form id="poll-info" action="{{url('/goi-yeu-cau')}} "
+                <form id="poll-info" action="{{url('/khao-sat/goi-yeu-cau')}} "
                       method="POST" role="form" enctype="multipart/form-data">
                     {{ csrf_field()}}
                     <div class="col-12">
@@ -252,120 +248,11 @@
 
 
     <style>
-        .btn-space {
-            margin-right: 5px;
-        }
+
         body{
             color: black;
         }
-        .survey-radio div {
-            clear: both;
-            overflow: hidden;
-        }
 
-        .survey-radio label {
-            width: 100%;
-            border-radius: 3px;
-            border: 1px solid #D1D3D4;
-            font-weight: normal;
-        }
-
-        .survey-radio input[type="radio"]:empty,
-        .survey-radio input[type="checkbox"]:empty {
-            display: none;
-        }
-
-        .survey-radio input[type="radio"]:empty ~ label,
-        .survey-radio input[type="checkbox"]:empty ~ label {
-            position: relative;
-            line-height: 2.5em;
-            text-indent: 3.25em;
-            margin-top: 2em;
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        .survey-radio input[type="radio"]:empty ~ label:before,
-        .survey-radio input[type="checkbox"]:empty ~ label:before {
-            position: absolute;
-            display: block;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            content: '';
-            width: 2.5em;
-            background: #D1D3D4;
-            border-radius: 3px 0 0 3px;
-        }
-
-        .survey-radio input[type="radio"]:hover:not(:checked) ~ label,
-        .survey-radio input[type="checkbox"]:hover:not(:checked) ~ label {
-            color: #888;
-        }
-
-        .survey-radio input[type="radio"]:hover:not(:checked) ~ label:before,
-        .survey-radio input[type="checkbox"]:hover:not(:checked) ~ label:before {
-            content: '\2714';
-            text-indent: .9em;
-            color: #C2C2C2;
-        }
-
-        .survey-radio input[type="radio"]:checked ~ label,
-        .survey-radio input[type="checkbox"]:checked ~ label {
-            color: #777;
-        }
-
-        .survey-radio input[type="radio"]:checked ~ label:before,
-        .survey-radio input[type="checkbox"]:checked ~ label:before {
-            content: '\2714';
-            text-indent: .9em;
-            color: #333;
-            background-color: #ccc;
-        }
-
-        .survey-radio input[type="radio"]:focus ~ label:before,
-        .survey-radio input[type="checkbox"]:focus ~ label:before {
-            box-shadow: 0 0 0 3px #999;
-        }
-
-        .survey-radio-default input[type="radio"]:checked ~ label:before,
-        .survey-radio-default input[type="checkbox"]:checked ~ label:before {
-            color: #333;
-            background-color: #ccc;
-        }
-
-        .survey-radio-primary input[type="radio"]:checked ~ label:before,
-        .survey-radio-primary input[type="checkbox"]:checked ~ label:before {
-            color: #fff;
-            background-color: #337ab7;
-        }
-
-        .survey-radio-success input[type="radio"]:checked ~ label:before,
-        .survey-radio-success input[type="checkbox"]:checked ~ label:before {
-            color: #fff;
-            background-color: #5cb85c;
-        }
-
-        .survey-radio-danger input[type="radio"]:checked ~ label:before,
-        .survey-radio-danger input[type="checkbox"]:checked ~ label:before {
-            color: #fff;
-            background-color: #d9534f;
-        }
-
-        .survey-radio-warning input[type="radio"]:checked ~ label:before,
-        .survey-radio-warning input[type="checkbox"]:checked ~ label:before {
-            color: #fff;
-            background-color: #f0ad4e;
-        }
-
-        .survey-radio-info input[type="radio"]:checked ~ label:before,
-        .survey-radio-info input[type="checkbox"]:checked ~ label:before {
-            color: #fff;
-            background-color: #5bc0de;
-        }
 
     </style>
 

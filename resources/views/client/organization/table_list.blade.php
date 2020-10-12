@@ -26,16 +26,12 @@
                             <td>{{$value->phone}}</td>
                         </tr>
                     </table>
-
-{{--                    <h5><strong>Webiste: </strong>{{$value->website}}</h5>--}}
-{{--                    <h5><strong>: </strong>{{$value->email}}</h5>--}}
-{{--                    <h5><strong>Số điện thoại: </strong>{{$value->phone}}</h5>--}}
                 </div>
             </div>
             <div class="col-lg-3 col-md-2">
                 <div class="tour_list_desc">
                     <p>{{$value->desc}}</p>
-                    <a type="button" class="btn btn-success" href="/chi-tiet-to-chuc/{{$value->slug}}">Danh sách cuộc khảo sát</a>
+                    <a type="button" class="btn btn-success" href="/khao-sat/to-chuc/{{$value->slug}}">Danh sách cuộc khảo sát</a>
                 </div>
             </div>
         </div>

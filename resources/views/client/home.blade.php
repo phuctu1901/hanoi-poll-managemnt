@@ -1,6 +1,8 @@
 @extends('client.layout')
 
 @section('header-content')
+        <link href="/client/layerslider/css/layerslider.css" rel="stylesheet">
+
 @show
 
 @section('main-content')
@@ -39,7 +41,7 @@
                     <div class="item">
                         <div class="tour_container">
                             <div class="img_container">
-                                                                <a href="/tong-quan/{{$poll->slug}}">
+                                                                <a href="/khao-sat/tong-quan/{{$poll->slug}}">
                                 <figure>
                                         <img src="https://colorlib.com/preview/theme/buson/assets/img/recent/rcent_1.png" width="800" height="533" class="img-fluid lazy" alt="{{$poll->slug}}" style="height: 224px;  object-fit: cover;">
                                         <figcaption class="tour">{{$poll->org->name}}</figcaption>
@@ -50,7 +52,7 @@
                                 </a>
                             </div>
                             <div class="tour_title">
-                                                                <h3><strong> <a  href="/tong-quan/{{$poll->slug}}"></a>{{$poll->title}}</strong></h3>
+                                                                <h3><strong> <a  href="/khao-sat/tong-quan/{{$poll->slug}}"></a>{{$poll->title}}</strong></h3>
                             </div>
                         </div>
                         </div>
@@ -182,5 +184,22 @@
     </style>
 @endsection
 @section('js-content')
-
+    <!-- Specific scripts -->
+    <script src="/client/layerslider/js/greensock.js"></script>
+    <script src="/client/layerslider/js/layerslider.transitions.js"></script>
+    <script src="/client/layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            'use strict';
+            $('#layerslider').layerSlider({
+                autoStart: true,
+                responsive: true,
+                responsiveUnder: 1280,
+                layersContainer: 1170,
+                skinsPath: '/client/layerslider/skins/'
+                // Please make sure that you didn't forget to add a comma to the line endings
+                // except the last line!
+            });
+        });
+    </script>
 @endsection

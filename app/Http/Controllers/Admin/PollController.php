@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Poll;
 use App\Models\PollDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PollController extends Controller
 {
@@ -130,10 +131,28 @@ try{
         return redirect()->back()->with('alert', 'Updated!');
 
     }
-    function list()
+//    function list()
+//    {
+//        $data = Poll::paginate(10);
+//        return view('admin.polls.list', compact('data'));
+//    }
+
+    function list($par=null)
     {
+//        return $par;
+        switch ($par){
+            case 'completed':
+                $data = Poll::where('state',0)->paginate(10);
+                return view('admin.polls.list', compact('data'));
+                break;
+            case 'processing':
+                $data = Poll::where('state',1)->paginate(10);
+                return view('admin.polls.list', compact('data'));
+                break;
+        }
         $data = Poll::paginate(10);
         return view('admin.polls.list', compact('data'));
+
     }
 
 //    Get ballots of poll with id

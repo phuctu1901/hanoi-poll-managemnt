@@ -467,7 +467,7 @@ ul#top_tools li i{font-size: 18px; font-weight: normal;}
 	 z-index:999999;
     font-size:16px;
     font-weight: 900;
-    color:black;
+    color:white;
 }
 ul#top_links{
 	list-style:none;
@@ -802,7 +802,7 @@ a#email_footer:before {
 .main-menu ul li a {display: block; line-height: 20px;padding:10px;}
 
 /*First level styles */
-.main-menu > ul > li > a {color: black; padding: 0 8px 15px  8px; font-size:18px; font-weight:600; font-family: arial; text-transform: uppercase; }
+.main-menu > ul > li > a {color: white; padding: 0 8px 15px  8px; font-size:18px; font-weight:600; font-family: arial; text-transform: uppercase; }
 .sticky .main-menu > ul > li > a {color: #333;}
 .sticky .main-menu > ul > li:hover > a {color: #e04f67;}
 .main-menu > ul > li:hover > a {}

@@ -92,6 +92,18 @@
                         </ul>
                     </li>
 
+                    <li class="has-sub nav-item open"><a href="#"><i class="fa fa-folder-o"></i><span data-i18n=""
+                                                                                                   class="menu-title">Quản lý chủ đề</span></a>
+                        <ul class="menu-content">
+                            <li><a href="/admin/poll_category" class="menu-item">Danh sách</a>
+                            </li>
+                            <li><a href="/admin/poll_category/add" class="menu-item">Thêm mới</a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
 
                     <li class="has-sub nav-item"><a href="#"><i class="ft-user-plus"></i><span data-i18n=""
                                                                                                class="menu-title">Quản

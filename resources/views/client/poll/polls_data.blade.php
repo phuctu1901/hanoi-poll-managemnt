@@ -1,6 +1,8 @@
 
 <div class="container margin_60">
-
+@if($polls->isEmpty())
+    <h2>Không có cuộc trưng cầu ý kiến nào</h2>
+    @endif
     <div class="col-lg-12 small-gutters categories_grid">
         <?php foreach ($polls->chunk(3) as $poll_row):?>
         <div class="row" style="margin-bottom: 30px;">
@@ -8,7 +10,7 @@
                 <div class="col-md-4 wow zoomIn" data-wow-delay="0.1s">
                     <div class="hotel_container">
                         <div class="img_container">
-                            <a href="/chi-tiet-xe/{{$poll->slug}}">
+                            <a href="/khao-sat/tong-quan/{{$poll->slug}}">
                                 <figure>
                                     <img src="https://colorlib.com/preview/theme/buson/assets/img/recent/rcent_1.png" class="lazy" alt="{{$poll->slug}}"  style="height: 250px;  object-fit: cover; overflow: hidden;">
                                     <figcaption class="service">{{$poll->org->name}}</figcaption>
@@ -19,7 +21,7 @@
                             </a>
                         </div>
                         <div class="hotel_title">
-                            <h3><strong><a href="/chi-tiet-xe/{{$poll->slug}}"><h3>{{$poll->title}}</h3></a></strong></h3>
+                            <h3><strong><a href="/khao-sat/tong-quan/{{$poll->slug}}"><h3>{{$poll->title}}</h3></a></strong></h3>
 
                             <!-- End wish list-->
                         </div>
