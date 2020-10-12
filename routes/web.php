@@ -20,6 +20,10 @@ Route::get('/tham-gia-dong-gop-y-kien/{slug}', 'Client\PollController@detail');
 Route::get('/chi-tiet/{slug}', 'Client\PollController@detail');
 Route::get('/tong-quan/{slug}', 'Client\PollController@overview');
 Route::post('/goi-yeu-cau/', 'Client\PollController@submit');
+Route::get('/to-chuc', 'Client\OrganizationController@index');
+Route::get('/to-chuc/tim-kiem/{key-word}', 'Client\OrganizationController@search');
+Route::get('/khao-sat/to-chuc/{slug}', 'Client\PollController@org');
+Route::get('/to-chuc/lay-du-lieu', 'Client\OrganizationController@fetch_data');
 
 
 

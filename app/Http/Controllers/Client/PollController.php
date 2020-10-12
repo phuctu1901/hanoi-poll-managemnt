@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\Organization;
 use App\Models\Poll;
 use App\Models\PollDetail;
 use App\Models\Proof;
@@ -21,6 +22,12 @@ class PollController extends Controller
 
 //        return view('client.polls.detail',['poll'=>$poll_detail,'questions'=>$questions]);
         return view('client.poll_detail',['poll'=>$poll_detail,'questions'=>$questions]);
+    }
+
+    public  function org($org_slug){
+        $org = Organization::where('slug', $org_slug)->firstOrFail();
+        $polls = Poll::where('organization_id', $org->id)->paginate(9);
+        return view('client.poll.polls_by_org', ['polls'=>$polls, 'org'=>$org]);
     }
 
 

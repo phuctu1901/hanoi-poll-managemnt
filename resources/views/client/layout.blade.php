@@ -93,7 +93,7 @@
                             <a href="/">Trang chủ</a>
                         </li>
                         <li class="submenu">
-                            <a href="/danh-sach-tour" class="show-submenu">Tham gia khảo sát<i class="icon-down-open-mini"></i></a>
+                            <a href="/chu-de" class="show-submenu">Tham gia khảo sát<i class="icon-down-open-mini"></i></a>
                             <ul>
                                 <li ><a href="javascript:void(0);">An sinh xã hội</a></li>
                                 <li ><a href="javascript:void(0);">Hành chính công</a></li>
@@ -101,12 +101,8 @@
                         </li>
 
 
-                        <li class="submenu">
-                            <a href="/thue-xe" class="show-submenu">Kết quả<i class="icon-down-open-mini"></i></a>
-                            <ul>
-                                <li ><a href="javascript:void(0);">An sinh xã hội</a></li>
-                                <li ><a href="javascript:void(0);">Hành chính công</a></li>
-                            </ul>
+                        <li>
+                            <a href="/to-chuc/">Tổ chức</a>
                         </li>
 
 
