@@ -20,6 +20,7 @@ Route::get('/khao-sat/chi-tiet/{slug}', 'Client\PollController@detail');
 Route::get('/khao-sat/tong-quan/{slug}', 'Client\PollController@overview');
 Route::post('/khao-sat/goi-yeu-cau/', 'Client\PollController@submit');
 Route::get('/khao-sat/to-chuc/{slug}', 'Client\PollController@org');
+Route::get('/khao-sat/', 'Client\PollController@index');
 
 
 Route::get('/to-chuc/lay-du-lieu', 'Client\OrganizationController@fetch_data');

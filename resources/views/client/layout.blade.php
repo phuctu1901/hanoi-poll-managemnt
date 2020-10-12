@@ -94,7 +94,7 @@
                             <a href="/">Trang chủ</a>
                         </li>
                         <li class="submenu">
-                            <a href="/chu-de" class="show-submenu">Tham gia khảo sát<i class="icon-down-open-mini"></i></a>
+                            <a href="/khao-sat/" class="show-submenu">Tham gia khảo sát<i class="icon-down-open-mini"></i></a>
                             <ul>
                                 <li ><a href="javascript:void(0);">An sinh xã hội</a></li>
                                 <li ><a href="javascript:void(0);">Hành chính công</a></li>

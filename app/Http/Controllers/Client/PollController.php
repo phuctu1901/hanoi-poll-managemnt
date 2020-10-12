@@ -12,6 +12,16 @@ use Illuminate\Http\Request;
 
 class PollController extends Controller
 {
+    public function index(){
+        try{
+            $polls = Poll::paginate(9);
+            return view('client.poll.index', ['polls'=>$polls,'org'=>null]);
+        } catch (ModelNotFoundException $exception){
+            return view('client.poll.index', ['polls'=>null,'org'=>null]);
+
+        }
+    }
+
     public function detail($poll_slug)
     {
         $poll_detail = Poll::where('slug', $poll_slug)->firstOrFail();
