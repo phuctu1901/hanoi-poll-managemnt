@@ -199,8 +199,7 @@
 
 <!-- Common scripts -->
 <script src="/client/js/jquery-2.2.4.min.js"></script>
-<script src="/client/js/common_scripts_min.js"></script>
-<script src="/client/js/functions.js"></script>
+
 
 
 <script src="{{ asset('/js/app.js') }}"></script>
@@ -211,6 +210,8 @@
 
 
 @show
+<script src="/client/js/common_scripts_min.js"></script>
+<script src="/client/js/functions.js"></script>
 @section('css-content')
 @show
 </body>

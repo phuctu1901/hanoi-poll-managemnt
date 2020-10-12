@@ -77,6 +77,7 @@ Route::group(['prefix'=>'/admin', 'middleware' => ['system_admin']] ,function() 
     Route::get('/organization/add', 'Admin\OrganizationController@addView');
     Route::post('/organization/addRequest', 'Admin\OrganizationController@addRequest');
     Route::get('/organization/edit/{org_id}', 'Admin\OrganizationController@editView');
+    Route::post('/organization/editRequest', 'Admin\OrganizationController@editRequest');
 
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();

@@ -35,19 +35,6 @@ class OrganizationController extends Controller
      }
 
     public function addRequest(Request $request){
-
-//        org_name	"12"
-//org_code	"12"
-//org_des	"12"
-//org_thumb_data	"12"
-//category_thumb_data	"12"
-//org_state	"1"
-//org_phone	"12"
-//org_mail	"12"
-//org_website	"12"
-//
-//                return $request;
-
         $data_array=[
             "name"=>$request->org_name,
             "code"=>$request->org_code,
@@ -63,7 +50,6 @@ class OrganizationController extends Controller
         return $this->createOrganization($data_array);
 
         return redirect()->back()->with('alert', 'Updated!');
-//        return $request;
     }
 
     public function editRequest(Request $request){
