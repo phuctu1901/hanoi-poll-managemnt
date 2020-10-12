@@ -1,12 +1,6 @@
 @extends('client.layout')
 
 @section('header-content')
-{{--    <link rel="stylesheet" href="/client-assets/global/vendor/footable/footable.core.css">--}}
-{{--    <link rel="stylesheet" href="/client-assets/assets/examples/css/dashboard/analytics.css">--}}
-{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">--}}
-{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css">--}}
-
-
 @show
 
 @section('main-content')
@@ -40,45 +34,45 @@
                 <p>Các vấn đề liên quan đên quyền và lợi ích, chính sách an sinh xã hội của thành phố</p>
             </div>
 
-            <div class="row">
-
                 <div class="owl-carousel owl-theme list_carousel add_bottom_30">
                     @foreach($top_polls as $poll)
                     <div class="item">
                         <div class="tour_container">
-                            <div class="ribbon_3 popular"><span>Phổ biến</span></div>
                             <div class="img_container">
-                                <a href="/chi-tiet/{{$poll->slug}}">
-                                    <img src="https://colorlib.com/preview/theme/buson/assets/img/recent/rcent_1.png" width="800" height="533" class="img-fluid lazy" alt="image">
+                                                                <a href="/tong-quan/{{$poll->slug}}">
+                                <figure>
+                                        <img src="https://colorlib.com/preview/theme/buson/assets/img/recent/rcent_1.png" width="800" height="533" class="img-fluid lazy" alt="{{$poll->slug}}" style="height: 224px;  object-fit: cover;">
+                                        <figcaption class="tour">{{$poll->org->name}}</figcaption>
+                                    </figure>
                                     <div class="short_info">
                                         19/01/2019 - 21/02/2020<span class="price"></span>
                                     </div>
                                 </a>
                             </div>
                             <div class="tour_title">
-                                <h3><strong> <a  href="/chi-tiet/{{$poll->slug}}"></a>{{$poll->title}}</strong></h3>
+                                                                <h3><strong> <a  href="/tong-quan/{{$poll->slug}}"></a>{{$poll->title}}</strong></h3>
                             </div>
                         </div>
-                    </div>
+                        </div>
                     @endforeach
-
-
                 </div>
                 <!-- End row -->
-                <div class="row">
+{{--                <div class="row">--}}
+            <p class="text-center nopadding">
+                <a href="/chu-de/" class="btn_1">Tất cả cuộc trưng cầu ý kiến</a>
+            </p>
+{{--                    <p class="text-center add_bottom_30">--}}
+{{--                        <a href="/danh-sach-tour" class="btn_1">Tất cả cuộc thăm dò ý kiến</a>--}}
+{{--                    </p>--}}
+{{--                </div>--}}
 
-                    <p class="text-center add_bottom_30">
-                        <a href="/danh-sach-tour" class="btn_1">Tất cả cuộc thăm dò ý kiến</a>
-                    </p>
-                </div>
+{{--                <hr class="mt-5 mb-5">--}}
 
-                <hr class="mt-5 mb-5">
-
-                <hr>
+{{--                <hr>--}}
 
             </div>
 
-        </div>
+{{--        </div>--}}
 
 
         <section class="promo_full">
@@ -165,6 +159,27 @@
         <!-- End container -->
     </main>
     <!-- End main -->
+    <style>
+        figcaption{
+            background:rgba(226, 125, 95, 0.9);
+            text-align: center;
+            text-justify: auto;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: inline-block;
+            color: white;
+            width: 100%;
+            height: 45px;
+            padding: 15px;
+            line-height: 1;
+            font-weight: 600;
+        }
+
+        figcaption.tour{
+            background: rgba(72, 135, 176, 0.9);
+        }
+    </style>
 @endsection
 @section('js-content')
 

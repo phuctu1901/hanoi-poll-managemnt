@@ -31,5 +31,10 @@ class Poll extends Model
             ]
         ];
     }
+    public function org()
+    {
+        return $this->hasOne(Organization::class, 'id', 'organization_id');
+    }
+
 
 }

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Hệ thống đóng góp ý kiến công dân thành phố Hà Nội - ứng dụng hệ thống định danh phân tán">
     <meta name="author" content="Ansonika">
-    <title>Hệ thống đóng góp ý kiến công dân thành phố Hà Nội</title>
+    <title>Hệ thống trưng cầu ý kiến 4.0</title>
 
     <!-- Favicons-->
 {{--    <link rel="shortcut icon" href="/client/img/favicon.ico" type="image/x-icon">--}}

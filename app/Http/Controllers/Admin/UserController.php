@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
+use App\User;
 use Session;
 use Hash;
 use Auth;

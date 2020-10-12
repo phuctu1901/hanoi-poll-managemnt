@@ -24,6 +24,18 @@ class PollController extends Controller
     }
 
 
+    public function overview($poll_slug)
+    {
+        $poll_detail = Poll::where('slug', $poll_slug)->firstOrFail();
+        $questions =  json_decode($poll_detail->content);
+
+//        return $questions;
+//        return $questions;
+
+//        return view('client.polls.detail',['poll'=>$poll_detail,'questions'=>$questions]);
+        return view('client.poll_overview',['poll'=>$poll_detail,'questions'=>$questions]);
+    }
+
 
     public function submit(Request $request)
     {

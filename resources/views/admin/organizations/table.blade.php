@@ -33,6 +33,8 @@
                 </a>
                 <a class="danger p-0" data-original-title="" title="Chỉnh sửa"   href="/admin/organization/edit/{{$org->id}}">
                     <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                </a><a class="danger p-0" data-original-title="" title="Người dùng"   href="/admin/organization/user/{{$org->id}}">
+                    <i class="ft-user font-medium-3 mr-2"></i>
                 </a>
             </td>
         </tr>

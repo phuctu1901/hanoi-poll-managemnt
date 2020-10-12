@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', 'DashboardController@index');
 
 Route::get('/', 'Client\HomeController@index');
+Route::get('/tham-gia-dong-gop-y-kien/{slug}', 'Client\PollController@detail');
 Route::get('/chi-tiet/{slug}', 'Client\PollController@detail');
+Route::get('/tong-quan/{slug}', 'Client\PollController@overview');
 Route::post('/goi-yeu-cau/', 'Client\PollController@submit');
 
 
@@ -64,6 +66,7 @@ Route::group(['prefix'=>'/admin', 'middleware' => ['system_admin']] ,function() 
     Route::get('/organization', 'Admin\OrganizationController@index');
     Route::get('/organization/add', 'Admin\OrganizationController@addView');
     Route::post('/organization/addRequest', 'Admin\OrganizationController@addRequest');
+    Route::get('/organization/edit/{org_id}', 'Admin\OrganizationController@editView');
 
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();

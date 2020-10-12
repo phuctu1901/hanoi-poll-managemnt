@@ -81,7 +81,7 @@
                         </ul>
                     </li>
                     <li class="has-sub nav-item open"><a href="#"><i class="ft-activity"></i><span data-i18n=""
-                                                                                                       class="menu-title">Quản lý kết quả</span></a>
+                                                                                                       class="menu-title">Quản lý trưng cầu ý kiến</span></a>
                         <ul class="menu-content">
                             <li><a href="/admin/poll/processing" class="menu-item">Đang diễn ra</a>
                             </li>
@@ -102,27 +102,6 @@
                             <li><a href="/admin/user" class="menu-item">Danh sách người dùng</a>
                             </li>
                             <li><a href="/admin/role" class="menu-item">Quyền người dùng</a>
-                            </li>
-
-                        </ul>
-                    </li>
-
-                    <li class="has-sub nav-item"><a href="#"><i class="ft-info"></i><span data-i18n=""
-                                                                                          class="menu-title">Thông tin</span></a>
-                        <ul class="menu-content">
-                            <li><a href="/admin/info" class="menu-item">Thông tin</a>
-                            </li>
-                            <li><a href="/admin/footer" class="menu-item">Liên hệ</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="has-sub nav-item"><a href="#"><i class="ft-mail"></i><span data-i18n=""
-                                                                                          class="menu-title">Phản hồi góp ý</span></a>
-                        <ul class="menu-content">
-                            <li><a href="/admin/request/do" class="menu-item">Chưa xử lý</a>
-                            </li>
-                            <li><a href="/admin/request/done" class="menu-item">Đã xử lý</a>
                             </li>
 
                         </ul>

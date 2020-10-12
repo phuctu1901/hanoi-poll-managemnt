@@ -20,8 +20,15 @@ class OrganizationController extends Controller
         return view('admin.organizations.add');
     }
 
+    public function  editView($org_id){
+        $org = Organization::find($org_id);
 
-     protected function createOrganization(array $data)
+        return view('admin.organizations.edit', ['org'=>$org]);
+    }
+
+
+
+    protected function createOrganization(array $data)
      {
 //         return $data;
          return Organization::create($data);
