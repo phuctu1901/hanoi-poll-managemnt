@@ -53,7 +53,18 @@ class OrganizationController extends Controller
     }
 
     public function editRequest(Request $request){
-
+        $org_id = $request->id;
+        $org = Organization::Where('id', $org_id)->firstOrFail();
+        $org->name = $request->org_name;
+        $org->code = $request->org_code;
+        $org->desc = $request->org_des;
+        $org->thumb = $request->org_thumb;
+        $org->logo = $request->org_logo;
+        $org->phone = $request->org_phone;
+        $org->website = $request->org_website;
+        $org->email = $request->org_mail;
+        $org->save();
+        return redirect()->back()->with('alert', 'Updated!');
     }
 
 

@@ -21,6 +21,7 @@
                                           method="POST" role="form" enctype="multipart/form-data">
                                         {{ csrf_field()}}
                                         <div class="form-body">
+                                            <input type="hidden" id="id" name="id" value="{{$org->id}}">
                                             <h4 class="form-section"><i class="ft-user"></i> Thông tin chính</h4>
                                             <div class="form-group row">
                                                 <label class="col-md-3 label-control">Tên tổ chức: </label>

@@ -207,8 +207,6 @@
 
 @section('js-content')
     <script src="/client-assets/global/js/config/colors.js"></script>
-
-
 @show
 <script src="/client/js/common_scripts_min.js"></script>
 <script src="/client/js/functions.js"></script>
