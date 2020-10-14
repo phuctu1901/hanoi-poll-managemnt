@@ -199,14 +199,12 @@
 
 <!-- Common scripts -->
 <script src="/client/js/jquery-2.2.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js" integrity="sha512-53CQcu9ciJDlqhK7UD8dZZ+TF2PFGZrOngEYM/8qucuQba+a+BXOIRsp9PoMNJI3ZeLMVNIxIfZLbG/CdHI5PA==" crossorigin="anonymous"></script>
 
 
-<script src="{{ asset('/js/app.js') }}"></script>
 
 
 @section('js-content')
-    <script src="/client-assets/global/js/config/colors.js"></script>
+{{--    <script src="/client-assets/global/js/config/colors.js"></script>--}}
 @show
 <script src="/client/js/common_scripts_min.js"></script>
 <script src="/client/js/functions.js"></script>

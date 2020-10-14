@@ -235,6 +235,7 @@
             });
         });
     </script>
+    <script src="{{ asset('/js/app.js') }}"></script>
 
     <!-- Date and time pickers -->
     <script>
