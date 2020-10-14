@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Organization;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Poll;
 use App\Models\PollDetail;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class PollController extends Controller
     }
 
     public  function  addView(){
-        return view('organization.polls.add');
+        $categories = Category::all();
+        return view('organization.polls.add',['categories'=>$categories]);
     }
 
     # Create did to database
@@ -61,8 +63,10 @@ try{
     return view('organization.polls.detail', ['poll'=>$poll, 'result'=>$result, 'questions'=>$questions]);
 
 }
+        $categories = Category::all();
 
-        return view('organization.polls.detail', ['poll'=>$poll, 'result'=>$result, 'questions'=>$questions]);
+
+        return view('organization.polls.detail', ['poll'=>$poll, 'result'=>$result, 'questions'=>$questions, 'categories'=>$categories]);
     }
 
 
@@ -159,8 +163,9 @@ try{
     function editView($poll_id){
         $poll = Poll::where('id',$poll_id)->firstOrFail();
         $contents = json_decode($poll->content);
+        $categories = Category::all();
 //        return  $contents;
-        return view('organization.polls.edit',['poll'=>$poll, 'contents'=>$contents]);
+        return view('organization.polls.edit',['poll'=>$poll, 'contents'=>$contents, 'categories'=>$categories]);
     }
 
     # Create did to database

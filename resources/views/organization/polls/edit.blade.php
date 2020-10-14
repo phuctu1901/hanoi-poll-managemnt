@@ -67,12 +67,10 @@
                                                                     class="form-control">
                                                                 <option value="0" selected="" disabled="">Chọn danh mục
                                                                 </option>
+                                                                <?php foreach ($categories as $cartegory): ?>
                                                                 <option
-                                                                    value="1">Hành chính công
-                                                                </option>
-                                                                <option
-                                                                    value="2">An sinh - xã hội
-                                                                </option>
+                                                                    value="{{$cartegory->id}}">{{$cartegory->name}}</option>
+                                                                <?php endforeach; ?>
                                                             </select>
 
                                                         </div>
@@ -468,6 +466,8 @@
                 content = JSON.parse(content_pre)
                 $('#json-renderer-pre').jsonViewer(content);
             }
+
+            $('#category_id').val({{$poll->category_id}});
         })
 
     </script>
