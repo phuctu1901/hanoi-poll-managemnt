@@ -121,8 +121,8 @@ try{
             'content'=>$questions,
             'notes'=>"",
             'faqs'=>"",
-            'start_at'=>$start_at.':'.$start_time,
-            'end_at'=>$end_at.':'.$end_time,
+            'start_at'=>$start_at.'-'.$start_time,
+            'end_at'=>$end_at.'-'.$end_time,
             'state'=>1
 //            Đang diễn ra
         ];

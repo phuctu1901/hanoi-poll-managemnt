@@ -2,7 +2,6 @@
 
 @section('main-content')
 
-{{--    {"id":1,"code":"MTA","name":"H\u1ecdc vi\u1ec7n K\u1ef9 th\u1ee5\u00e2t Qu\u00e2n s\u1ef1","desc":"H\u1ecdc vi\u1ec7n K\u1ef9 th\u1ee5\u00e2t Qu\u00e2n s\u1ef1, tr\u01b0\u1eddng \u0110\u1ea1i h\u1ecdc h\u00e0ng \u0111\u1ea7u Vi\u1ec7t Nam","created_user":"1","logo":null,"thumb":null,"phone":null,"email":null,"website":null,"created_at":"2020-09-16T09:59:49.000000Z","updated_at":"2020-09-08T09:59:49.000000Z"}--}}
     <div class="main-content">
         <div class="content-wrapper">
             <!-- Basic form layout section start -->
@@ -49,6 +48,14 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
+                                                <label class="col-md-3 label-control">Slug: </label>
+                                                <div class="col-md-9">
+                                                    <input id="slug" class="form-control"
+                                                           type="text"
+                                                           name="slug" value="{{$info->slug}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
                                                 <label class="col-md-3 label-control">Số điện thoại: </label>
                                                 <div class="col-md-9">
                                                     <input id="phone" class="form-control"
@@ -72,11 +79,43 @@
                                                            name="website" value="{{$info->website}}">
                                                 </div>
                                             </div>
+
+
                                             <div class="form-group row">
-                                                <label class="col-md-3 label-control">Địa chỉ: </label>
+                                                <label class="col-md-3 label-control">Logo: </label>
                                                 <div class="col-md-9">
-                                                     <textarea id="address" rows="1" class="form-control"
-                                                               name="address">{{$info->address}}</textarea>
+                                                    <div class="input-group">
+                                                        <a id="org_logo" data-input="org_logo_data"
+                                                           data-preview="org_logo_preview"
+                                                           class="btn btn-primary">
+                                                            <i class="fa fa-picture-o"></i> Choose
+                                                        </a>
+                                                        <input id="org_logo_data" class="form-control"
+                                                               type="text"
+                                                               name="org_logo_data"  value="{{$info->logo}}">
+
+                                                    </div>
+                                                    <img id="org_logo_preview"
+                                                         style="margin-top:15px;max-height:100px;">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control">Banner: </label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <a id="org_thumb" data-input="org_thumb_data"
+                                                           data-preview="org_thumb_preview"
+                                                           class="btn btn-primary">
+                                                            <i class="fa fa-picture-o"></i> Choose
+                                                        </a>
+                                                        <input id="org_thumb_data" class="form-control"
+                                                               type="text"
+                                                               name="org_thumb_data"  value="{{$info->thumb}}">
+
+                                                    </div>
+                                                    <img id="org_thumb_preview"
+                                                         style="margin-top:15px;max-height:100px;">
                                                 </div>
                                             </div>
 
@@ -114,28 +153,13 @@
         }
     </script>
 
-     <script type='text/javascript' src='/asset-admin/vendors/js/core/jquery-3.2.1.min.js'></script>
-    <script type='text/javascript' src='/client/asset/js/jquery-migrate.min.js'></script>
+@endsection
+
+@section('js-content')
+
     <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-
-
+    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
     <script>
-
-
-        jQuery(function ($) {
-            var options = {
-                filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-                filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-                filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-                filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
-            };
-
-
-        });
-    </script>
-    <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
-    <script>
-
         jQuery(function ($) {
 
             const options = {
@@ -146,18 +170,31 @@
             };
 
 
-            // $('#category_thumb').filemanager('image');
+            $('#org_thumb').filemanager('image');
 
 
-            // $(document).ready(function () {
-            //     $('#category_thumb_data').change(function () {
-            //         var data = $(this).val();
-            //         $("#category_thumb_preview").attr("src", data);
-            //         console.log(data)
-            //     });
-            //
-            //
-            // });
+            $(document).ready(function () {
+                $('#org_thumb').change(function () {
+                    var data = $(this).val();
+                    $("#org_thumb_preview").attr("src", data);
+                    console.log(data)
+                });
+
+
+            });
+
+            $('#org_logo').filemanager('image');
+
+
+            $(document).ready(function () {
+                $('#org_logo').change(function () {
+                    var data = $(this).val();
+                    $("#org_logo_preview").attr("src", data);
+                    console.log(data)
+                });
+
+
+            });
         });
     </script>
 @endsection

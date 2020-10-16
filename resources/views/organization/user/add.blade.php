@@ -100,7 +100,7 @@
                                                 <label class="col-md-3 label-control">Trạng thái: </label>
                                                 <div class="col-md-9">
 
-                                                    <select id="isActive" name="isActive"
+                                                    <select id="state" name="state"
                                                             class="form-control">
                                                         <option value="0" selected="" disabled="">Chọn trạng thái cho
                                                             danh

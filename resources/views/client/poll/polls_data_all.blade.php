@@ -50,12 +50,12 @@
     </div>
     <!-- End row -->
 </div>
-<hr>
-<nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        {{ $polls->links() }}
-    </ul>
-</nav>
+{{--<hr>--}}
+{{--<nav aria-label="Page navigation">--}}
+{{--    <ul class="pagination justify-content-center">--}}
+{{--        {{ $polls->links() }}--}}
+{{--    </ul>--}}
+{{--</nav>--}}
 
 <style>
     figcaption{

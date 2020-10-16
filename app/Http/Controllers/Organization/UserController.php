@@ -27,12 +27,12 @@ class UserController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'username' => $data['username'],
 //            'username' => $data['username'],
             'email' => $data['email'],
-            'organization' => Auth::user()->org_id,
+            'organization_id' => Auth::user()->organization_id,
             'password' => bcrypt($data['password']),
-//            'isActive'=>$data['isActive']
-        'isActive'=>1
+            'state'=>(int) $data['state']
         ]);
     }
 
@@ -72,6 +72,7 @@ class UserController extends Controller
 
     public function addRequest(Request $request)
     {
+
         // Kiểm tra dữ liệu vào
         $allRequest = $request->all();
         $validator = $this->validator($allRequest);

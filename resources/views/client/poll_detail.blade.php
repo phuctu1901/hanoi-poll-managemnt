@@ -238,13 +238,13 @@
     <script src="{{ asset('/js/app.js') }}"></script>
 
     <!-- Date and time pickers -->
-    <script>
-        $('input.date-pick').datepicker('setDate', 'today');
-        $('input.time-pick').timepicker({
-            minuteStep: 15,
-            showInpunts: false
-        })
-    </script>
+{{--    <script>--}}
+{{--        $('input.date-pick').datepicker('setDate', 'today');--}}
+{{--        $('input.time-pick').timepicker({--}}
+{{--            minuteStep: 15,--}}
+{{--            showInpunts: false--}}
+{{--        })--}}
+{{--    </script>--}}
 
 
     <style>

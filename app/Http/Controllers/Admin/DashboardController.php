@@ -14,7 +14,7 @@ class DashboardController extends Controller
     }
 
     public  function  index(){
-            $open_polls=Poll::where('state', 1)->where('organization_id', Auth::user()->org->id)->limit(10)->get();
+            $open_polls=Poll::where('state', 1)->limit(10)->get();
 //        $count_tour = Tour::where('isActive',1)->count();
 //        $count_car = Car::where('isActive',1)->count();
 //        $count_service = Service::where('isActive',1)->count();

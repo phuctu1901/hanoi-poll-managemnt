@@ -125,8 +125,8 @@ try{
             'content'=>$questions,
             'notes'=>"",
             'faqs'=>"",
-            'start_at'=>$start_at.':'.$start_time,
-            'end_at'=>$end_at.':'.$end_time,
+            'start_at'=>$start_at.'-'.$start_time,
+            'end_at'=>$end_at.'-'.$end_time,
             'state'=>1
 //            Đang diễn ra
         ];
@@ -222,8 +222,8 @@ try{
             'content'=>$questions,
             'notes'=>"",
             'faqs'=>"",
-            'start_at'=>$start_at.':'.$start_time,
-            'end_at'=>$end_at.':'.$end_time,
+            'start_at'=>$start_at.'-'.$start_time,
+            'end_at'=>$end_at.'-'.$end_time,
             'state'=>1
 //            Đang diễn ra
         ];
@@ -236,8 +236,8 @@ try{
         $poll->category_id= $category_id;
         $poll->overview = $overview;
         $poll->content=$questions;
-        $poll->start_at = $start_at.':'.$start_time;
-        $poll->end_at = $end_at.':'.$end_time;
+        $poll->start_at = $start_at.'-'.$start_time;
+        $poll->end_at = $end_at.'-'.$end_time;
         $poll->save();
 //        return $poll;
         return redirect('/organization/poll');

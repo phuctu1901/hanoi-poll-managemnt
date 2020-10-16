@@ -17,16 +17,58 @@
     <tbody>
     @foreach($data as $row)
         <tr>
-            <td><a href="/admin/poll/detail/{{$row->id}}">{{ $row->id }}</a> </td>
+            <td><a href="/admin/poll/detail/{{$row->id}}">{{ $row->id }}</a></td>
             <td>{{$row->title}}</td>
             <td>{{$row->created_at}}</td>
             <td>{{$row->start_at}}</td>
             <td>{{$row->end_at}}</td>
             <td>
-                <span class="badge badge-table @if($row->state===1) badge-success @elseif(@$row->state===0) badge-info @else badge-danger @endif"> @if($row->state===2) Đã hoàn thành @elseif($row->state===1) Đang diễn ra  @else Đang chờ @endif</span>
+                 <span class="badge badge-table
+                @switch($row->state)
+                 @case(0)
+                     badge-secondary
+@break
+
+                 @case(1)
+                     badge-primary
+@break
+
+                 @case(2)
+                     badge-success
+@break
+
+                 @case(3)
+                     badge-warning
+@break
+
+                 @default
+                     badge-dark
+@endswitch
+                     ">
+                    @switch($row->state)
+                         @case(0)
+                         Chưa bắt đầu
+                         @break
+
+                         @case(1)
+                         Đang diễn ra
+                         @break
+
+                         @case(2)
+                         Đã kết thúc
+                         @break
+
+                         @case(3)
+                         Đã đóng
+                         @break
+
+                         @default
+                         Lỗi
+                     @endswitch
+                    </span>
             </td>
-            <td><a href="/admin/ballots/{{$row->id}}">Chi tiết</a> </td>
-            <td><a href="/admin/poll/edit/{{$row->id}}">Chỉnh sửa</a> </td>
+            <td><a href="/admin/ballots/{{$row->id}}">Chi tiết</a></td>
+            <td><a href="/admin/poll/edit/{{$row->id}}">Chỉnh sửa</a></td>
 
         </tr>
     @endforeach

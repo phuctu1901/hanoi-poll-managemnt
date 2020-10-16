@@ -42,7 +42,7 @@
                                 <div class="px-3">
 
                                     <form class="form form-horizontal"
-                                          action="{{url('/admin/user/addRequest')}} "
+                                          action="{{url('/organization/user/addRequest')}} "
                                           method="POST" role="form" enctype="multipart/form-data">
                                         {{ csrf_field()}}
                                         <div class="form-body">

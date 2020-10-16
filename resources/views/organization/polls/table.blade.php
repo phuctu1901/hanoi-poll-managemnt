@@ -22,8 +22,50 @@
             <td>{{$row->created_at}}</td>
             <td>{{$row->start_at}}</td>
             <td>{{$row->end_at}}</td>
-            <td>
-                <span class="badge badge-table @if($row->state===1) badge-success @elseif(@$row->state===0) badge-info @else badge-danger @endif"> @if($row->state===2) Đã hoàn thành @elseif($row->state===1) Đang diễn ra  @else Đang chờ @endif</span>
+            <td style="text-align:center;">
+                <span class="badge badge-table
+                @switch($row->state)
+                    @case(0)
+                    badge-secondary
+                    @break
+
+                    @case(1)
+                    badge-primary
+                    @break
+
+                    @case(2)
+                    badge-success
+                    @break
+
+                    @case(3)
+                    badge-warning
+                    @break
+
+                    @default
+                    badge-dark
+                @endswitch
+                    ">
+                    @switch($row->state)
+                @case(0)
+                        Chưa bắt đầu
+                    @break
+
+                @case(1)
+                        Đang diễn ra
+                    @break
+
+                @case(2)
+                        Đã kết thúc
+                    @break
+
+                @case(3)
+                        Đã đóng
+                    @break
+
+                @default
+                    Lỗi
+                @endswitch
+                    </span>
             </td>
             <td><a href="/organization/ballots/{{$row->id}}">Chi tiết</a> </td>
             <td><a href="/organization/poll/edit/{{$row->id}}">Chỉnh sửa</a> </td>
@@ -36,3 +78,8 @@
 {!! $data->links() !!}
 
 
+{{--Các trạng thái của cuộc khảo sát--}}
+{{--- Chưa bắt đầu (Trạng thái mặc định) - 0--}}
+{{--- Đang diễn ra (Đang cho phép diễn ra) - 1--}}
+{{--- Đã kết thúc (Đã hoàn thành) - 2--}}
+{{--- Đã đóng (Chưa kết thúc nhưng dừng lại) - 3--}}

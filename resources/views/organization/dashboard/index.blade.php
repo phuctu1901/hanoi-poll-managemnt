@@ -13,7 +13,7 @@
                                     <div class="media">
                                         <div class="media-body white text-left">
                                             <h3 class="font-large-1 mb-0">10</h3>
-                                            <span>Số cuộc thăm dò đã tạo</span>
+                                            <span>Chưa bắt đầu</span>
                                         </div>
                                         <div class="media-right white text-right">
                                             <i class="ft-briefcase font-large-1"></i>
@@ -31,7 +31,7 @@
                                     <div class="media">
                                         <div class="media-body white text-left">
                                             <h3 class="font-large-1 mb-0">2</h3>
-                                            <span>Đã kết thúc</span>
+                                            <span>Đang diễn ra</span>
                                         </div>
                                         <div class="media-right white text-right">
                                             <i class="fa fa-car font-large-1"></i>
@@ -49,7 +49,7 @@
                                     <div class="media">
                                         <div class="media-body white text-left">
                                             <h3 class="font-large-1 mb-0">1</h3>
-                                            <span>Đang diễn ra</span>
+                                            <span>Đã kết thúc</span>
                                         </div>
                                         <div class="media-right white text-right">
                                             <i class="ft-layers font-large-1"></i>

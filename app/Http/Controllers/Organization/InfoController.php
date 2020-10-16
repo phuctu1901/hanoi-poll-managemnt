@@ -18,15 +18,20 @@ class InfoController extends Controller
 
     public  function  update(Request $request)
     {
-//        $id = $request->id;
-//        $info = Info::find($id);
-//        $info->address = $request->address;
-//        $info->title = $request->title;
-//        $info->tel = $request->tel;
-//        $info->email = $request->email;
-//        $info->facebook = $request->facebook;
-//        $info->save();
-//        return redirect()->back()->with('alert', 'Updated!');
+        $id = $request->id;
+        $org = Organization::find($id);
+
+        $org->code = $request->code;
+        $org->name = $request->name;
+        $org->desc = $request->desc;
+        $org->phone = $request->phone;
+        $org->email= $request->email;
+        $org->website= $request->website;
+        $org->thumb= $request->org_thumb_data;
+        $org->logo= $request->org_logo_data;
+        $org->slug= $request->slug;
+        $org->save();
+        return redirect()->back()->with('alert', 'Updated!');
     }
 
 }

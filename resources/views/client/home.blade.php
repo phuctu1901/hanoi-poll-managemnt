@@ -29,11 +29,13 @@
         </div>
         <!-- End layerslider -->
 
-        <div class="container margin_60">
+
+            @foreach($categories as $category)
+            <div class="container margin_60" >
 
             <div class="main_title">
-                <h2>An sinh - Xã hội</h2>
-                <p>Các vấn đề liên quan đên quyền và lợi ích, chính sách an sinh xã hội của thành phố</p>
+                <h2>{{$category->name}}</h2>
+                <p>{{$category->desc}}</p>
             </div>
 
                 <div class="owl-carousel owl-theme list_carousel add_bottom_30">
@@ -61,22 +63,14 @@
                 <!-- End row -->
 {{--                <div class="row">--}}
             <p class="text-center nopadding">
-                <a href="/chu-de/" class="btn_1">Tất cả cuộc trưng cầu ý kiến</a>
+                <a href="/chu-de/{{$category->slug}}" class="btn_1">Tất cả cuộc trưng cầu ý kiến</a>
             </p>
-{{--                    <p class="text-center add_bottom_30">--}}
-{{--                        <a href="/danh-sach-tour" class="btn_1">Tất cả cuộc thăm dò ý kiến</a>--}}
-{{--                    </p>--}}
-{{--                </div>--}}
-
-{{--                <hr class="mt-5 mb-5">--}}
-
-{{--                <hr>--}}
+                <hr>
 
             </div>
 
-{{--        </div>--}}
 
-
+        @endforeach
         <section class="promo_full">
             <div class="promo_full_wp magnific">
                 <div>
@@ -104,11 +98,10 @@
                 <div class="col-lg-4 wow zoomIn" data-wow-delay="0.2s">
                     <div class="feature_home">
                         <i class="icon_set_1_icon-41"></i>
-                        <h3>Công khai</h3>
+                        <h3>An toàn</h3>
                         <p>
-                            Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+                            Ứng dụng cộng nghệ blockchain để đảm bảo an toàn thông tin trong khi sử dụng.
                         </p>
-                        <a href="about.html" class="btn_1 outline">Read more</a>
                     </div>
                 </div>
                 <div class="col-lg-4 wow zoomIn" data-wow-delay="0.6s">
@@ -116,9 +109,8 @@
                         <i class="icon_set_1_icon-57"></i>
                         <h3>Riêng tư</h3>
                         <p>
-                            Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+                            Một trong những sản phẩm tiên phong trong ứng dụng "định danh tự chủ" vào công việc hằng ngày.
                         </p>
-                        <a href="about.html" class="btn_1 outline">Read more</a>
                     </div>
                 </div>
                 <div class="col-lg-4 wow zoomIn" data-wow-delay="0.4s">
@@ -126,9 +118,8 @@
                         <i class="icon_set_1_icon-30"></i>
                         <h3>Minh bạch</h3>
                         <p>
-                            Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+                            Minh bạch trong định danh thời kỳ số hóa, hãy quên đi các loại giấy tờ rườm rà và lạc hậu.
                         </p>
-                        <a href="about.html" class="btn_1 outline">Read more</a>
                     </div>
                 </div>
 
@@ -149,7 +140,7 @@
                         Nếu đây là lần đầu tiên sử dụng hệ thống, bạn vui lòng làm theo hướng dẫn
                     </p>
                     <ul class="list_order">
-                        <li><span>1</span>Tải ứng dụng StreetCred cho điện thoại</li>
+                        <li><span>1</span>Tải ứng dụng <a href="download-link" target="_blank">uID</a> cho điện thoại</li>
                         <li><span>2</span>Tiến hành nhận định danh tương ứng</li>
                         <li><span>3</span>Truy cập hệ thống và sử dụng theo hướng dẫn</li>
                     </ul>
