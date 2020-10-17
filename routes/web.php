@@ -25,7 +25,8 @@ Route::get('/khao-sat/', 'Client\PollController@index');
 
 Route::get('/to-chuc/lay-du-lieu', 'Client\OrganizationController@fetch_data');
 Route::get('/to-chuc', 'Client\OrganizationController@index');
-Route::get('/to-chuc/tim-kiem/{key-word}', 'Client\OrganizationController@search');
+Route::post('/to-chuc/tim-kiem', 'Client\OrganizationController@search');
+Route::post('/khao-sat/tim-kiem', 'Client\PollController@search');
 
 
 

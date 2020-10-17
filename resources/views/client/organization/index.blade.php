@@ -25,16 +25,27 @@
                 </ul>
             </div>
         </div>
-        <div class="container" style="margin-top: 30px;">
 
-        <div class="col-sm-12" >
-            <form action="/to-chuc/tim-kiem" method="post">
-                {{ csrf_field()}}
-                <input class="form-control" type="text" name="keyword" id="input-search" placeholder="Nhập tên hoặc mã của tổ chức">
-            </form>
-        </div>
-        </div>
+
         <div class="container margin_60">
+            <div class="col-12">
+
+                <div class="row">
+                    {{--            col-md-3 col-sm-4--}}
+                    <div class="col-4">
+                    </div>
+                    <div class="col-6">
+                        <form action="/to-chuc/tim-kiem" method="post">
+                            {{ csrf_field()}}
+                            <input class="form-control" type="text" name="keyword" id="input-search" placeholder="Nhập tên hoặc mã của tổ chức">
+                        </form>
+                    </div>
+                    <div class="col-2 text-right">
+                        <a href="?display=thumb" class="bt_filters"><i class="icon-th"></i></a>
+                        <a href="?display=list" class="bt_filters"><i class=" icon-list"></i></a>
+                    </div>
+                </div>
+            </div>
             <!-- Page Content -->
 
                     <div class="col-12" id="table_data">

@@ -87,4 +87,27 @@ class PollController extends Controller
     {
         return PollDetail::create($data);
     }
+
+    public function search(Request $request){
+
+        $keyword = $request->keyword;
+        $polls= Poll::where('title',  'LIKE', "%{$keyword}%")
+            ->orWhere('overview', 'LIKE', "%{$keyword}%")->paginate(3);
+//        return  $data;
+//        $keyword = $request->keyword;
+//        $count = strlen($keyword); // 6
+//        return [];
+
+//
+//        if ($count<15){
+//            $data=Transaction::Where('plate_id', $keyword)->paginate(10);;
+//        }
+//        if ($count==36){
+//            $data=Transaction::Where('id', $keyword)->orWhere('bot_station_id', $keyword)->paginate(10);;
+//        }
+//        if ($count==66){
+//            $data=Transaction::Where('txs', $keyword)->paginate(10);;
+//        }
+        return view('client.poll.search_result', compact('polls'))->render();
+    }
 }

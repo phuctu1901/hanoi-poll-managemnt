@@ -17,10 +17,16 @@ class OrganizationController extends Controller
         return view('client.organization.index', []);
     }
 
-    public function search($key_word){
+    public function search(Request $request){
+
+        $keyword = $request->keyword;
+        $data= Organization::where('name',  'LIKE', "%{$keyword}%")
+            ->orWhere('code', 'LIKE', "%{$keyword}%")->paginate(3);
+//        return  $data;
 //        $keyword = $request->keyword;
 //        $count = strlen($keyword); // 6
-        $data=null;
+//        return [];
+
 //
 //        if ($count<15){
 //            $data=Transaction::Where('plate_id', $keyword)->paginate(10);;
@@ -31,8 +37,7 @@ class OrganizationController extends Controller
 //        if ($count==66){
 //            $data=Transaction::Where('txs', $keyword)->paginate(10);;
 //        }
-
-        return view('organization.search_result',compact('data', $data),[]) ->render();
+        return view('client.organization.search_result', compact('data'))->render();
     }
     function fetch_data(Request $request)
     {

@@ -3,6 +3,24 @@
 @if($polls->isEmpty())
     <h2>Không có cuộc trưng cầu ý kiến nào</h2>
     @endif
+    <div class="col-12">
+
+        <div class="row">
+{{--            col-md-3 col-sm-4--}}
+            <div class="col-6">
+            </div>
+            <div class="col-6">
+                <form action="/khao-sat/tim-kiem" method="post">
+                    {{ csrf_field()}}
+                    <input class="form-control" type="text" name="keyword" id="input-search" placeholder="Nhập tên hoặc đơn vị tổ chức khảo sát">
+                </form>
+            </div>
+{{--            <div class="col-2 text-right">--}}
+{{--                <a href="?display=thumb" class="bt_filters"><i class="icon-th"></i></a>--}}
+{{--                <a href="?display=list" class="bt_filters"><i class=" icon-list"></i></a>--}}
+{{--            </div>--}}
+        </div>
+    </div>
     <div class="col-lg-12 small-gutters categories_grid">
         <?php foreach ($polls->chunk(3) as $poll_row):?>
         <div class="row" style="margin-bottom: 30px;">
@@ -50,12 +68,12 @@
     </div>
     <!-- End row -->
 </div>
-<hr>
-<nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        {{ $polls->links() }}
-    </ul>
-</nav>
+{{--<hr>--}}
+{{--<nav aria-label="Page navigation">--}}
+{{--    <ul class="pagination justify-content-center">--}}
+{{--        {{ $polls->links() }}--}}
+{{--    </ul>--}}
+{{--</nav>--}}
 
 <style>
     figcaption{

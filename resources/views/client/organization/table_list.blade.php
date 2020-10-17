@@ -1,4 +1,8 @@
-    <?php foreach ($data as $value): ?>
+@if(!$data)
+    <h2>Không có cuộc trưng cầu ý kiến nào</h2>
+@else
+
+<?php foreach ($data as $value): ?>
     <div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
         <div class="row">
             <div class="col-lg-4 col-md-4">
@@ -45,5 +49,6 @@
 
     </ul>
 </nav>
+    @endif
 
 
