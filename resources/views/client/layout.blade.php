@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Hệ thống đóng góp ý kiến công dân thành phố Hà Nội - ứng dụng hệ thống định danh phân tán">
+    <meta name="description" content="Hệ thống trưng cầu ý kiến 4.0 - Ứng dụng hệ thống định danh phân tán">
     <meta name="author" content="Ansonika">
     <title>Hệ thống trưng cầu ý kiến 4.0</title>
 
@@ -96,8 +96,9 @@
                         <li class="submenu">
                             <a href="/khao-sat/" class="show-submenu">Tham gia khảo sát<i class="icon-down-open-mini"></i></a>
                             <ul>
-                                <li ><a href="javascript:void(0);">An sinh xã hội</a></li>
-                                <li ><a href="javascript:void(0);">Hành chính công</a></li>
+                                @foreach($categories as $category)
+                                <li ><a href="/khao-sat/chu-de/{{$category->slug}}">{{$category->name}}</a></li>
+                                @endforeach
                             </ul>
                         </li>
 
@@ -108,7 +109,7 @@
 
 
                         <li>
-                            <a href="/bai-viet">Tin tức</a>
+                            <a href="/bai-viet">Bài viết</a>
                         </li>
                         <li>
                             <a href="/gioi-thieu">Giới thiệu</a>

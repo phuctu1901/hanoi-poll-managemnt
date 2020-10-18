@@ -16,7 +16,8 @@
                                     <figcaption class="service">{{$poll->org->name}}</figcaption>
                                 </figure>
                                 <div class="short_info">
-                                    19/01/2019 - 21/02/2020<span class="price"></span>
+                                    {{$poll->overview}}<span class="price"></span>
+
                                 </div>
                             </a>
                         </div>

@@ -1,7 +1,7 @@
 @extends('client.layout')
 
 @section('header-content')
-        <link href="/client/layerslider/css/layerslider.css" rel="stylesheet">
+    <link href="/client/layerslider/css/layerslider.css" rel="stylesheet">
 
 @show
 
@@ -14,15 +14,23 @@
                 <!-- first slide -->
                 <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:5;">
                     <img src="/client/img/slides/4.jpg" class="ls-bg" alt="Slide background">
-                    <h3 class="ls-l slide_typo" style="top: 45%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">AN TOÀN - BẢO MẬT</h3>
-                    <p class="ls-l slide_typo_2" style="top:52%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">Bạn hoàn toàn ẩn danh khi đóng góp</p>
+                    <h3 class="ls-l slide_typo" style="top: 45%; left: 50%;"
+                        data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">
+                        AN TOÀN - BẢO MẬT</h3>
+                    <p class="ls-l slide_typo_2" style="top:52%; left:50%;"
+                       data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">Bạn hoàn toàn ẩn danh khi đóng
+                        góp</p>
                 </div>
 
                 <!-- second slide -->
                 <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:85;">
                     <img src="/client/img/slides/3.jpg" class="ls-bg" alt="Slide background">
-                    <h3 class="ls-l slide_typo" style="top: 45%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">NHANH CHÓNG - KỊP THỜI</h3>
-                    <p class="ls-l slide_typo_2" style="top:52%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">Dữ liệu góp ý của bạn sẽ được ghi nhận và trả lời nhanh nhất</p>
+                    <h3 class="ls-l slide_typo" style="top: 45%; left: 50%;"
+                        data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">
+                        NHANH CHÓNG - KỊP THỜI</h3>
+                    <p class="ls-l slide_typo_2" style="top:52%; left:50%;"
+                       data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">Dữ liệu góp ý của bạn sẽ được ghi
+                        nhận và trả lời nhanh nhất</p>
                 </div>
 
             </div>
@@ -30,41 +38,46 @@
         <!-- End layerslider -->
 
 
-            @foreach($categories as $category)
-            <div class="container margin_60" >
+        @foreach($categories as $category)
+            <div class="container margin_60">
 
-            <div class="main_title">
-                <h2>{{$category->name}}</h2>
-                <p>{{$category->desc}}</p>
-            </div>
+                <div class="main_title">
+                    <h2>{{$category->name}}</h2>
+                    <p>{{$category->desc}}</p>
+                </div>
 
                 <div class="owl-carousel owl-theme list_carousel add_bottom_30">
-                    @foreach($top_polls as $poll)
-                    <div class="item">
-                        <div class="tour_container">
-                            <div class="img_container">
-                                                                <a href="/khao-sat/tong-quan/{{$poll->slug}}">
-                                <figure>
-                                        <img src="https://colorlib.com/preview/theme/buson/assets/img/recent/rcent_1.png" width="800" height="533" class="img-fluid lazy" alt="{{$poll->slug}}" style="height: 224px;  object-fit: cover;">
-                                        <figcaption class="tour">{{$poll->org->name}}</figcaption>
-                                    </figure>
-                                    <div class="short_info">
-                                        19/01/2019 - 21/02/2020<span class="price"></span>
-                                    </div>
-                                </a>
+                    @foreach($category->data as $poll)
+                        <div class="item">
+                            <div class="tour_container">
+                                <div class="img_container">
+                                    <a href="/khao-sat/tong-quan/{{$poll->slug}}">
+                                        <figure>
+                                            <img
+                                                src="https://colorlib.com/preview/theme/buson/assets/img/recent/rcent_1.png"
+                                                width="800" height="533" class="img-fluid lazy" alt="{{$poll->slug}}"
+                                                style="height: 224px;  object-fit: cover;">
+                                            <figcaption class="tour">{{$poll->org->name}}</figcaption>
+                                        </figure>
+                                        <div class="short_info">
+                                            {{$poll->overview}}<span class="price"></span>
+
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="tour_title">
+                                    <h3><strong> <a href="/khao-sat/tong-quan/{{$poll->slug}}"></a>{{$poll->title}}
+                                        </strong></h3>
+                                </div>
                             </div>
-                            <div class="tour_title">
-                                                                <h3><strong> <a  href="/khao-sat/tong-quan/{{$poll->slug}}"></a>{{$poll->title}}</strong></h3>
-                            </div>
-                        </div>
                         </div>
                     @endforeach
                 </div>
                 <!-- End row -->
-{{--                <div class="row">--}}
-            <p class="text-center nopadding">
-                <a href="/chu-de/{{$category->slug}}" class="btn_1">Tất cả cuộc trưng cầu ý kiến</a>
-            </p>
+                {{--                <div class="row">--}}
+                <p class="text-center nopadding">
+                    <a href="/khao-sat/chu-de/{{$category->slug}}" class="btn_1">Tất cả cuộc trưng cầu ý kiến</a>
+                </p>
                 <hr>
 
             </div>
@@ -78,7 +91,8 @@
                     <p>
                         Xem video về quy trình hoạt động của hệ thống, cũng như cách chúng tôi bảo vệ bạn an toàn
                     </p>
-                    <a href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y" class="video"><i class="icon-play-circled2-1"></i></a>
+                    <a href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y" class="video"><i
+                            class="icon-play-circled2-1"></i></a>
                 </div>
             </div>
         </section>
@@ -109,7 +123,8 @@
                         <i class="icon_set_1_icon-57"></i>
                         <h3>Riêng tư</h3>
                         <p>
-                            Một trong những sản phẩm tiên phong trong ứng dụng "định danh tự chủ" vào công việc hằng ngày.
+                            Một trong những sản phẩm tiên phong trong ứng dụng "định danh tự chủ" vào công việc hằng
+                            ngày.
                         </p>
                     </div>
                 </div>
@@ -122,7 +137,6 @@
                         </p>
                     </div>
                 </div>
-
 
 
             </div>
@@ -140,7 +154,8 @@
                         Nếu đây là lần đầu tiên sử dụng hệ thống, bạn vui lòng làm theo hướng dẫn
                     </p>
                     <ul class="list_order">
-                        <li><span>1</span>Tải ứng dụng <a href="download-link" target="_blank">uID</a> cho điện thoại</li>
+                        <li><span>1</span>Tải ứng dụng <a href="download-link" target="_blank">uID</a> cho điện thoại
+                        </li>
                         <li><span>2</span>Tiến hành nhận định danh tương ứng</li>
                         <li><span>3</span>Truy cập hệ thống và sử dụng theo hướng dẫn</li>
                     </ul>
@@ -153,8 +168,8 @@
     </main>
     <!-- End main -->
     <style>
-        figcaption{
-            background:rgba(226, 125, 95, 0.9);
+        figcaption {
+            background: rgba(226, 125, 95, 0.9);
             text-align: center;
             text-justify: auto;
             position: absolute;
@@ -169,7 +184,7 @@
             font-weight: 600;
         }
 
-        figcaption.tour{
+        figcaption.tour {
             background: rgba(72, 135, 176, 0.9);
         }
     </style>

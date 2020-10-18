@@ -140,7 +140,7 @@ try{
 //        return $par;
         switch ($par){
             case 'completed':
-                $data = Poll::where('organization_id',Auth::user()->org->id)->where('state',0)->paginate(10);
+                $data = Poll::where('organization_id',Auth::user()->org->id)->where('state',2)->paginate(10);
                 return view('organization.polls.list', compact('data'));
                 break;
             case 'processing':

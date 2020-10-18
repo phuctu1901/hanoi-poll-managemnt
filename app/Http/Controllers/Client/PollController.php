@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\Category;
 use App\Models\Organization;
 use App\Models\Poll;
 use App\Models\PollDetail;
@@ -21,6 +22,19 @@ class PollController extends Controller
 
         }
     }
+
+    public function category($slug){
+        $category = Category::where('slug', $slug)->firstOrFail();
+//        return $category;
+        try{
+            $polls = Poll::where('category_id', $category->id)->paginate(9);
+            return view('client.poll.polls_by_category', ['polls'=>$polls,'category'=>$category]);
+        } catch (ModelNotFoundException $exception){
+            return view('client.poll.polls_by_category', ['polls'=>null,'category'=>$category]);
+
+        }
+    }
+
 
     public function detail($poll_slug)
     {

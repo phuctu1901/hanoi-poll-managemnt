@@ -12,11 +12,11 @@
                                 <div class="card-body pt-2 pb-0">
                                     <div class="media">
                                         <div class="media-body white text-left">
-                                            <h3 class="font-large-1 mb-0">10</h3>
                                             <span>Chưa bắt đầu</span>
                                         </div>
                                         <div class="media-right white text-right">
-                                            <i class="ft-briefcase font-large-1"></i>
+                                            <h3 class="font-large-1 mb-0">{{$early}}</h3>
+
                                         </div>
                                     </div>
                                 </div>
@@ -30,11 +30,11 @@
                                 <div class="card-body pt-2 pb-0">
                                     <div class="media">
                                         <div class="media-body white text-left">
-                                            <h3 class="font-large-1 mb-0">2</h3>
                                             <span>Đang diễn ra</span>
                                         </div>
                                         <div class="media-right white text-right">
-                                            <i class="fa fa-car font-large-1"></i>
+                                            <h3 class="font-large-1 mb-0">{{$opened}}</h3>
+
                                         </div>
                                     </div>
                                 </div>
@@ -48,11 +48,11 @@
                                 <div class="card-body pt-2 pb-0">
                                     <div class="media">
                                         <div class="media-body white text-left">
-                                            <h3 class="font-large-1 mb-0">1</h3>
                                             <span>Đã kết thúc</span>
                                         </div>
                                         <div class="media-right white text-right">
-                                            <i class="ft-layers font-large-1"></i>
+                                            <h3 class="font-large-1 mb-0">{{$completed}}</h3>
+
                                         </div>
                                     </div>
                                 </div>
@@ -65,11 +65,11 @@
                                 <div class="card-body pt-2 pb-0">
                                     <div class="media">
                                         <div class="media-body white text-left">
-                                            <h3 class="font-large-1 mb-0">1</h3>
                                             <span>Đã đóng</span>
                                         </div>
                                         <div class="media-right white text-right">
-                                            <i class="ft-edit font-large-1"></i>
+                                            
+                                            <h3 class="font-large-1 mb-0">{{$closed}}</h3>
                                         </div>
                                     </div>
                                 </div>

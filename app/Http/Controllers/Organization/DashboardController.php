@@ -15,14 +15,16 @@ class DashboardController extends Controller
 
     public  function  index(){
         $open_polls=Poll::where('state', 1)->where('organization_id', Auth::user()->org->id)->limit(10)->get();
-//        $count_tour = Tour::where('isActive',1)->count();
-//        $count_car = Car::where('isActive',1)->count();
-//        $count_service = Service::where('isActive',1)->count();
-//        $count_post = Post::where('isActive',1)->count();
-//        $tours= Tour::where('isActive',1)->orderBy('view_counter', 'DESC')->limit(10)->get();
-//        $services= Service::where('isActive',1)->orderBy('view_counter', 'DESC')->limit(10)->get();
-//        $cars= Car::where('isActive',1)->orderBy('view_counter', 'DESC')->limit(10)->get();
-//        $posts= Post::where('isActive',1)->orderBy('view_counter', 'DESC')->limit(10)->get();
-        return view('organization.dashboard.index',['open_polls'=>$open_polls] );
+        $count_open = Poll::where('state',1)->count();
+        $count_closed = Poll::where('state',3)->count();
+        $count_completed = Poll::where('state',2)->count();
+        $count_early = Poll::where('state',0)->count();
+//
+//        Các trạng thái của cuộc khảo sát
+//        - Chưa bắt đầu (Trạng thái mặc định) - 0
+//        - Đang diễn ra (Đang cho phép diễn ra) - 1
+//        - Đã kết thúc (Đã hoàn thành) - 2
+//        - Đã đóng (Chưa kết thúc nhưng dừng lại) - 3
+        return view('organization.dashboard.index',['open_polls'=>$open_polls,'opened'=>$count_open,'closed'=>$count_closed,'completed'=>$count_completed,'early'=>$count_early] );
     }
 }

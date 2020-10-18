@@ -20,6 +20,8 @@ Route::get('/khao-sat/chi-tiet/{slug}', 'Client\PollController@detail');
 Route::get('/khao-sat/tong-quan/{slug}', 'Client\PollController@overview');
 Route::post('/khao-sat/goi-yeu-cau/', 'Client\PollController@submit');
 Route::get('/khao-sat/to-chuc/{slug}', 'Client\PollController@org');
+Route::get('/khao-sat/chu-de/{slug}', 'Client\PollController@category');
+
 Route::get('/khao-sat/', 'Client\PollController@index');
 
 
@@ -133,4 +135,6 @@ Route::group(['prefix'=>'/organization', 'middleware' => ['organization']] ,func
 });
 
 Auth::routes();
-
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
