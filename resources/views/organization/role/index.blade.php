@@ -123,7 +123,7 @@
                                                     <td>
                                                         @if(count($permission->roles)>0)
                                                             @foreach($permission->roles as $role)
-                                                                <span class="badge badge-success">{{$role->name}}</span>
+                                                                <span class="badge badge-success">{{$role->displayname}}</span>
                                                             @endforeach
                                                         @else
                                                             <span
