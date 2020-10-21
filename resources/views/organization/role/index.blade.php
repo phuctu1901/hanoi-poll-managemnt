@@ -43,7 +43,7 @@
                                     <table class="table table-responsive-md-md text-center table-striped">
                                         <thead>
                                         <tr>
-                                            <th>Loại tài khoản</th>
+                                            <th>Vai trò</th>
                                             <th>Quyền</th>
                                             <th>Tài khoản</th>
                                             <th>Hành động</th>
@@ -53,12 +53,12 @@
                                         <tbody>
                                         @foreach($roles as $role)
                                             <tr>
-                                                <td>{{$role->name}}</td>
+                                                <td>{{$role->displayname}}</td>
                                                 <td>
                                                     @if(count($role->permissions)>0)
                                                         @foreach($role->permissions as $permission)
                                                             <span
-                                                                class="badge badge-success">{{$permission->name}}</span>
+                                                                class="badge badge-success">{{$permission->displayname}}</span>
                                                         @endforeach
                                                     @else
                                                         <span class="badge badge-danger">Không có quyền nào</span>
@@ -109,7 +109,7 @@
                                             <thead>
                                             <tr>
                                                 <th>Quyền</th>
-                                                <th>Loại tài khoản</th>
+                                                <th>Vai trò</th>
                                                 <th>Tài khoản</th>
                                                 @can('Quản lý quyền')
                                                 <th>Hành động</th>
@@ -119,7 +119,7 @@
                                             <tbody>
                                             @foreach($permissions as $permission)
                                                 <tr>
-                                                    <td>{{$permission->name}}</td>
+                                                    <td>{{$permission->displayname}}</td>
                                                     <td>
                                                         @if(count($permission->roles)>0)
                                                             @foreach($permission->roles as $role)

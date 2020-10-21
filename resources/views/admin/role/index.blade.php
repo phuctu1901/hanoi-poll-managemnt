@@ -43,7 +43,9 @@
                                     <table class="table table-responsive-md-md text-center table-striped">
                                         <thead>
                                         <tr>
-                                            <th>Loại tài khoản</th>
+                                            <th>Mã</th>
+                                            <th>Tên hiển thị</th>
+                                            <th>Hệ thống/Tổ chức</th>
                                             <th>Quyền</th>
                                             <th>Tài khoản</th>
                                             <th>Hành động</th>
@@ -54,6 +56,11 @@
                                         @foreach($roles as $role)
                                             <tr>
                                                 <td>{{$role->name}}</td>
+                                                <td>
+                                                    {{$role->displayname}}
+                                                </td>
+
+                                                <td>@if($role->isAdmin) <span  class="badge badge-success">HỆ THỐNG</span> @else <span  class="badge badge-outline badge-info">{{$role->org->name}}</span>  @endif</td>
                                                 <td>
                                                     @if(count($role->permissions)>0)
                                                         @foreach($role->permissions as $permission)
@@ -93,56 +100,62 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title" style="display:inline-block;">Quản lý quyền</h4>
-{{--                                    @can('Quản lý quyền')--}}
-                                    <a type="button" name="add" id="add" class="btn btn-success pull-right"
-                                       style="display: inline-block" href="/admin/permission/add">Thêm quyền
-                                    </a>
-{{--                                    @endcan--}}
-                                </div>
-                                <div class="card-body">
-                                    <div class="card-block">
-                                        <table class="table table-responsive-md-md text-center table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th>Quyền</th>
-                                                <th>Loại tài khoản</th>
-                                                <th>Tài khoản</th>
-                                                @can('Quản lý quyền')
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title" style="display:inline-block;">Quản lý quyền</h4>
+                                {{--                                    @can('Quản lý quyền')--}}
+                                <a type="button" name="add" id="add" class="btn btn-success pull-right"
+                                   style="display: inline-block" href="/admin/permission/add">Thêm quyền
+                                </a>
+                                {{--                                    @endcan--}}
+                            </div>
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <table class="table table-responsive-md-md text-center table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Mã</th>
+                                            <th>Tên hiển thị</th>
+                                            <th>Phạm vi</th>
+                                            <th>Vai trò</th>
+                                            <th>Tài khoản</th>
+                                            @can('Quản lý quyền')
                                                 <th>Hành động</th>
-                                                @endcan
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach($permissions as $permission)
-                                                <tr>
-                                                    <td>{{$permission->name}}</td>
-                                                    <td>
-                                                        @if(count($permission->roles)>0)
-                                                            @foreach($permission->roles as $role)
-                                                                <span class="badge badge-success">{{$role->name}}</span>
+                                            @endcan
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($permissions as $permission)
+                                            <tr>
+                                                <td>{{$permission->name}}</td>
+                                                <td>{{$permission->displayname}}</td>
+                                                <td>@if($permission->isAdmin) <span  class="badge badge-success">HỆ THỐNG</span> @else <span  class="badge badge-outline badge-info">TỔ CHỨC</span>  @endif</td>
+
+                                                <td>
+                                                    @if(count($permission->roles)>0)
+                                                        @foreach($permission->roles as $role)
+                                                            <span class="badge badge-success">{{$role->name}}</span>
+                                                        @endforeach
+                                                    @else
+                                                        <span
+                                                            class="badge badge-danger">Không có loại tài khoản</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <ul>
+                                                        {{--                                                            $users = User::permission($permission)->get();--}}
+                                                        @if(count(\App\User::permission($permission)->get())>0)
+                                                            @foreach(\App\User::permission($permission)->get() as $user)
+                                                                <li class="badge badge-success">{{$user->name}}</li>
                                                             @endforeach
                                                         @else
-                                                            <span
-                                                                class="badge badge-danger">Không có loại tài khoản</span>
+                                                            <li class="badge badge-danger">Không có tài khoản</li>
                                                         @endif
-                                                    </td>
-                                                    <td>
-                                                        <ul>
-                                                            {{--                                                            $users = User::permission($permission)->get();--}}
-                                                            @if(count(\App\User::permission($permission)->get())>0)
-                                                                @foreach(\App\User::permission($permission)->get() as $user)
-                                                                    <li class="badge badge-success">{{$user->name}}</li>
-                                                                @endforeach
-                                                            @else
-                                                                <li class="badge badge-danger">Không có tài khoản</li>
-                                                            @endif
-                                                        </ul>
-                                                    </td>
-                                                    @can('Quản lý quyền')
+                                                    </ul>
+                                                </td>
+                                                @can('Quản lý quyền')
 
                                                     <td>
                                                         <a class="success p-0" data-original-title="" title=""
@@ -155,24 +168,24 @@
                                                             <i class="ft-x font-medium-3 mr-2"></i>
                                                         </a>
                                                     </td>
-                                                    @endcan
+                                                @endcan
 
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!--Extended Table Ends-->
         </div>
+        </section>
+        <!--Extended Table Ends-->
+    </div>
     </div>
 
-    <p thử nghiệm lại bộ gõ xem đã được fix lỗi chưa />
+    <p thử nghiệm lại bộ gõ xem đã được fix lỗi chưa/>
     <bộ gõ này có vẻ ổn hơn là sử dụng bộ gõ teni.
 
 @endsection

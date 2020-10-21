@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Organization;
+use Illuminate\Support\Facades\Auth;
 use Session;
 
 use Illuminate\Http\Request;
@@ -11,21 +12,22 @@ use Spatie\Permission\Models\Role;
 class RoleController extends Controller
 {
     function index(){
-        $roles = Role::all();
-        $permissions = Permission::all();
+        $roles = Role::Where('isAdmin','0')->where('organization_id', Auth::user()->org->id)->get();
+        $permissions = Permission::Where('isAdmin','0')->get();
         return view('organization.role.index',['roles'=>$roles, 'permissions'=>$permissions]);
     }
 
     function add(){
-        $roles = Role::all();
-        $permissions = Permission::all();
-        return view('organization.role.add', ['roles'=>$roles, 'permissions'=>$permissions]);
+//        $roles = Role::Where('isAdmin','0')->where('organization_id', Auth::user()->org->id)->get();
+        $permissions = Permission::Where('isAdmin','0')->get();
+        return view('organization.role.add', ['permissions'=>$permissions]);
     }
 
     function edit($id){
     $role = Role::findById($id);
-    $permissions = Permission::all();
-    return view('organization.role.edit', ['role'=>$role, 'permissions'=>$permissions]);
+        $permissions = Permission::Where('isAdmin','0')->get();
+
+        return view('organization.role.edit', ['role'=>$role, 'permissions'=>$permissions]);
 }
 
     function delete(Request $request)
@@ -51,12 +53,17 @@ class RoleController extends Controller
     }
 
     function addRequest(Request $request){
+//        return $request;
         $role = Role::create(['name' => $request->name]);
 
         foreach($request->permissions as $permission_id){
             $permission = Permission::findById((int)($permission_id));
             $permission->assignRole($role);
         }
+        $role->organization_id = Auth::user()->org->id;
+        $role->isAdmin = 0;
+        $role->displayname = $request->displayname;
+        $role->save();
         Session::flash('success', 'Thêm loại tài khoản thành công!');
         return redirect('/organization/role');
     }

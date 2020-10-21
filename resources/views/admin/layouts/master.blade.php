@@ -87,7 +87,7 @@
                         <ul class="menu-content">
                             <li><a href="/admin/poll/processing" class="menu-item">Đang diễn ra</a>
                             </li>
-                            <li><a href="/admin/completed" class="menu-item">Đã hoàn thành</a>
+                            <li><a href="/admin/poll/completed" class="menu-item">Đã hoàn thành</a>
                             </li>
 
 

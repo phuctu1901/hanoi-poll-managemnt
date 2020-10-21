@@ -13,20 +13,28 @@
                         <div class="row">
                             <div class="col-md-6">
                                 @csrf
+                                <input type="hidden" id="id" name="id" value="{{$role->id}}">
+
                                 <div class="card">
-                                    <div class="card-header"><h3>Loại tài khoản</h3></div>
+                                    <div class="card-header"><h3>Thông tin</h3></div>
                                     <div class="card-body">
                                         <div class="form-group row">
-                                            <input type="hidden" id="id" name="id" value="{{$role->id}}">
-
-                                            <div class="col-12">
+                                            <div class="col-md-9">
                                                 <input id="name" class="form-control"
                                                        type="text"
-                                                       name="name" value="{{$role->name}}">
+                                                       name="name" placeholder="Mã vai trò" value="{{$role->name}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-9">
+                                                <input id="name" class="form-control"
+                                                       type="text"
+                                                       name="displayname" value="{{$role->displayname}}" placeholder="Tên hiển thị">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="col-md-6">
                                 <div class="card">
@@ -41,7 +49,7 @@
                                                                name="permissions[]"
                                                                value="{{$permission->id}}" @if($role->permissions->contains($permission)) checked @endif/>
                                                         <label
-                                                            for="permission_{{$permission->id}}">{{$permission->name}}</label>
+                                                            for="permission_{{$permission->id}}">{{$permission->displayname}}</label>
                                                     </div>
                                                 @endforeach
                                             </ul>

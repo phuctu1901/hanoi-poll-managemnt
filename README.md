@@ -73,7 +73,7 @@ Các trạng thái của cuộc khảo sát
 Sửa lại Role Permission để phù hợp với nhiều tổ chức và admin
 - Thêm trường `organization_id` tới bảng `roles`
 > Mục đích của việc này để các tổ chức khác nhau tạo ra các loại người dùng khác nhau thì sẽ không bị tổ chức khác can thiệp
-- Thêm trường `isAdminPermissions` tới bảng `permissions`
+- Thêm trường `isAdmin` tới bảng `permissions`
 > Chỉ hiển thị các quyền phù hợp với loại tài khoản
 - Thêm trường `displayName` tới bảng `roles` và `permissions`
 > Phong phú hơn và dễ hiểu hơn việc hiển thị các quyền và loại tài khoản

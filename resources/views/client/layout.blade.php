@@ -136,18 +136,6 @@
         <div class="row">
             <div class="col-md-3">
                 <h3>Thông tin liên hệ</h3>
-{{--                <ul>--}}
-{{--                    @foreach($footer as $f)--}}
-{{--                        <li class="row">--}}
-{{--                            <div class="col-md-5">{{$f->title}}</div>--}}
-{{--                            <div class="col-md-7"><a href="tel://{{$f->pnumber}}">{{$f->pnumber}}</a></div>--}}
-
-{{--                        </li>--}}
-{{--                    @endforeach--}}
-
-{{--                </ul>--}}
-
-                {{--                <a href="mailto:help@citytours.com" id="email_footer">help@citytours.com</a>--}}
             </div>
             <div class="col-md-3">
                 <h3>Về chúng tôi</h3>

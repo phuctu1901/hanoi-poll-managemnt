@@ -14,13 +14,20 @@
                             <div class="col-md-6">
                                 @csrf
                                 <div class="card">
-                                    <div class="card-header"><h3>Loại tài khoản</h3></div>
+                                    <div class="card-header"><h3>Thông tin</h3></div>
                                     <div class="card-body">
                                         <div class="form-group row">
                                             <div class="col-md-9">
                                                 <input id="name" class="form-control"
                                                        type="text"
-                                                       name="name">
+                                                       name="name" placeholder="Mã vai trò">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <div class="col-md-9">
+                                                <input id="name" class="form-control"
+                                                       type="text"
+                                                       name="displayname" placeholder="Tên hiển thị">
                                             </div>
                                         </div>
                                     </div>
@@ -39,7 +46,7 @@
                                                                name="permissions[]"
                                                                value="{{$permission->id}}"/>
                                                         <label
-                                                            for="permission_{{$permission->id}}">{{$permission->name}}</label>
+                                                            for="permission_{{$permission->id}}">{{$permission->displayname}}</label>
                                                     </div>
                                                 @endforeach
                                             </ul>
