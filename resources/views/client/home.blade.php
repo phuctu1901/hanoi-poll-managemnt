@@ -150,9 +150,9 @@
                 </div>
                 <div class="col-md-6">
                     <h3><span>Hướng dẫn sử dụng</span> cho lần đầu</h3>
-                    <p>
+                    <h4>
                         Nếu đây là lần đầu tiên sử dụng hệ thống, bạn vui lòng làm theo hướng dẫn
-                    </p>
+                    </h4>
                     <ul class="list_order">
                         <li><span>1</span>Tải ứng dụng <a href="download-link" target="_blank">uID</a> cho điện thoại
                         </li>

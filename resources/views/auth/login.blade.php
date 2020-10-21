@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Hệ thống trưng cầu ý kiến</title>
+    <title>Hệ thống trưng cầu ý kiến 4.0</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="/login-assets/images/icons/favicon.ico"/>
+    <link rel="icon" type="image/png" href="/login-assets/images/icons/tungong.ico"/>
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css"  src="/login-assets/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -70,13 +70,11 @@
             <form role="form" class="login100-form validate-form"  action="{{ route('login') }}" method="POST">
                 {!! csrf_field() !!}
 
-                <span class="login100-form-logo">
-						            <img class="navbar-brand-logo" src="/assets/images/Hanoi_Logo.png">
+                <div class="login100-form-logo"><img src="/assets/images/tungong.png" width="60%" height="65%"></div>
 
-					</span>
 
                 <span class="login100-form-title p-b-34 p-t-27" tyle="font-size:25px; font-family: unset;">
-                       HỆ THỐNG CẤP ĐỊNH DANH SỐ
+                       HỆ THỐNG trưng cầu ý kiến
 					</span>
 
                 <div class="wrap-input100 validate-input">

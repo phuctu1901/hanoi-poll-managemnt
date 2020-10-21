@@ -7,27 +7,27 @@
         <div class="row">
             <div class="col-lg-4 col-md-4">
                 <div class="">
-                    <a href="/chi-tiet-tour/{{$value->slug}}">
+                    <a href="/khao-sat/to-chuc/{{$value->slug}}">
                             <img src="{{$value->logo}}" alt="{{$value->slug}}" class="rounded-circle avatar-md avatar mx-auto d-block">
                     </a>
                 </div>
             </div>
             <div class="col-lg-5 col-md-6">
                 <div class="tour_list_desc">
-                    <a href="/chi-tiet-to-chuc/{{$value->slug}}"><strong><span style="font-weight: 600; font-size: 20px;text-align: center;display: block;">{{$value->name}}</span></strong></a>
+                    <a href="/khao-sat/to-chuc/{{$value->slug}}"><strong><span style="font-weight: 600; font-size: 20px;text-align: center;display: block;">{{$value->name}}</span></strong></a>
                     <hr>
                     <table class="table table-borderless">
                            <tr>
                                <td><strong>Webiste</strong></td>
-                               <td>{{$value->website}}</td>
+                               <td><a href="{{$value->website}}" target="_blank">{{$value->website}}</a> </td>
                            </tr>
                         <tr>
                             <td><strong>Email</strong></td>
-                            <td>{{$value->email}}</td>
+                            <td> <a href="mailto:{{$value->email}}">{{$value->email}}</a></td>
                         </tr>
                         <tr>
                             <td><strong>Số điện thoại</strong></td>
-                            <td>{{$value->phone}}</td>
+                            <td><a href="tel:{{$value->phone}}">{{$value->phone}}</a> </td>
                         </tr>
                     </table>
                 </div>

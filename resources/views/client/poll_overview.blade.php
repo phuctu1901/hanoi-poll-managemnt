@@ -46,7 +46,7 @@
                                     </tr>
                                     <tr>
                                         <td>Tổ chức trưng cầu ý kiến</td>
-                                        <td>{{$poll->org->name}}</td>
+                                        <td> <a href="/khao-sat/to-chuc/{{$poll->org->slug}}" target="_blank">{{$poll->org->name}}</a> </td>
                                     </tr>
 
 

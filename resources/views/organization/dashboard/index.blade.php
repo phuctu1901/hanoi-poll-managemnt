@@ -68,7 +68,7 @@
                                             <span>Đã đóng</span>
                                         </div>
                                         <div class="media-right white text-right">
-                                            
+
                                             <h3 class="font-large-1 mb-0">{{$closed}}</h3>
                                         </div>
                                     </div>

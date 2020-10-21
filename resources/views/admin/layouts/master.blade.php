@@ -25,8 +25,10 @@
     <!-- font icons-->
     <link rel="stylesheet" type="text/css" href="/admin-assets/fonts/feather/style.min.css">
     <link rel="stylesheet" type="text/css" href="/admin-assets/fonts/simple-line-icons/style.css">
-    <link rel="stylesheet" type="text/css" href="/admin-assets/fonts/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/admin-assets/vendors/font-awesome/css/all.css">
+{{--    <link rel="stylesheet" type="text/css" href="/admin-assets/fonts/font-awesome/css/font-awesome.min.css">--}}
+{{--    <link rel="stylesheet" type="text/css" href="/admin-assets/vendors/font-awesome/css/all.css">--}}
+    <link rel="stylesheet" type="text/css" href="/login-assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" type="text/css" href="/admin-assets/vendors/css/perfect-scrollbar.min.css">
     <link rel="stylesheet" type="text/css" href="/admin-assets/vendors/css/prism.min.css">
     <link rel="stylesheet" type="text/css" href="/admin-assets/vendors/css/chartist.min.css">

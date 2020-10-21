@@ -8,16 +8,18 @@
             <!-- Basic form layout section start -->
             <section id="horizontal-form-layouts">
                 <div class="row">
-                    @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                    <div class="col-12">
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                    </div>
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-header">
@@ -26,13 +28,17 @@
                             <div class="card-body">
                                 <div class="px-3">
 
-                                    <form class="form form-horizontal">
+
+                                    <form class="form form-horizontal"
+                                          action="{{url('/organization/profile')}} "
+                                          method="POST" role="form" enctype="multipart/form-data">
+                                        {{ csrf_field()}}
                                         <div class="form-body">
                                             <div class="form-group">
                                                 <label for="new-password" class="col-md-4 control-label">Tên người
                                                     dùng</label>
                                                 <div class="col-md-6">
-                                                    <input type="text" class="form-control" name="name">
+                                                    <input type="text" class="form-control" name="name"  value="{{Auth::user()->name}}">
                                                 </div>
                                                 <span class="help-block">
                                         <strong></strong>
@@ -41,7 +47,7 @@
                                                     nhập</label>
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control" name="username"
-                                                           value="{{Auth::user()->name}}">
+                                                           value="{{Auth::user()->username}}">
                                                 </div>
                                                 <span class="help-block">
                                         <strong></strong>
@@ -52,6 +58,15 @@
                                                            value="{{Auth::user()->email}}">
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="form-actions">
+                                            <button type="button" class="btn btn-raised btn-warning mr-1">
+                                                <i class="ft-x"></i> Reset
+                                            </button>
+                                            <button type="submit" class="btn btn-raised btn-primary">
+                                                <i class="fa fa-check-square-o"></i> Cập nhật thông tin
+                                            </button>
                                         </div>
                                     </form>
 
@@ -69,7 +84,7 @@
                                 <div class="px-3">
 
                                     <form class="form form-horizontal"
-                                          action="{{url('/admin/changePassword')}} "
+                                          action="{{url('/organization/profile')}} "
                                           method="POST" role="form" enctype="multipart/form-data">
                                         {{ csrf_field()}}
                                         <div class="form-body">
@@ -126,7 +141,7 @@
                                                 <i class="ft-x"></i> Reset
                                             </button>
                                             <button type="submit" class="btn btn-raised btn-primary">
-                                                <i class="fa fa-check-square-o"></i> Save
+                                                <i class="fa fa-check-square-o"></i> Đổi mật khẩu
                                             </button>
                                         </div>
                                     </form>

@@ -43,25 +43,41 @@ class UserController extends Controller
 
     public function updateProfile(Request $request)
     {
-        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
-            // The passwords matches
-            return redirect()->back()->with("error", "Mật khẩu cũ bạn nhập không chính xác");
-        }
-        if (strcmp($request->get('current-password'), $request->get('new-password')) == 0) {
-            //Current password and new password are same
-            return redirect()->back()->with("error", "Mật khẩu cũ và mật khẩu mới giống nhau, đổi mật khẩu khác");
-        }
-        $validatedData = $request->validate([
-            'current-password' => 'required',
-            'new-password' => 'required|string|min:8|confirmed',
+        if ($request->has('current-password')) {
 
-        ], ['new-password.confirmed' => "Mật khẩu và mật khẩu xác nhận không giống nhau", 'password.min' => 'Mật khẩu phải chứa ít nhất 8 ký tự',],
+            if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+                // The passwords matches
+                return redirect()->back()->with("error", "Mật khẩu cũ bạn nhập không chính xác");
+            }
+            if (strcmp($request->get('current-password'), $request->get('new-password')) == 0) {
+                //Current password and new password are same
+                return redirect()->back()->with("error", "Mật khẩu cũ và mật khẩu mới giống nhau, đổi mật khẩu khác");
+            }
+            $validatedData = $request->validate([
+                'current-password' => 'required',
+                'new-password' => 'required|string|min:8|confirmed',
+
+            ], ['new-password.confirmed' => "Mật khẩu và mật khẩu xác nhận không giống nhau", 'password.min' => 'Mật khẩu phải chứa ít nhất 8 ký tự',],
             );
-        //Change Password
-        $user = Auth::user();
-        $user->password = bcrypt($request->get('new-password'));
-        $user->save();
-        return redirect()->back()->with("success", "Đổi mật khẩu thành công!");
+            //Change Password
+            $user = Auth::user();
+            $user->password = bcrypt($request->get('new-password'));
+
+            $user->save();
+            return redirect()->back()->with("success", "Đổi mật khẩu thành công!");
+        }
+        else{
+
+            //Change Password
+            $user = Auth::user();
+            $user->name = $request->get('name');
+            $user->username = $request->get('username');
+            $user->email = $request->get('email');
+
+            $user->save();
+            return redirect()->back()->with("success", "Cập nhật thông tin thành công!");
+        }
+
     }
 
 
