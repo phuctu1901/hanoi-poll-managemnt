@@ -60,7 +60,7 @@
                                                     {{$role->displayname}}
                                                 </td>
 
-                                                <td>@if($role->isAdmin) <span  class="badge badge-success">HỆ THỐNG</span> @else <span  class="badge badge-outline badge-info">{{$role->org->name}}</span>  @endif</td>
+                                                <td>@if($role->isAdmin) <span  class="badge badge-success">HỆ THỐNG</span> @else <span  class="badge badge-outline badge-info">@if(isset($role->org)) {{$role->org->name}}@else KHÔNG CÓ TỔ CHỨC @endif</span>  @endif</td>
                                                 <td>
                                                     @if(count($role->permissions)>0)
                                                         @foreach($role->permissions as $permission)
