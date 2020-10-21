@@ -109,10 +109,10 @@
 
 
                         <li>
-                            <a href="/bai-viet">Bài viết</a>
+                            <a href="#">Bài viết</a>
                         </li>
                         <li>
-                            <a href="/gioi-thieu">Giới thiệu</a>
+                            <a href="#">Giới thiệu</a>
                         </li>
 
                     </ul>

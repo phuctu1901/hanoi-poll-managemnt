@@ -146,7 +146,7 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <img src="/client/img/laptop.png" alt="Laptop" class="img-fluid laptop">
+                    <img src="/client/img/tungong.png" alt="Laptop" class="img-fluid laptop">
                 </div>
                 <div class="col-md-6">
                     <h3><span>Hướng dẫn sử dụng</span> cho lần đầu</h3>
