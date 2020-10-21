@@ -15,8 +15,10 @@ class SystemAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth()->user()->is_system_account == 1){
-            return $next($request);
+        if(isset(Auth()->user()->is_system_account)) {
+            if (Auth()->user()->is_system_account == 1) {
+                return $next($request);
+            }
         }
         return redirect('/organization')->with('error','You have not admin access');
     }
