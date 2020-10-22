@@ -113,8 +113,6 @@ try{
         }
         $questions = $questions . ']';
 
-//        $obj = json_encode()
-//        return ($questions);
 
 
         $data_array=[
@@ -127,8 +125,11 @@ try{
             'faqs'=>"",
             'start_at'=>$start_at.'-'.$start_time,
             'end_at'=>$end_at.'-'.$end_time,
-            'state'=>1
-//            Đang diễn ra
+            'state'=>1,
+            'organization_id'=>Auth::user()->org->id,
+            'proof_request_re'=>$request->proof_request_content_re,
+            'proof_request_pre'=>$request->proof_request_content_pre,
+            'proof_request_desc' => $request->proof_request_desc
         ];
         $this->createPollRecord($data_array);
 
@@ -176,8 +177,8 @@ try{
         $category_id = $request->category_id;
         $start_time = $request->start_time;
         $start_at = $request->start_at;
-        $end_at = $request->end_at;
-        $end_time = $request->end_time;
+//        $end_at = $request->end_at;
+//        $end_time = $request->end_time;
         $question_content = $request->question_content;
 
         $thumb = $request->thumb;
@@ -209,26 +210,6 @@ try{
             $start_j=$j;
         }
         $questions = $questions . ']';
-
-//        $obj = json_encode()
-//        return ($questions);
-
-
-        $data_array=[
-            "title"=>$title,
-            "thumb"=>$thumb,
-            'category_id'=>$category_id,
-            'overview'=>$overview,
-            'content'=>$questions,
-            'notes'=>"",
-            'faqs'=>"",
-            'start_at'=>$start_at.'-'.$start_time,
-            'end_at'=>$end_at.'-'.$end_time,
-            'state'=>1
-//            Đang diễn ra
-        ];
-//        $this->createPollRecord($data_array);
-
         $poll_id = $request->id;
         $poll = Poll::find($poll_id);
         $poll->title = $title;
@@ -236,8 +217,11 @@ try{
         $poll->category_id= $category_id;
         $poll->overview = $overview;
         $poll->content=$questions;
-        $poll->start_at = $start_at.'-'.$start_time;
-        $poll->end_at = $end_at.'-'.$end_time;
+//        $poll->start_at = $start_at.'-'.$start_time;
+//        $poll->end_at = $end_at.'-'.$end_time;
+        $poll->proof_request_re = $request->proof_request_content_re;
+        $poll->proof_request_pre = $request->proof_request_content_pre;
+        $poll->proof_request_desc = $request->proof_request_desc;
         $poll->save();
 //        return $poll;
         return redirect('/organization/poll');

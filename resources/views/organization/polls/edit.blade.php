@@ -273,8 +273,9 @@
     <link rel="stylesheet" type="text/css" href="/client-assets/global/vendor/timepicker/jquery-timepicker.css">
     <link rel="stylesheet" type="text/css"
           href="/admin-assets/vendors/css/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
-    <script type='text/javascript'
-            src='https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.1.0/jquery-migrate.min.js'></script>
+    <script type='text/javascript' src='/admin-assets/vendors/js/core/jquery-3.2.1.min.js'></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.1.0/jquery-migrate.min.js'  type="text/javascript"  ></script>
     <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
 
     <script src="/client-assets/global/vendor/timepicker/jquery.timepicker.js"></script>
@@ -284,16 +285,12 @@
     <script src="/jquery.json-viewer/json-viewer/jquery.json-viewer.js"></script>
     {{--    <script src="/vendor/laravel-filemanager/js/lfm.js"></script>--}}
     <script>
-        jQuery(function($) {
-
-
             function replace(name) {
                 console.log(name);
                 CKEDITOR.replace(name);
             }
 
             let questions = '<?php echo sizeof($contents) ?>';
-            ;
             console.log(questions);
             $("#question_number").val(questions);
             // let count;
@@ -302,18 +299,17 @@
             //     this.replace('question_content_'+count);
             // }
             let i = 1;
-
-            function add_option_func(question_id) {
-                $('#question_' + question_id).append(`
+                function add_option_func(question_id) {
+                    $('#question_' + question_id).append(`
                                                     <li id='question_${question_id}_option_${i}' class="list-group-item">
                                                         <input type="text" class="form-control" name="option[]">
                                                     </li>`)
-                var tmp = $('#option_len_' + question_id).val()
-                tmp = parseInt(tmp)
-                var newVal = tmp++
-                newVal = parseInt(newVal)
-                $('#option_len_' + question_id).val(++newVal)
-            }
+                    var tmp = $('#option_len_' + question_id).val()
+                    tmp = parseInt(tmp)
+                    var newVal = tmp++
+                    newVal = parseInt(newVal)
+                    $('#option_len_' + question_id).val(++newVal)
+                }
 
 
             const options = {
@@ -323,17 +319,6 @@
                 filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
             };
 
-            // initialize input widgets first
-            $('#basicExample .time').timepicker({
-                'showDuration': true,
-                'timeFormat': 'g:ia'
-            });
-
-            $('#basicExample .date').datepicker({
-                'format': 'd/m/yyyy',
-                'autoclose': true,
-                'language': 'vi'
-            });
 
             // initialize datepair
             // var basicExampleEl = document.getElementById('basicExample');
@@ -342,7 +327,6 @@
 
             $(document).ready(function () {
                 $(this).find('.poll-info').each(function (index) {
-                    console.log("thay the");
                     CKEDITOR.replace($(this).attr('id'), options);
                 });
 
@@ -468,7 +452,6 @@
             }
 
             $('#category_id').val({{$poll->category_id}});
-        })
 
     </script>
 @endsection
